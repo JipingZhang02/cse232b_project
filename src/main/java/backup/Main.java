@@ -1,3 +1,5 @@
+package backup;
+
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.ParserConfigurationException;
@@ -111,7 +113,7 @@ public class Main {
                 throw new RuntimeException(String.format("could not file xml file %s",fileName));
             }
             Element rootElement = xmlFiles.get(fileName);
-            res = findAllChildrenElements(r)
+            res = findAllChildrenElements(rootElement);
             return null;
         }
 
