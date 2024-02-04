@@ -37,7 +37,7 @@ rp: tagName #UnaryRp1 | attName #UnaryRp2| TEXT #UnaryRp3| STAR #UnaryRp4| SELF 
     | rp pathOp rp #BinaryRp1| rp COMMA rp #BinaryRp2
     | LPR rp RPR  #ParaRp
     | rp LSB filter RSB #FilterRp;
-filter: rp #UnaryFt
+filter: rp #UnaryFta
     | rp compOp rp #BinaryFt1 | rp EQS stringCondition #BinaryFt2
     | LPR filter RPR #ParaFt
     | filter CONJ filter #CompoundFt
