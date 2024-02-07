@@ -1,4 +1,4 @@
-// Generated from ./XPath.g4 by ANTLR 4.13.1
+// Generated from XPath.g4 by ANTLR 4.13.1
 
 package edu.ucsd.cse232b.autogen;
 
@@ -20,89 +20,53 @@ public interface XPathListener extends ParseTreeListener {
 	 */
 	void exitAp(XPathParser.ApContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code UnaryRp3}
+	 * Enter a parse tree produced by the {@code StarRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 */
-	void enterUnaryRp3(XPathParser.UnaryRp3Context ctx);
+	void enterStarRp(XPathParser.StarRpContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code UnaryRp3}
+	 * Exit a parse tree produced by the {@code StarRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 */
-	void exitUnaryRp3(XPathParser.UnaryRp3Context ctx);
+	void exitStarRp(XPathParser.StarRpContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code BinaryRp1}
+	 * Enter a parse tree produced by the {@code BinaryRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 */
-	void enterBinaryRp1(XPathParser.BinaryRp1Context ctx);
+	void enterBinaryRp(XPathParser.BinaryRpContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code BinaryRp1}
+	 * Exit a parse tree produced by the {@code BinaryRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 */
-	void exitBinaryRp1(XPathParser.BinaryRp1Context ctx);
+	void exitBinaryRp(XPathParser.BinaryRpContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code UnaryRp4}
+	 * Enter a parse tree produced by the {@code TagnameRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 */
-	void enterUnaryRp4(XPathParser.UnaryRp4Context ctx);
+	void enterTagnameRp(XPathParser.TagnameRpContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code UnaryRp4}
+	 * Exit a parse tree produced by the {@code TagnameRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 */
-	void exitUnaryRp4(XPathParser.UnaryRp4Context ctx);
+	void exitTagnameRp(XPathParser.TagnameRpContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code ParaRp}
+	 * Enter a parse tree produced by the {@code TextRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 */
-	void enterParaRp(XPathParser.ParaRpContext ctx);
+	void enterTextRp(XPathParser.TextRpContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code ParaRp}
+	 * Exit a parse tree produced by the {@code TextRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 */
-	void exitParaRp(XPathParser.ParaRpContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code BinaryRp2}
-	 * labeled alternative in {@link XPathParser#rp}.
-	 * @param ctx the parse tree
-	 */
-	void enterBinaryRp2(XPathParser.BinaryRp2Context ctx);
-	/**
-	 * Exit a parse tree produced by the {@code BinaryRp2}
-	 * labeled alternative in {@link XPathParser#rp}.
-	 * @param ctx the parse tree
-	 */
-	void exitBinaryRp2(XPathParser.BinaryRp2Context ctx);
-	/**
-	 * Enter a parse tree produced by the {@code UnaryRp1}
-	 * labeled alternative in {@link XPathParser#rp}.
-	 * @param ctx the parse tree
-	 */
-	void enterUnaryRp1(XPathParser.UnaryRp1Context ctx);
-	/**
-	 * Exit a parse tree produced by the {@code UnaryRp1}
-	 * labeled alternative in {@link XPathParser#rp}.
-	 * @param ctx the parse tree
-	 */
-	void exitUnaryRp1(XPathParser.UnaryRp1Context ctx);
-	/**
-	 * Enter a parse tree produced by the {@code UnaryRp2}
-	 * labeled alternative in {@link XPathParser#rp}.
-	 * @param ctx the parse tree
-	 */
-	void enterUnaryRp2(XPathParser.UnaryRp2Context ctx);
-	/**
-	 * Exit a parse tree produced by the {@code UnaryRp2}
-	 * labeled alternative in {@link XPathParser#rp}.
-	 * @param ctx the parse tree
-	 */
-	void exitUnaryRp2(XPathParser.UnaryRp2Context ctx);
+	void exitTextRp(XPathParser.TextRpContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code FilterRp}
 	 * labeled alternative in {@link XPathParser#rp}.
@@ -116,65 +80,89 @@ public interface XPathListener extends ParseTreeListener {
 	 */
 	void exitFilterRp(XPathParser.FilterRpContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code UnaryRp5}
+	 * Enter a parse tree produced by the {@code AttrRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 */
-	void enterUnaryRp5(XPathParser.UnaryRp5Context ctx);
+	void enterAttrRp(XPathParser.AttrRpContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code UnaryRp5}
+	 * Exit a parse tree produced by the {@code AttrRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 */
-	void exitUnaryRp5(XPathParser.UnaryRp5Context ctx);
+	void exitAttrRp(XPathParser.AttrRpContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code UnaryRp6}
+	 * Enter a parse tree produced by the {@code BracketRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 */
-	void enterUnaryRp6(XPathParser.UnaryRp6Context ctx);
+	void enterBracketRp(XPathParser.BracketRpContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code UnaryRp6}
+	 * Exit a parse tree produced by the {@code BracketRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 */
-	void exitUnaryRp6(XPathParser.UnaryRp6Context ctx);
+	void exitBracketRp(XPathParser.BracketRpContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code BinaryFt1}
+	 * Enter a parse tree produced by the {@code ParentRp}
+	 * labeled alternative in {@link XPathParser#rp}.
+	 * @param ctx the parse tree
+	 */
+	void enterParentRp(XPathParser.ParentRpContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code ParentRp}
+	 * labeled alternative in {@link XPathParser#rp}.
+	 * @param ctx the parse tree
+	 */
+	void exitParentRp(XPathParser.ParentRpContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code CommaRp}
+	 * labeled alternative in {@link XPathParser#rp}.
+	 * @param ctx the parse tree
+	 */
+	void enterCommaRp(XPathParser.CommaRpContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CommaRp}
+	 * labeled alternative in {@link XPathParser#rp}.
+	 * @param ctx the parse tree
+	 */
+	void exitCommaRp(XPathParser.CommaRpContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code SelfRp}
+	 * labeled alternative in {@link XPathParser#rp}.
+	 * @param ctx the parse tree
+	 */
+	void enterSelfRp(XPathParser.SelfRpContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code SelfRp}
+	 * labeled alternative in {@link XPathParser#rp}.
+	 * @param ctx the parse tree
+	 */
+	void exitSelfRp(XPathParser.SelfRpContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code UnaryFta}
 	 * labeled alternative in {@link XPathParser#filter}.
 	 * @param ctx the parse tree
 	 */
-	void enterBinaryFt1(XPathParser.BinaryFt1Context ctx);
+	void enterUnaryFta(XPathParser.UnaryFtaContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code BinaryFt1}
+	 * Exit a parse tree produced by the {@code UnaryFta}
 	 * labeled alternative in {@link XPathParser#filter}.
 	 * @param ctx the parse tree
 	 */
-	void exitBinaryFt1(XPathParser.BinaryFt1Context ctx);
+	void exitUnaryFta(XPathParser.UnaryFtaContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code BinaryFt2}
+	 * Enter a parse tree produced by the {@code BinaryFt}
 	 * labeled alternative in {@link XPathParser#filter}.
 	 * @param ctx the parse tree
 	 */
-	void enterBinaryFt2(XPathParser.BinaryFt2Context ctx);
+	void enterBinaryFt(XPathParser.BinaryFtContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code BinaryFt2}
+	 * Exit a parse tree produced by the {@code BinaryFt}
 	 * labeled alternative in {@link XPathParser#filter}.
 	 * @param ctx the parse tree
 	 */
-	void exitBinaryFt2(XPathParser.BinaryFt2Context ctx);
-	/**
-	 * Enter a parse tree produced by the {@code ParaFt}
-	 * labeled alternative in {@link XPathParser#filter}.
-	 * @param ctx the parse tree
-	 */
-	void enterParaFt(XPathParser.ParaFtContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code ParaFt}
-	 * labeled alternative in {@link XPathParser#filter}.
-	 * @param ctx the parse tree
-	 */
-	void exitParaFt(XPathParser.ParaFtContext ctx);
+	void exitBinaryFt(XPathParser.BinaryFtContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code NegFt}
 	 * labeled alternative in {@link XPathParser#filter}.
@@ -188,6 +176,18 @@ public interface XPathListener extends ParseTreeListener {
 	 */
 	void exitNegFt(XPathParser.NegFtContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code StrEqFt}
+	 * labeled alternative in {@link XPathParser#filter}.
+	 * @param ctx the parse tree
+	 */
+	void enterStrEqFt(XPathParser.StrEqFtContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code StrEqFt}
+	 * labeled alternative in {@link XPathParser#filter}.
+	 * @param ctx the parse tree
+	 */
+	void exitStrEqFt(XPathParser.StrEqFtContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code CompoundFt}
 	 * labeled alternative in {@link XPathParser#filter}.
 	 * @param ctx the parse tree
@@ -200,17 +200,17 @@ public interface XPathListener extends ParseTreeListener {
 	 */
 	void exitCompoundFt(XPathParser.CompoundFtContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code UnaryFt}
+	 * Enter a parse tree produced by the {@code BracketFt}
 	 * labeled alternative in {@link XPathParser#filter}.
 	 * @param ctx the parse tree
 	 */
-	void enterUnaryFt(XPathParser.UnaryFtContext ctx);
+	void enterBracketFt(XPathParser.BracketFtContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code UnaryFt}
+	 * Exit a parse tree produced by the {@code BracketFt}
 	 * labeled alternative in {@link XPathParser#filter}.
 	 * @param ctx the parse tree
 	 */
-	void exitUnaryFt(XPathParser.UnaryFtContext ctx);
+	void exitBracketFt(XPathParser.BracketFtContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XPathParser#pathOp}.
 	 * @param ctx the parse tree
@@ -262,15 +262,25 @@ public interface XPathListener extends ParseTreeListener {
 	 */
 	void exitAttName(XPathParser.AttNameContext ctx);
 	/**
-	 * Enter a parse tree produced by {@link XPathParser#compOp}.
+	 * Enter a parse tree produced by {@link XPathParser#boolOp}.
 	 * @param ctx the parse tree
 	 */
-	void enterCompOp(XPathParser.CompOpContext ctx);
+	void enterBoolOp(XPathParser.BoolOpContext ctx);
 	/**
-	 * Exit a parse tree produced by {@link XPathParser#compOp}.
+	 * Exit a parse tree produced by {@link XPathParser#boolOp}.
 	 * @param ctx the parse tree
 	 */
-	void exitCompOp(XPathParser.CompOpContext ctx);
+	void exitBoolOp(XPathParser.BoolOpContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XPathParser#filterOp}.
+	 * @param ctx the parse tree
+	 */
+	void enterFilterOp(XPathParser.FilterOpContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XPathParser#filterOp}.
+	 * @param ctx the parse tree
+	 */
+	void exitFilterOp(XPathParser.FilterOpContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XPathParser#stringCondition}.
 	 * @param ctx the parse tree

@@ -1,4 +1,4 @@
-// Generated from ./XPath.g4 by ANTLR 4.13.1
+// Generated from XPath.g4 by ANTLR 4.13.1
 
 package edu.ucsd.cse232b.autogen;
 
@@ -19,54 +19,33 @@ public interface XPathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAp(XPathParser.ApContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code UnaryRp3}
+	 * Visit a parse tree produced by the {@code StarRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitUnaryRp3(XPathParser.UnaryRp3Context ctx);
+	T visitStarRp(XPathParser.StarRpContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code BinaryRp1}
+	 * Visit a parse tree produced by the {@code BinaryRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBinaryRp1(XPathParser.BinaryRp1Context ctx);
+	T visitBinaryRp(XPathParser.BinaryRpContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code UnaryRp4}
+	 * Visit a parse tree produced by the {@code TagnameRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitUnaryRp4(XPathParser.UnaryRp4Context ctx);
+	T visitTagnameRp(XPathParser.TagnameRpContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code ParaRp}
+	 * Visit a parse tree produced by the {@code TextRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitParaRp(XPathParser.ParaRpContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code BinaryRp2}
-	 * labeled alternative in {@link XPathParser#rp}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBinaryRp2(XPathParser.BinaryRp2Context ctx);
-	/**
-	 * Visit a parse tree produced by the {@code UnaryRp1}
-	 * labeled alternative in {@link XPathParser#rp}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitUnaryRp1(XPathParser.UnaryRp1Context ctx);
-	/**
-	 * Visit a parse tree produced by the {@code UnaryRp2}
-	 * labeled alternative in {@link XPathParser#rp}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitUnaryRp2(XPathParser.UnaryRp2Context ctx);
+	T visitTextRp(XPathParser.TextRpContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code FilterRp}
 	 * labeled alternative in {@link XPathParser#rp}.
@@ -75,40 +54,54 @@ public interface XPathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitFilterRp(XPathParser.FilterRpContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code UnaryRp5}
+	 * Visit a parse tree produced by the {@code AttrRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitUnaryRp5(XPathParser.UnaryRp5Context ctx);
+	T visitAttrRp(XPathParser.AttrRpContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code UnaryRp6}
+	 * Visit a parse tree produced by the {@code BracketRp}
 	 * labeled alternative in {@link XPathParser#rp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitUnaryRp6(XPathParser.UnaryRp6Context ctx);
+	T visitBracketRp(XPathParser.BracketRpContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code BinaryFt1}
+	 * Visit a parse tree produced by the {@code ParentRp}
+	 * labeled alternative in {@link XPathParser#rp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParentRp(XPathParser.ParentRpContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CommaRp}
+	 * labeled alternative in {@link XPathParser#rp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCommaRp(XPathParser.CommaRpContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code SelfRp}
+	 * labeled alternative in {@link XPathParser#rp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitSelfRp(XPathParser.SelfRpContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code UnaryFta}
 	 * labeled alternative in {@link XPathParser#filter}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBinaryFt1(XPathParser.BinaryFt1Context ctx);
+	T visitUnaryFta(XPathParser.UnaryFtaContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code BinaryFt2}
+	 * Visit a parse tree produced by the {@code BinaryFt}
 	 * labeled alternative in {@link XPathParser#filter}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitBinaryFt2(XPathParser.BinaryFt2Context ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ParaFt}
-	 * labeled alternative in {@link XPathParser#filter}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParaFt(XPathParser.ParaFtContext ctx);
+	T visitBinaryFt(XPathParser.BinaryFtContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code NegFt}
 	 * labeled alternative in {@link XPathParser#filter}.
@@ -117,6 +110,13 @@ public interface XPathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNegFt(XPathParser.NegFtContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code StrEqFt}
+	 * labeled alternative in {@link XPathParser#filter}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStrEqFt(XPathParser.StrEqFtContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code CompoundFt}
 	 * labeled alternative in {@link XPathParser#filter}.
 	 * @param ctx the parse tree
@@ -124,12 +124,12 @@ public interface XPathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitCompoundFt(XPathParser.CompoundFtContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code UnaryFt}
+	 * Visit a parse tree produced by the {@code BracketFt}
 	 * labeled alternative in {@link XPathParser#filter}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitUnaryFt(XPathParser.UnaryFtContext ctx);
+	T visitBracketFt(XPathParser.BracketFtContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link XPathParser#pathOp}.
 	 * @param ctx the parse tree
@@ -161,11 +161,17 @@ public interface XPathVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitAttName(XPathParser.AttNameContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link XPathParser#compOp}.
+	 * Visit a parse tree produced by {@link XPathParser#boolOp}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCompOp(XPathParser.CompOpContext ctx);
+	T visitBoolOp(XPathParser.BoolOpContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XPathParser#filterOp}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFilterOp(XPathParser.FilterOpContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link XPathParser#stringCondition}.
 	 * @param ctx the parse tree

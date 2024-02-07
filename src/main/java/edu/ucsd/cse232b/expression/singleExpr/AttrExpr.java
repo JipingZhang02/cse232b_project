@@ -1,12 +1,12 @@
-package edu.ucsd.cse232b.expression;
+package edu.ucsd.cse232b.expression.singleExpr;
 
-import org.w3c.dom.NamedNodeMap;
+import edu.ucsd.cse232b.expression.Expression;
 import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AttrExpr implements Expression{
+public class AttrExpr implements Expression {
     private final String attrName;
 
     public AttrExpr(String attrName) {

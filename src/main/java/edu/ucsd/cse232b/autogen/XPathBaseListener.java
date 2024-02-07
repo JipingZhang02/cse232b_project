@@ -1,4 +1,4 @@
-// Generated from ./XPath.g4 by ANTLR 4.13.1
+// Generated from XPath.g4 by ANTLR 4.13.1
 
 package edu.ucsd.cse232b.autogen;
 
@@ -31,85 +31,49 @@ public class XPathBaseListener implements XPathListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnaryRp3(XPathParser.UnaryRp3Context ctx) { }
+	@Override public void enterStarRp(XPathParser.StarRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnaryRp3(XPathParser.UnaryRp3Context ctx) { }
+	@Override public void exitStarRp(XPathParser.StarRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBinaryRp1(XPathParser.BinaryRp1Context ctx) { }
+	@Override public void enterBinaryRp(XPathParser.BinaryRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBinaryRp1(XPathParser.BinaryRp1Context ctx) { }
+	@Override public void exitBinaryRp(XPathParser.BinaryRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnaryRp4(XPathParser.UnaryRp4Context ctx) { }
+	@Override public void enterTagnameRp(XPathParser.TagnameRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnaryRp4(XPathParser.UnaryRp4Context ctx) { }
+	@Override public void exitTagnameRp(XPathParser.TagnameRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParaRp(XPathParser.ParaRpContext ctx) { }
+	@Override public void enterTextRp(XPathParser.TextRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParaRp(XPathParser.ParaRpContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterBinaryRp2(XPathParser.BinaryRp2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBinaryRp2(XPathParser.BinaryRp2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUnaryRp1(XPathParser.UnaryRp1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUnaryRp1(XPathParser.UnaryRp1Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUnaryRp2(XPathParser.UnaryRp2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUnaryRp2(XPathParser.UnaryRp2Context ctx) { }
+	@Override public void exitTextRp(XPathParser.TextRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -127,61 +91,85 @@ public class XPathBaseListener implements XPathListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnaryRp5(XPathParser.UnaryRp5Context ctx) { }
+	@Override public void enterAttrRp(XPathParser.AttrRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnaryRp5(XPathParser.UnaryRp5Context ctx) { }
+	@Override public void exitAttrRp(XPathParser.AttrRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnaryRp6(XPathParser.UnaryRp6Context ctx) { }
+	@Override public void enterBracketRp(XPathParser.BracketRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnaryRp6(XPathParser.UnaryRp6Context ctx) { }
+	@Override public void exitBracketRp(XPathParser.BracketRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBinaryFt1(XPathParser.BinaryFt1Context ctx) { }
+	@Override public void enterParentRp(XPathParser.ParentRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBinaryFt1(XPathParser.BinaryFt1Context ctx) { }
+	@Override public void exitParentRp(XPathParser.ParentRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterBinaryFt2(XPathParser.BinaryFt2Context ctx) { }
+	@Override public void enterCommaRp(XPathParser.CommaRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitBinaryFt2(XPathParser.BinaryFt2Context ctx) { }
+	@Override public void exitCommaRp(XPathParser.CommaRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterParaFt(XPathParser.ParaFtContext ctx) { }
+	@Override public void enterSelfRp(XPathParser.SelfRpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitParaFt(XPathParser.ParaFtContext ctx) { }
+	@Override public void exitSelfRp(XPathParser.SelfRpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterUnaryFta(XPathParser.UnaryFtaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUnaryFta(XPathParser.UnaryFtaContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterBinaryFt(XPathParser.BinaryFtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitBinaryFt(XPathParser.BinaryFtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -199,6 +187,18 @@ public class XPathBaseListener implements XPathListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterStrEqFt(XPathParser.StrEqFtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitStrEqFt(XPathParser.StrEqFtContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCompoundFt(XPathParser.CompoundFtContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -211,13 +211,13 @@ public class XPathBaseListener implements XPathListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUnaryFt(XPathParser.UnaryFtContext ctx) { }
+	@Override public void enterBracketFt(XPathParser.BracketFtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUnaryFt(XPathParser.UnaryFtContext ctx) { }
+	@Override public void exitBracketFt(XPathParser.BracketFtContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -283,13 +283,25 @@ public class XPathBaseListener implements XPathListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCompOp(XPathParser.CompOpContext ctx) { }
+	@Override public void enterBoolOp(XPathParser.BoolOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCompOp(XPathParser.CompOpContext ctx) { }
+	@Override public void exitBoolOp(XPathParser.BoolOpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFilterOp(XPathParser.FilterOpContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFilterOp(XPathParser.FilterOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

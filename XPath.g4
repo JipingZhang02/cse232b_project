@@ -33,21 +33,27 @@ package edu.ucsd.cse232b.autogen;
 
 /*Rules*/
 ap: docName pathOp rp;
-rp: tagName #UnaryRp1 | attName #UnaryRp2| TEXT #UnaryRp3| STAR #UnaryRp4| SELF #UnaryRp5| PENT #UnaryRp6
-    | rp pathOp rp #BinaryRp1| rp COMMA rp #BinaryRp2
-    | LPR rp RPR  #ParaRp
-    | rp LSB filter RSB #FilterRp;
+rp: tagName         #TagnameRp
+    | attName       #AttrRp
+    | 'text()'      #TextRp
+    | '*'           #StarRp
+    | '..'          #ParentRp
+    | '.'           #SelfRp
+    | rp pathOp rp  #BinaryRp
+    | rp ',' rp     #CommaRp
+    | '(' rp ')'    #BracketRp
+    | rp'['filter']'#FilterRp;
 filter: rp #UnaryFta
-    | rp compOp rp #BinaryFt1 | rp EQS stringCondition #BinaryFt2
-    | LPR filter RPR #ParaFt
-    | filter CONJ filter #CompoundFt
-    | NEG filter #NegFt;
+    | rp EQS stringCondition #StrEqFt
+    | rp boolOp rp   #BinaryFt
+    | '(' filter ')' #BracketFt
+    | filter filterOp filter #CompoundFt
+    | 'not' filter   #NegFt;
 
 pathOp:
-SL | DSL;
+'//'|'/';
 
-docName:
-DOC LPR fileName RPR; //https://canvas.ucsd.edu/courses/32790/discussion_topics/406595
+docName: 'doc(' fileName ')';
 
 fileName: STRING;
 
@@ -57,8 +63,11 @@ ID;
 attName:
 AT ID;
 
-compOp:
+boolOp:
 EQS | EQ | ISS | IS;
+
+filterOp:
+'and' | 'or';
 
 stringCondition:
 STRING;

@@ -5,6 +5,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Stack;
 
@@ -36,15 +37,25 @@ public class Util {
         List<Node> res = new ArrayList<>();
         Stack<Node> dfsStack = new Stack<>();
         dfsStack.push(node);
-        while (!dfsStack.isEmpty()){
+        while (!dfsStack.isEmpty()) {
             Node nodeToSearch = dfsStack.pop();
             res.add(nodeToSearch);
             NodeList children = node.getChildNodes();
             int l = children.getLength();
-            for (int i = l-1; i >= 0; i--) {
+            for (int i = l - 1; i >= 0; i--) {
                 dfsStack.push(children.item(i));
             }
         }
         return res;
+    }
+
+    public static List<Node> findAllChildrenNodes(List<Node> nodes) {
+        List<Node> res = new ArrayList<>();
+        for (Node node:nodes) res.addAll(findAllChildrenNodes(node));
+        return res;
+    }
+
+    public static <T> List<T> removeRedaduntElements(List<T> input) {
+        return new ArrayList<>(new HashSet<>(input));
     }
 }
