@@ -2,13 +2,20 @@
     <BOOKSHELF>
         <BOOK>
             <TITLE>data structure</TITLE>
+            <AUTHOR>aaa</AUTHOR>
+            <AUTHOR>bbb</AUTHOR>
         </BOOK>
         <BOOK>
             <TITLE>computer network</TITLE>
+            <AUTHOR>aaa</AUTHOR>
         </BOOK>
         <BOOK>
             <TITLE>operating system</TITLE>
+            <AUTHOR>bbb</AUTHOR>
         </BOOK>
+    </BOOKSHELF>
+    <BOOKSHELF>
+
     </BOOKSHELF>
     <CASE>
         <BOOK>

@@ -72,24 +72,10 @@ filterOp:
 stringCondition:
 STRING;
 
-/*Tokens*/
-SL: '/';
-DSL: '//';
-SELF: '.';
-PENT: '..';
-STAR: '*';
-LPR: '(';
-RPR: ')';
-LSB: '[';
-RSB: ']';
-COMMA: ',';
 EQS: '=';
 EQ: 'eq';
 ISS: '==';
 IS: 'is';
-NEG: 'not';
-CONJ: ('and' | 'or');
-TEXT: 'text()';
 AT: '@';
 DOC: [dD][oO][cC];
 ID: [a-zA-Z][a-zA-Z_0-9]*;

@@ -31,9 +31,13 @@ public class XPath {
             return;
         }
 //        List<Node> res = evaluateXPath("doc(\"test.xml\")//CASE/BOOK",xmlFiles);
-        List<Node> res = evaluateXPath("doc(\"j_caesar.xml\")//SCENE[SPEECH/SPEAKER/text()=\"CAESAR\"]",xmlFiles);
+       // List<Node> res = evaluateXPath("doc(\"j_caesar.xml\")//SCENE[SPEECH/SPEAKER/text()=\"CAESAR\"]",xmlFiles);
+       List<Node> res = evaluateXPath("doc(\"j_caesar.xml\")//ACT[SCENE[SPEECH/SPEAKER/text()=\"CAESAR\" and SPEECH/SPEAKER/text()=\"BRUTUS\"]]",xmlFiles);
 //        List<Node> res = evaluateXPath("doc(\"test.xml\")//BOOK[TITLE/text()=\"literature\"]",xmlFiles);
 //        List<Node> res = evaluateXPath("doc(\"test.xml\")//BOOK/TITLE/text()",xmlFiles);
+
+
+       // List<Node> res = evaluateXPath("doc(\"test.xml\")//BOOKSHELF[BOOK]",xmlFiles);
         Util.writeNodesToFile(res,"./output.xml");
     }
 
