@@ -1,0 +1,25 @@
+<BOOKSTORE>
+    <BOOKSHELF>
+        <BOOK>
+            <TITLE>data structure</TITLE>
+        </BOOK>
+        <BOOK>
+            <TITLE>computer network</TITLE>
+        </BOOK>
+        <BOOK>
+            <TITLE>operating system</TITLE>
+        </BOOK>
+    </BOOKSHELF>
+    <CASE>
+        <BOOK>
+            <TITLE>
+                art
+            </TITLE>
+        </BOOK>
+        <BOOK>
+            <TITLE>
+                literature
+            </TITLE>
+        </BOOK>
+    </CASE>
+</BOOKSTORE>

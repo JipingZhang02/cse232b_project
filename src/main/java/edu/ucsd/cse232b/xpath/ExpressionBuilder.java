@@ -9,7 +9,13 @@ import edu.ucsd.cse232b.expression.absPathExpr.AbsPathSL;
 import edu.ucsd.cse232b.expression.binaryExpr.ComaExpr;
 import edu.ucsd.cse232b.expression.binaryExpr.DoubleSLExpr;
 import edu.ucsd.cse232b.expression.binaryExpr.SingleSLExpr;
+import edu.ucsd.cse232b.expression.binaryFltr.BinaryConstEqualsFltr;
+import edu.ucsd.cse232b.expression.binaryFltr.BinaryEqualsFltr;
+import edu.ucsd.cse232b.expression.conjuctFltr.AndFltr;
+import edu.ucsd.cse232b.expression.conjuctFltr.OrFltr;
 import edu.ucsd.cse232b.expression.singleExpr.*;
+import edu.ucsd.cse232b.expression.singleFltr.NegFltr;
+import edu.ucsd.cse232b.expression.singleFltr.SingleFltr;
 
 public class ExpressionBuilder extends XPathBaseVisitor<Expression> {
 
@@ -88,41 +94,42 @@ public class ExpressionBuilder extends XPathBaseVisitor<Expression> {
 
     @Override
     public Expression visitUnaryFta(XPathParser.UnaryFtaContext ctx) {
-        return super.visitUnaryFta(ctx); //todo
+        return new SingleFltr(visit(ctx.rp()));
     }
 
     @Override
     public Expression visitBinaryFt(XPathParser.BinaryFtContext ctx) {
-        return super.visitBinaryFt(ctx); //todo
+        return new BinaryEqualsFltr(visit(ctx.rp(0)),visit(ctx.rp(1)));
     }
 
     @Override
     public Expression visitNegFt(XPathParser.NegFtContext ctx) {
-        return super.visitNegFt(ctx); //todo
+        return new NegFltr(visit(ctx.filter()));
     }
 
     @Override
     public Expression visitStrEqFt(XPathParser.StrEqFtContext ctx) {
-        return super.visitStrEqFt(ctx); //todo
+        String str = ctx.stringCondition().getText();
+        str = str.substring(1,str.length()-1);
+        return new BinaryConstEqualsFltr(visit(ctx.rp()),str);
     }
 
     @Override
     public Expression visitCompoundFt(XPathParser.CompoundFtContext ctx) {
-        return super.visitCompoundFt(ctx); //todo
+        Expression leftFt = visit(ctx.filter(0));
+        Expression rightFt = visit(ctx.filter(1));
+        switch (ctx.filterOp().getText()){
+            case "and":
+                return new AndFltr(leftFt,rightFt);
+            case "or":
+                return new OrFltr(leftFt,rightFt);
+            default:
+                throw new RuntimeException("There is some bug in code, this should not happen!!!");
+        }
     }
 
     @Override
     public Expression visitBracketFt(XPathParser.BracketFtContext ctx) {
         return visit(ctx.filter());
-    }
-
-    @Override
-    public Expression visitFilterOp(XPathParser.FilterOpContext ctx) {
-        return super.visitFilterOp(ctx);
-    }
-
-    @Override
-    public Expression visitStringCondition(XPathParser.StringConditionContext ctx) {
-        return super.visitStringCondition(ctx);
     }
 }

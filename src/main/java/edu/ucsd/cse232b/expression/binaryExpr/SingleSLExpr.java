@@ -15,6 +15,6 @@ public class SingleSLExpr extends BinaryExpr{
     @Override
     public List<Node> evaluate(List<Node> inputNodes) throws Exception {
         List<Node> leftRes = left.evaluate(inputNodes);
-        return Util.removeRedaduntElements(right.evaluate(leftRes));
+        return Util.removeRedaduntElements(right.evaluate(Util.findDirectChildrenNodes(leftRes)));
     }
 }

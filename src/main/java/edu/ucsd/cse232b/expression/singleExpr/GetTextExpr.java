@@ -12,13 +12,8 @@ public class GetTextExpr implements Expression {
     public List<Node> evaluate(List<Node> inputNodes) throws Exception {
         List<Node> res = new ArrayList<>();
         for (Node node:inputNodes){
-            NodeList childNodes = node.getChildNodes();
-            int l = childNodes.getLength();
-            for (int i = 0; i < l; i++) {
-                Node child = childNodes.item(i);
-                if (child.getNodeType()==Node.TEXT_NODE){
-                    res.add(child);
-                }
+            if (node.getNodeType()==Node.TEXT_NODE){
+                res.add(node);
             }
         }
         return res;

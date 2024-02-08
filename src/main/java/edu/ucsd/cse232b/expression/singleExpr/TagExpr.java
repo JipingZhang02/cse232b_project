@@ -18,13 +18,8 @@ public class TagExpr implements Expression {
     public List<Node> evaluate(List<Node> inputNodes) throws Exception {
         List<Node> res = new ArrayList<>();
         for (Node node:inputNodes){
-            NodeList childNodes = node.getChildNodes();
-            int l = childNodes.getLength();
-            for (int i = 0; i < l; i++) {
-                Node child = childNodes.item(i);
-                if (child.getNodeType()==Node.ELEMENT_NODE&&child.getNodeName().equals(tagName)){
-                    res.add(child);
-                }
+            if (node.getNodeType()==Node.ELEMENT_NODE&&node.getNodeName().equals(tagName)){
+                res.add(node);
             }
         }
         return res;

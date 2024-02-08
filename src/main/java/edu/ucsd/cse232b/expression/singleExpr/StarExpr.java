@@ -12,12 +12,9 @@ public class StarExpr implements Expression {
     @Override
     public List<Node> evaluate(List<Node> inputNodes) throws Exception {
         List<Node> res = new ArrayList<>();
-        for (Node node : inputNodes) {
-            NodeList childNodes = node.getChildNodes();
-            int l = childNodes.getLength();
-            for (int i = 0; i < l; i++) {
-                Node child = childNodes.item(i);
-                res.add(child);
+        for (Node node:inputNodes){
+            if (node.getNodeType()==Node.ELEMENT_NODE){
+                res.add(node);
             }
         }
         return res;
