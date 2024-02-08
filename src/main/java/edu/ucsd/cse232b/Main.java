@@ -19,10 +19,10 @@ public class Main {
         Document doc = builder.parse(file);
         Node rootNode = doc.getDocumentElement();
         rootNode.normalize();
-//        NodeList nodeList = rootNode.getChildNodes();
-//        for (int i = 0; i < nodeList.getLength(); i++) {
-//            System.out.println(nodeList.item(i));
-//        }
+    //        NodeList nodeList = rootNode.getChildNodes();
+    //        for (int i = 0; i < nodeList.getLength(); i++) {
+    //            System.out.println(nodeList.item(i));
+    //        }`
         List<Node> nodes = Util.findAllChildrenNodes(rootNode);
         for (Node node:nodes){
             System.out.println(node.getNodeName());

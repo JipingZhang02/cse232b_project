@@ -30,7 +30,10 @@ public class XPath {
             e.printStackTrace();
             return;
         }
-        List<Node> res = evaluateXPath("doc(\"test.xml\")//CASE/BOOK",xmlFiles);
+//        List<Node> res = evaluateXPath("doc(\"test.xml\")//CASE/BOOK",xmlFiles);
+        List<Node> res = evaluateXPath("doc(\"j_caesar.xml\")//SCENE[SPEECH/SPEAKER/text()=\"CAESAR\"]",xmlFiles);
+//        List<Node> res = evaluateXPath("doc(\"test.xml\")//BOOK[TITLE/text()=\"literature\"]",xmlFiles);
+//        List<Node> res = evaluateXPath("doc(\"test.xml\")//BOOK/TITLE/text()",xmlFiles);
         Util.writeNodesToFile(res,"./output.xml");
     }
 
@@ -40,7 +43,6 @@ public class XPath {
         Map<String,Node> res = new HashMap<>();
         for (String path:xmlFilePaths){
             File xmlFile = new File(path);
-//            System.out.println(xmlFile.getAbsolutePath());
             res.put(xmlFile.getName(), builder.parse(xmlFile).getDocumentElement());
         }
         return res;

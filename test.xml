@@ -12,14 +12,10 @@
     </BOOKSHELF>
     <CASE>
         <BOOK>
-            <TITLE>
-                art
-            </TITLE>
+            <TITLE>art</TITLE>
         </BOOK>
         <BOOK>
-            <TITLE>
-                literature
-            </TITLE>
+            <TITLE>literature</TITLE>
         </BOOK>
     </CASE>
 </BOOKSTORE>

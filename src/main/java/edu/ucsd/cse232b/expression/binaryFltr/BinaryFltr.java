@@ -12,17 +12,11 @@ public abstract class BinaryFltr implements Expression {
 
     public BinaryFltr(Expression leftRp, Expression rightRp) {
         Objects.requireNonNull(leftRp, "leftRp is NULL!");
-        Objects.requireNonNull(rightRp, "rightRp is NULL!");
 
         this.leftRp = leftRp;
         this.rightRp = rightRp;
     }
 
     protected abstract boolean compare(Node n1, Node n2);
-
-    @Override
-    public List<Node> evaluate(List<Node> inputNodes) throws Exception {
-        throw new UnsupportedOperationException("Evaluate method needs to be implemented.");
-    }
 }
 
