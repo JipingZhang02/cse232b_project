@@ -18,13 +18,63 @@ import java.io.IOException;
 import java.util.*;
 
 public class XPath {
-    public static final String[] xmlFilePaths = {"./j_caesar.xml","./test.xml"};
+    public static final List<String> DEFAULT_XML_FILE_PATHS = Arrays.asList("./j_caesar.xml","./test.xml");
 
+
+    private static Map<String,List<String>> parseArgs(String[] args){
+        Map<String,List<String>> res = new HashMap<>();
+        String key = "default";
+        List<String> currKeyRes = new ArrayList<>();
+        for (String arg:args){
+            if (arg.startsWith("-")){
+                res.put(key,currKeyRes);
+                key = arg;
+                currKeyRes = new ArrayList<>();
+            } else {
+                currKeyRes.add(arg);
+            }
+        }
+        res.put(key,currKeyRes);
+        return res;
+    }
+
+    private static void printHelpInfo(){
+        System.out.println("Usage: java -jar XPath [-i <path_to_xml.xml> <path_to_xml2.xml>] [-o <expected_output_path.xml>] <xpath>");
+    }
 
     public static void main(String[] args) throws Exception {
+        System.out.println(Arrays.toString(args));
+
+
+        String xpath = "doc(\"test.xml\")//BOOKSHELF/BOOK[AUTHOR/text()=\"aaa\"]";
+        List<String> xmlFilePaths = DEFAULT_XML_FILE_PATHS;
+        String outputPath = "./output.xml";
+
+
+        if (args.length==0){
+            //System.out.println("Error usage!");
+            //return;
+        } else {
+            xpath = args[args.length - 1];
+            String[] argsWithoutXPath = new String[args.length - 1];
+            System.arraycopy(args, 0, argsWithoutXPath, 0, args.length - 1);
+            Map<String, List<String>> keywordArgs = parseArgs(argsWithoutXPath);
+            if (keywordArgs.containsKey("-i")) {
+                xmlFilePaths = keywordArgs.get("-i");
+            }
+            if (keywordArgs.containsKey("-o")) {
+                List<String> outputPathAsList = keywordArgs.get("-o");
+                if (outputPathAsList.size() != 1) {
+                    System.out.println("Error usage, you have to specify 1 and only 1 output path after '-o'");
+                }
+                outputPath = outputPathAsList.get(0);
+            }
+        }
+
+
         Map<String,Node> xmlFiles = null;
         try{
-            xmlFiles = loadXMLFiles();
+            xmlFiles = loadXMLFiles(xmlFilePaths);
         }
         catch (Exception e){
             e.printStackTrace();
@@ -32,20 +82,20 @@ public class XPath {
         }
 //        List<Node> res = evaluateXPath("doc(\"test.xml\")//CASE/BOOK",xmlFiles);
        // List<Node> res = evaluateXPath("doc(\"j_caesar.xml\")//SCENE[SPEECH/SPEAKER/text()=\"CAESAR\"]",xmlFiles);
-       List<Node> res = evaluateXPath("doc(\"j_caesar.xml\")//ACT[SCENE[SPEECH/SPEAKER/text()=\"CAESAR\" and SPEECH/SPEAKER/text()=\"BRUTUS\"]]",xmlFiles);
+       //List<Node> res = evaluateXPath("doc(\"j_caesar.xml\")//ACT[SCENE[SPEECH/SPEAKER/text()=\"CAESAR\" and SPEECH/SPEAKER/text()=\"BRUTUS\"]]",xmlFiles);
 //        List<Node> res = evaluateXPath("doc(\"test.xml\")//BOOK[TITLE/text()=\"literature\"]",xmlFiles);
 //        List<Node> res = evaluateXPath("doc(\"test.xml\")//BOOK/TITLE/text()",xmlFiles);
-
-
        // List<Node> res = evaluateXPath("doc(\"test.xml\")//BOOKSHELF[BOOK]",xmlFiles);
-        Util.writeNodesToFile(res,"./output.xml");
+
+        List<Node> res = evaluateXPath(xpath,xmlFiles);
+        Util.writeNodesToFile(res,outputPath);
     }
 
-    public static Map<String,Node> loadXMLFiles() throws ParserConfigurationException, IOException, SAXException {
+    public static Map<String,Node> loadXMLFiles(List<String> paths) throws ParserConfigurationException, IOException, SAXException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder = factory.newDocumentBuilder();
         Map<String,Node> res = new HashMap<>();
-        for (String path:xmlFilePaths){
+        for (String path: paths){
             File xmlFile = new File(path);
             res.put(xmlFile.getName(), builder.parse(xmlFile).getDocumentElement());
         }
