@@ -22,4 +22,63 @@
         </dependency>
     </dependencies>
 
+    <build>
+        <finalName>cse232b</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-shade-plugin</artifactId>
+                <version>3.2.4</version>
+                <executions>
+                    <execution>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>shade</goal>
+                        </goals>
+                        <configuration>
+                            <artifactSet>
+                                <includes>
+                                    <include>org.antlr:antlr4-runtime</include>
+                                    <include>commons-cli:commons-cli</include>
+                                    <include>edu.ucsd:cse232B.parsers</include>
+                                </includes>
+                            </artifactSet>
+                            <transformers>
+                                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                                    <mainClass>edu.ucsd.cse232b.xpath.XPath</mainClass>
+                                </transformer>
+                            </transformers>
+                            <filters>
+                                <filter>
+                                    <artifact>org.antlr:antlr4-runtime</artifact>
+                                    <excludes>
+                                        <exclude>META-INF/*.MF</exclude>
+                                    </excludes>
+                                </filter>
+                            </filters>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.antlr</groupId>
+                <artifactId>antlr4-maven-plugin</artifactId>
+                <version>4.7.2</version>
+                <executions>
+                    <execution>
+                        <id>antlr</id>
+                        <goals>
+                            <goal>antlr4</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <sourceDirectory>${basedir}/src/main/resources/antlr4</sourceDirectory>
+                    <outputDirectory>src/main/java/edu/ucsd/cse232b/parsers</outputDirectory>
+                    <visitor>true</visitor>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
 </project>
