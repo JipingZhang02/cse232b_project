@@ -13,8 +13,7 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class XPath {
@@ -43,15 +42,15 @@ public class XPath {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(Arrays.toString(args));
+        System.out.println("program running with args: "+Arrays.toString(args));
 
 
-        String xpath = "doc(\"test.xml\")//BOOKSHELF/BOOK[AUTHOR/text()=\"aaa\"]";
+        String xpath = "doc(\"j_caesar.xml\")//ACT[not .//SPEAKER/text()=\"CAESAR\"]";
         List<String> xmlFilePaths = DEFAULT_XML_FILE_PATHS;
         String outputPath = "./output.xml";
 
 
-        if (args.length==0){
+/*        if (args.length==0){
             //System.out.println("Error usage!");
             //return;
         } else {
@@ -69,7 +68,29 @@ public class XPath {
                 }
                 outputPath = outputPathAsList.get(0);
             }
+        }*/
+
+        if (args.length>=1){
+            String pathToQueryFile = args[0];
+            File queryFile = new File(pathToQueryFile);
+            if (!queryFile.exists()){
+                System.out.println("the specified query file "+queryFile.getAbsolutePath()+" doesn't exist!");
+                return;
+            }
+            BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(queryFile)));
+            String query = reader.readLine();
+            reader.close();
+            xpath = query;
+            if (args.length>=2){
+                outputPath = args[2];
+                System.out.println("using customized output path: ");
+            }
+        } else {
+            System.out.println("error! please specify the xpath input file");
+            return;
         }
+
+        System.out.println("start evaluating query:    "+xpath);
 
 
         Map<String,Node> xmlFiles = null;
@@ -80,6 +101,8 @@ public class XPath {
             e.printStackTrace();
             return;
         }
+
+
 //        List<Node> res = evaluateXPath("doc(\"test.xml\")//CASE/BOOK",xmlFiles);
        // List<Node> res = evaluateXPath("doc(\"j_caesar.xml\")//SCENE[SPEECH/SPEAKER/text()=\"CAESAR\"]",xmlFiles);
        //List<Node> res = evaluateXPath("doc(\"j_caesar.xml\")//ACT[SCENE[SPEECH/SPEAKER/text()=\"CAESAR\" and SPEECH/SPEAKER/text()=\"BRUTUS\"]]",xmlFiles);
@@ -97,6 +120,9 @@ public class XPath {
         Map<String,Node> res = new HashMap<>();
         for (String path: paths){
             File xmlFile = new File(path);
+            if (!xmlFile.exists()){
+                continue; // ignore unexisting files
+            }
             res.put(xmlFile.getName(), builder.parse(xmlFile).getDocumentElement());
         }
         return res;
