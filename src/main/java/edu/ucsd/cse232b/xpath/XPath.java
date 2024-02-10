@@ -82,7 +82,7 @@ public class XPath {
             reader.close();
             xpath = query;
             if (args.length>=2){
-                outputPath = args[2];
+                outputPath = args[1];
                 System.out.println("using customized output path: ");
             }
         } else {
