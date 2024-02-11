@@ -19,6 +19,67 @@ import java.util.Stack;
 
 public class Util {
 
+    public static List<Node> nodeListToList(NodeList nodeList) {
+        List<Node> list = new ArrayList<>(nodeList.getLength());
+        for (int i = 0; i < nodeList.getLength(); i++) {
+            list.add(nodeList.item(i));
+        }
+        return list;
+    }
+
+    public static boolean compareNodeLists(List<Node> list1, List<Node> list2) {
+        if (list1.size() != list2.size()) {
+            System.out.println("size not equal");
+            return false;
+        }
+
+        for (int i = 0; i < list1.size(); i++) {
+            if (!compareNodes(list1.get(i), list2.get(i))) {
+                System.out.println(list1.get(i));
+                System.out.println(list2.get(i));
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    public static boolean compareNodes(Node n1, Node n2) {
+
+        if (n1.getNodeType() != n2.getNodeType() || !n1.getNodeName().equals(n2.getNodeName())) {
+            return false;
+        }
+
+        String value1 = n1.getNodeValue();
+        String value2 = n2.getNodeValue();
+        if (value1 == null ? value2 != null : !value1.equals(value2)) {
+            return false;
+        }
+
+        List<Node> children1 = nodeListToList(n1.getChildNodes());
+        List<Node> children2 = nodeListToList(n2.getChildNodes());
+        if (!compareNodeLists(children1, children2)) {
+            return false;
+        }
+
+        if (n1.getNodeType() == Node.ELEMENT_NODE) {
+
+            if (n1.getAttributes().getLength() != n2.getAttributes().getLength()) {
+                return false;
+            }
+
+            for (int i = 0; i < n1.getAttributes().getLength(); i++) {
+                Node attr1 = n1.getAttributes().item(i);
+                Node attr2 = n2.getAttributes().getNamedItem(attr1.getNodeName());
+                if (attr2 == null || !attr1.getNodeValue().equals(attr2.getNodeValue())) {
+                    return false;
+                }
+            }
+        }
+
+        return true;
+    }
+
     public static List<Node> findAllChildrenNodes(Node node) {
         List<Node> allNodes = new ArrayList<>();
         dfs(node, allNodes);
