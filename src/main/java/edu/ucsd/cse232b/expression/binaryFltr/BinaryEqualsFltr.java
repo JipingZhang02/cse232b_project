@@ -1,8 +1,10 @@
 package edu.ucsd.cse232b.expression.binaryFltr;
 
 import edu.ucsd.cse232b.expression.Expression;
+import edu.ucsd.cse232b.util.Util;
 import org.w3c.dom.Node;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class BinaryEqualsFltr extends BinaryFltr {
@@ -20,8 +22,7 @@ public class BinaryEqualsFltr extends BinaryFltr {
     public List<Node> evaluate(List<Node> inputNodes) throws Exception {
         List<Node> resultList = new ArrayList<>();
         for (Node n : inputNodes) {
-            List<Node> singleNodeList = new ArrayList<>();
-            singleNodeList.add(n);
+            List<Node> singleNodeList = Util.findDirectChildrenNodes(Arrays.asList(n));
 
             List<Node> left = this.leftRp.evaluate(singleNodeList);
             List<Node> right = this.rightRp.evaluate(singleNodeList);
