@@ -1,6 +1,7 @@
 package edu.ucsd.cse232b.expression.singleExpr;
 
 import edu.ucsd.cse232b.expression.Expression;
+import edu.ucsd.cse232b.util.Util;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
@@ -14,9 +15,12 @@ public class ParentExpr implements Expression {
         for(Node node:inputNodes){
             Node parent = node.getParentNode();
             if (!(parent instanceof Document)){
-                res.add(parent);
+                Node pp = parent.getParentNode();
+                if (!(pp instanceof Document)){
+                    res.add(pp);
+                }
             }
         }
-        return res;
+        return Util.removeRedaduntElements(res);
     }
 }
