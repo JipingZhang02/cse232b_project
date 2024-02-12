@@ -59,27 +59,8 @@ public class Milestone1demotest {
         System.out.println(Arrays.toString(args));
 
 
-//        String xpath = "doc(\"j_caesar.xml\")//PERSONA";
-//        String xpathBuildin = "//PERSONA";
-
-//        String xpath = "doc(\"j_caesar.xml\")//SCENE[SPEECH/SPEAKER/text()=\"CAESAR\"]";
-//        String xpathBuildin = "//SCENE[SPEECH/SPEAKER/text()=\"CAESAR\"]";
-
-//        String xpath = "doc(\"j_caesar.xml\")//ACT[SCENE[SPEECH/SPEAKER/text()=\"CAESAR\"] [SPEECH/SPEAKER/text()=\"BRUTUS\"]]";
-//        String xpathBuildin = "//ACT[SCENE[SPEECH/SPEAKER/text()=\"CAESAR\"] [SPEECH/SPEAKER/text()=\"BRUTUS\"]]";
-
-//        String xpath = "doc(\"j_caesar.xml\")//ACT[SCENE[SPEECH/SPEAKER/text()=\"CAESAR\" and SPEECH/SPEAKER/text()=\"BRUTUS\"]]";
-//        String xpathBuildin = "//ACT[SCENE[SPEECH/SPEAKER/text()=\"CAESAR\" and SPEECH/SPEAKER/text()=\"BRUTUS\"]]";
-
-//        String xpath = "doc(\"j_caesar.xml\")//(ACT,PERSONAE)/TITLE";
-//        String xpathBuildin = "//ACT/TITLE | //PERSONAE/TITLE";
-
-        String xpath = "doc(\"j_caesar.xml\")//ACT[not .//SPEAKER/text()=\"CAESAR\"]";
-        String xpathBuildin = "//ACT[not(.//SPEAKER/text()=\"CAESAR\")]";
-
-//        String xpath = "doc(\"j_caesar.xml\")//ACT[./TITLE]/*/SPEECH/../TITLE";
-//        String xpathBuildin = "//ACT[./TITLE]/*/SPEECH/../TITLE";
-
+        String xpath = "doc(\"test.xml\")//BOOK/@year";
+        String xpathBuildin = "//BOOK/@year";
 
 
         List<String> xmlFilePaths = DEFAULT_XML_FILE_PATHS;
