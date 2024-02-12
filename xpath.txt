@@ -1,3 +1,3 @@
-doc("test.xml")//BOOK[./TITLE/text()="data structure"]
+doc("test.xml")//BOOKSHELF/*
 
 doc("j_caesar.xml")//ACT[.//SPEAKER/text()="CAESAR"]

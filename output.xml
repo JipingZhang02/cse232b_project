@@ -1,8 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <SearchResult>
   <BOOK>
+            <TITLE>computer network</TITLE>
+            <AUTHOR>aaa</AUTHOR>
+        </BOOK>
+  <BOOK>
             <TITLE>data structure</TITLE>
             <AUTHOR>aaa</AUTHOR>
+            <AUTHOR>bbb</AUTHOR>
+        </BOOK>
+  <BOOK>
+            <TITLE>operating system</TITLE>
             <AUTHOR>bbb</AUTHOR>
         </BOOK>
 </SearchResult>
