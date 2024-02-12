@@ -1,3 +1,5 @@
+doc("j_caesar.xml")//ACT[(./TITLE)==(./TITLE)]/*/SPEECH/../TITLE/text()
+
 doc("test.xml")//BOOKSHELF/*
 
 doc("j_caesar.xml")//ACT[./TITLE]/*/SPEECH/../TITLE
