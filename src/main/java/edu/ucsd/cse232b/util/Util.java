@@ -1,9 +1,6 @@
 package edu.ucsd.cse232b.util;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
+import org.w3c.dom.*;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -142,8 +139,21 @@ public class Util {
 
             // Import and append each node to the <SearchResult> element
             for (Node node : nodes) {
-                Node importedNode = doc.importNode(node, true);
-                searchResult.appendChild(importedNode);
+                // Check if the node is an attribute node
+                if (node.getNodeType() == Node.ATTRIBUTE_NODE) {
+                    // Create a <FakeNode> element
+                    Element fakeNode = doc.createElement("FakeNode");
+                    // Import the attribute node to the new document
+                    Attr importedAttr = (Attr) doc.importNode(node, true);
+                    // Add the attribute to <FakeNode>
+                    fakeNode.setAttributeNode(importedAttr);
+                    // Append <FakeNode> to <SearchResult>
+                    searchResult.appendChild(fakeNode);
+                } else {
+                    // For non-attribute nodes, process normally
+                    Node importedNode = doc.importNode(node, true);
+                    searchResult.appendChild(importedNode);
+                }
             }
 
             // Output the document to a file

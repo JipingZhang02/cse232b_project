@@ -1,4 +1,4 @@
-doc("j_caesar.xml")//ACT[(./TITLE)==(./TITLE)]/*/SPEECH/../TITLE/text()
+doc("test.xml")//BOOK/@year
 
 doc("test.xml")//BOOKSHELF/*
 
