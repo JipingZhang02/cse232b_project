@@ -12,8 +12,8 @@ public abstract class ConjuctFltr implements Expression {
     public ConjuctFltr(Expression leftExpression, Expression rightExpression) {
         Objects.requireNonNull(leftExpression, "Left expression is null!");
         Objects.requireNonNull(rightExpression, "Right expression is null!");
-        this.leftExpression = leftExpression;
-        this.rightExpression = rightExpression;
+        this.leftExpression = leftExpression.removeLeftmostSelfExpr();
+        this.rightExpression = rightExpression.removeLeftmostSelfExpr();
     }
     @Override
     public List<Node> evaluate(List<Node> inputNodes) throws Exception {
