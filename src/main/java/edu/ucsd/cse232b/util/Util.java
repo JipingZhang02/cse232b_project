@@ -12,10 +12,7 @@ import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Stack;
+import java.util.*;
 
 public class Util {
 
@@ -59,7 +56,16 @@ public class Util {
     }
 
     public static <T> List<T> removeRedaduntElements(List<T> input) {
-        return new ArrayList<>(new HashSet<>(input));
+        List<T> res = new ArrayList<>();
+        Set<T> existingElements = new HashSet<>();
+        for (T element:input){
+            if (existingElements.contains(element)){
+                continue;
+            }
+            res.add(element);
+            existingElements.add(element);
+        }
+        return res;
     }
 
     public static void writeNodesToFile(List<Node> nodes, String filename) {
