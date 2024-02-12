@@ -1,28 +1,55 @@
 <BOOKSTORE>
-    <BOOKSHELF>
-        <BOOK>
+    <BOOKSHELF location="Science and Technology">
+        <BOOK genre="Computer Science" year="2021">
             <TITLE>data structure</TITLE>
             <AUTHOR>aaa</AUTHOR>
             <AUTHOR>bbb</AUTHOR>
         </BOOK>
-        <BOOK>
+        <BOOK genre="Computer Science" year="2020">
             <TITLE>computer network</TITLE>
             <AUTHOR>aaa</AUTHOR>
         </BOOK>
-        <BOOK>
+        <BOOK genre="Computer Science" year="2022">
             <TITLE>operating system</TITLE>
             <AUTHOR>bbb</AUTHOR>
         </BOOK>
-    </BOOKSHELF>
-    <BOOKSHELF>
-
-    </BOOKSHELF>
-    <CASE>
-        <BOOK>
-            <TITLE>art</TITLE>
+        <BOOK genre="Engineering" year="2019">
+            <TITLE>electrical engineering basics</TITLE>
+            <AUTHOR>ccc</AUTHOR>
         </BOOK>
-        <BOOK>
-            <TITLE>literature</TITLE>
+    </BOOKSHELF>
+    <BOOKSHELF location="Humanities">
+        <BOOK genre="History" year="2018">
+            <TITLE>world history</TITLE>
+            <AUTHOR>ddd</AUTHOR>
+        </BOOK>
+        <BOOK genre="Philosophy" year="2017">
+            <TITLE>philosophy 101</TITLE>
+            <AUTHOR>eee</AUTHOR>
+        </BOOK>
+    </BOOKSHELF>
+    <BOOKSHELF location="Fiction">
+        <BOOK genre="Fantasy" year="2021">
+            <TITLE>the enchanted forest</TITLE>
+            <AUTHOR>fff</AUTHOR>
+        </BOOK>
+        <BOOK genre="Science Fiction" year="2019">
+            <TITLE>galaxy explorers</TITLE>
+            <AUTHOR>ggg</AUTHOR>
+        </BOOK>
+        <BOOK genre="Mystery" year="2020">
+            <TITLE>the mystery of the ancient tomb</TITLE>
+            <AUTHOR>hhh</AUTHOR>
+        </BOOK>
+    </BOOKSHELF>
+    <CASE type="Magazines">
+        <BOOK genre="Science">
+            <TITLE>science today</TITLE>
+            <YEAR>2022</YEAR>
+        </BOOK>
+        <BOOK genre="Lifestyle">
+            <TITLE>living well</TITLE>
+            <YEAR>2023</YEAR>
         </BOOK>
     </CASE>
 </BOOKSTORE>
