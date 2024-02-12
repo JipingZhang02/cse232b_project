@@ -13,4 +13,4 @@ To use the code:
 Note:
     Since the evaluate result main contain multiple elements
     In order to make evaluate result a valid xml file,
-        the evaluate result will be wrapped in a <SearchResult> </SearchResult> tag.
+        the evaluate result will be wrapped in a <result> </result> tag.

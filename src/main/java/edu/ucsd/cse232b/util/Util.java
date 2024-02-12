@@ -73,10 +73,10 @@ public class Util {
             Document doc = dBuilder.newDocument();
 
             // Create the <SearchResult> element
-            Element searchResult = doc.createElement("SearchResult");
+            Element searchResult = doc.createElement("result");
             doc.appendChild(searchResult);
 
-            // Import and append each node to the <SearchResult> element
+            // Import and append each node to the <result> element
             for (Node node : nodes) {
                 // Check if the node is an attribute node
                 if (node.getNodeType() == Node.ATTRIBUTE_NODE) {

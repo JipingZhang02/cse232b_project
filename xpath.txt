@@ -1,4 +1,4 @@
-doc("test.xml")//BOOK/@year
+doc("j_caesar.xml")//ACT[./TITLE]/*/SPEECH/../TITLE
 
 doc("test.xml")//BOOKSHELF/*
 
