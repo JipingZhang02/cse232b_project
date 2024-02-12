@@ -17,4 +17,11 @@ public class ComaExpr extends BinaryExpr{
         res.addAll(right.evaluate(inputNodes));
         return res;
     }
+
+    @Override
+    public Expression removeLeftmostSelfExpr() {
+        this.left = this.left.removeLeftmostSelfExpr();
+        this.right = this.right.removeLeftmostSelfExpr();
+        return this;
+    }
 }

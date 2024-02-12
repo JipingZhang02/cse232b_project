@@ -17,7 +17,7 @@ public class SingleFltr implements Expression {
 
         Objects.requireNonNull(rp, "Relative path (rp) is NULL!");
 
-        this.rp = rp;
+        this.rp = rp.removeLeftmostSelfExpr();
     }
 
     @Override

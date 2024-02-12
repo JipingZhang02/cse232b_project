@@ -4,16 +4,15 @@ import edu.ucsd.cse232b.expression.Expression;
 import org.w3c.dom.Node;
 
 import java.util.List;
+import java.util.Objects;
 
 public class ParanthesisFltr implements Expression {
 
-    final private Expression ft;
+    private final Expression ft;
 
     public ParanthesisFltr(Expression ft) {
-        if (ft == null) {
-            throw new NullPointerException("Filter is null!");
-        }
-        this.ft = ft;
+        Objects.requireNonNull(ft, "filter is NULL!");
+        this.ft = ft.removeLeftmostSelfExpr();
     }
 
     @Override

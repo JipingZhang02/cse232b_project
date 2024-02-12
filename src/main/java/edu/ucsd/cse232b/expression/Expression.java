@@ -24,4 +24,8 @@ public interface Expression {
         Objects.requireNonNull(inputNode);
         return rp.evaluate(Arrays.asList(inputNode));
     }
+
+    default Expression removeLeftmostSelfExpr(){
+        return this;
+    }
 }
