@@ -69,7 +69,7 @@ public class Milestone1demotest {
 
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        Document doc = dBuilder.parse("j_caesar.xml");
+        Document doc = dBuilder.parse("test.xml");
 
         XPathFactory xpathFactory = XPathFactory.newInstance();
         XPath xpathObj = xpathFactory.newXPath();
