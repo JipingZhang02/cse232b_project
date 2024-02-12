@@ -1,1 +1,3 @@
+doc("test.xml")//BOOKSHELF/*
+
 doc("j_caesar.xml")//ACT[.//SPEAKER/text()="CAESAR"]

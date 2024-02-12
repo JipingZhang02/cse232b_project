@@ -11,11 +11,11 @@ import java.util.stream.Collectors;
 
 public class NegFltr implements Expression {
 
-    final private Expression ft;
+    private final Expression ft;
 
     public NegFltr(Expression ft) {
         Objects.requireNonNull(ft, "filter is NULL!");
-        this.ft = ft;
+        this.ft = ft.removeLeftmostSelfExpr();
     }
 
     @Override
