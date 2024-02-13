@@ -14,8 +14,13 @@ public class FilterExpr implements Expression{
         this.ft = ft.removeLeftmostSelfExpr();
     }
 
-    @Override
+/*    @Override
     public List<Node> evaluate(List<Node> inputNodes) throws Exception {
         return ft.evaluate(expr.evaluate(inputNodes));
+    }*/
+
+    @Override
+    public EvalResult evaluate(EvalResult input) throws Exception {
+        return ft.evaluate(expr.evaluate(input));
     }
 }

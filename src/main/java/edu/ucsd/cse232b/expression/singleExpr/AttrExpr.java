@@ -1,6 +1,8 @@
 package edu.ucsd.cse232b.expression.singleExpr;
 
+import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
+import edu.ucsd.cse232b.util.Consts;
 import edu.ucsd.cse232b.util.Util;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -18,7 +20,7 @@ public class AttrExpr implements Expression {
         this.attrName = attrName;
     }
 
-    @Override
+/*    @Override
     public List<Node> evaluate(List<Node> inputNodes) throws Exception {
         List<Node> i2 = new ArrayList<>();
         for(Node node:inputNodes){
@@ -36,5 +38,20 @@ public class AttrExpr implements Expression {
             }
         }
         return res;
+    }*/
+
+    @Override
+    public EvalResult evaluate(EvalResult input) throws Exception {
+        if (input.slashStatus== Consts.DOUBLE_SLASH){
+            throw new IllegalArgumentException();
+        }
+        List<Node> res = new ArrayList<>();
+        for (Node node:input.nodes){
+            Node attrNode = node.getAttributes().getNamedItem(attrName);
+            if (attrNode!=null){
+                res.add(attrNode);
+            }
+        }
+        return new EvalResult(res,Consts.NONE);
     }
 }

@@ -2,8 +2,10 @@ package edu.ucsd.cse232b.xpath;
 
 import edu.ucsd.cse232b.autogen.XPathLexer;
 import edu.ucsd.cse232b.autogen.XPathParser;
+import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
 import edu.ucsd.cse232b.expression.absPathExpr.AbsPath;
+import edu.ucsd.cse232b.util.Consts;
 import edu.ucsd.cse232b.util.Util;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
@@ -144,6 +146,6 @@ public class XPath {
             return new ArrayList<>();
         }
         List<Node> initialNode = Arrays.asList(xmlFiles.get(filename));
-        return expression.evaluate(initialNode);
+        return expression.evaluate(new EvalResult(initialNode, Consts.NONE)).nodes;
     }
 }

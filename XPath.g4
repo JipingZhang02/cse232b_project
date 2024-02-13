@@ -43,12 +43,12 @@ rp: tagName         #TagnameRp
     | rp ',' rp     #CommaRp
     | '(' rp ')'    #BracketRp
     | rp'['filter']'#FilterRp;
-filter: rp #UnaryFta
-    | rp EQS stringCondition #StrEqFt
+filter: 'not' filter   #NegFt
     | rp boolOp rp   #BinaryFt
+    | rp #UnaryFta
+    | rp EQS stringCondition #StrEqFt
     | '(' filter ')' #BracketFt
-    | filter filterOp filter #CompoundFt
-    | 'not' filter   #NegFt;
+    | filter filterOp filter #CompoundFt;
 
 pathOp:
 '//'|'/';

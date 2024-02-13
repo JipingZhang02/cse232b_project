@@ -1,12 +1,11 @@
 package edu.ucsd.cse232b.expression.singleFltr;
 
+import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
+import edu.ucsd.cse232b.util.Consts;
 import org.w3c.dom.Node;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class SingleFltr implements Expression {
@@ -20,7 +19,7 @@ public class SingleFltr implements Expression {
         this.rp = rp.removeLeftmostSelfExpr();
     }
 
-    @Override
+/*    @Override
     public List<Node> evaluate(List<Node> inputNodes) throws Exception {
         List<Node> resultList = new ArrayList<>();
         for (Node n : inputNodes) {
@@ -32,11 +31,17 @@ public class SingleFltr implements Expression {
             }
         }
         return resultList;
-    }
-
-    // A helper method to evaluate the relative path expression on a given node
-/*    private List<Node> evaluateRelativePath(Expression rp, Node n) throws Exception {
-        return rp.evaluate(new ArrayList<>(Collections.singletonList(n)));
     }*/
 
+    @Override
+    public EvalResult evaluate(EvalResult input) throws Exception {
+        List<Node> resultList = new ArrayList<>();
+        for (Node node: input.nodes){
+            List<Node> singleNodeList = Arrays.asList(node);
+            if (!rp.evaluate(new EvalResult(singleNodeList,input.slashStatus)).nodes.isEmpty()){
+                resultList.add(node);
+            }
+        }
+        return new EvalResult(resultList, Consts.NONE);
+    }
 }

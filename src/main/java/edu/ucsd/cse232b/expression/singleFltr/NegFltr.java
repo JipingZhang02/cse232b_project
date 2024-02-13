@@ -1,12 +1,11 @@
 package edu.ucsd.cse232b.expression.singleFltr;
 
+import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
+import edu.ucsd.cse232b.util.Consts;
 import org.w3c.dom.Node;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Objects;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class NegFltr implements Expression {
@@ -18,7 +17,7 @@ public class NegFltr implements Expression {
         this.ft = ft.removeLeftmostSelfExpr();
     }
 
-    @Override
+/*    @Override
     public List<Node> evaluate(List<Node> inputNodes) throws Exception {
         List<Node> nodesToNegate = this.ft.evaluate(inputNodes);
 
@@ -30,6 +29,18 @@ public class NegFltr implements Expression {
                 .collect(Collectors.toList());
 
         return resultList;
-    }
+    }*/
 
+    @Override
+    public EvalResult evaluate(EvalResult input) throws Exception {
+        Set<Node> nodesToExclude = new HashSet<>(ft.evaluate(input).nodes);
+        List<Node> resList = new ArrayList<>();
+        for (Node node:input.nodes){
+            if (nodesToExclude.contains(node)){
+                continue;
+            }
+            resList.add(node);
+        }
+        return new EvalResult(resList, Consts.NONE);
+    }
 }

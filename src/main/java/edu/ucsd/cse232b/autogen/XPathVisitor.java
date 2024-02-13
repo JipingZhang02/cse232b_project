@@ -1,4 +1,4 @@
-// Generated from XPath.g4 by ANTLR 4.13.1
+// Generated from ./XPath.g4 by ANTLR 4.13.1
 
 package edu.ucsd.cse232b.autogen;
 

@@ -1,6 +1,8 @@
 package edu.ucsd.cse232b.expression.absPathExpr;
 
+import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
+import edu.ucsd.cse232b.util.Consts;
 import edu.ucsd.cse232b.util.Util;
 import org.w3c.dom.Node;
 
@@ -12,7 +14,7 @@ public class AbsPathSL extends AbsPath {
     }
 
     @Override
-    public List<Node> evaluate(List<Node> inputNodes) throws Exception {
-        return relPath.evaluate(Util.findDirectChildrenNodes(inputNodes));
+    public EvalResult evaluate(EvalResult input) throws Exception {
+        return relPath.evaluate(new EvalResult(input.nodes, Consts.SINGLE_SLASH));
     }
 }

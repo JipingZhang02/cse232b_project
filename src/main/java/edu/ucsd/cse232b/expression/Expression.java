@@ -9,21 +9,17 @@ import java.util.List;
 import java.util.Objects;
 
 public interface Expression {
-    List<Node> evaluate(List<Node> inputNodes) throws Exception;
+//    List<Node> evaluate(List<Node> inputNodes) throws Exception;
 
-    default List<Node> evaluate(NodeList nodeList) throws Exception{
+/*    default List<Node> evaluate(NodeList nodeList) throws Exception{
         List<Node> nodes = new ArrayList<>();
         for (int i = 0; i < nodeList.getLength(); i++) {
             nodes.add(nodeList.item(i));
         }
         return evaluate(nodes);
-    }
+    }*/
 
-    default List<Node> filter(Expression rp, Node inputNode) throws Exception {
-        Objects.requireNonNull(rp);
-        Objects.requireNonNull(inputNode);
-        return rp.evaluate(Arrays.asList(inputNode));
-    }
+    EvalResult evaluate(EvalResult input) throws Exception;
 
     default Expression removeLeftmostSelfExpr(){
         return this;

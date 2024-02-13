@@ -1,6 +1,8 @@
 package edu.ucsd.cse232b.expression.binaryExpr;
 
+import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
+import edu.ucsd.cse232b.util.Consts;
 import edu.ucsd.cse232b.util.Util;
 import org.w3c.dom.Node;
 
@@ -12,9 +14,16 @@ public class SingleSLExpr extends BinaryExpr{
         super(left, right);
     }
 
-    @Override
+/*    @Override
     public List<Node> evaluate(List<Node> inputNodes) throws Exception {
         List<Node> leftRes = left.evaluate(inputNodes);
         return Util.removeRedaduntElements(right.evaluate(Util.findDirectChildrenNodes(leftRes)));
+    }*/
+
+    @Override
+    public EvalResult evaluate(EvalResult input) throws Exception {
+        EvalResult leftRes = left.evaluate(input);
+        leftRes.slashStatus = Consts.SINGLE_SLASH;
+        return right.evaluate(leftRes);
     }
 }

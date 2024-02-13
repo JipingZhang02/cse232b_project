@@ -38,7 +38,7 @@ public class Util {
     public static List<Node> findAllChildrenNodes(List<Node> nodes) {
         List<Node> res = new ArrayList<>();
         for (Node node:nodes) res.addAll(findAllChildrenNodes(node));
-        return res;
+        return removeRedaduntElements(res);
     }
 
     public static List<Node> findDirectChildrenNodes(List<Node> nodes) {
