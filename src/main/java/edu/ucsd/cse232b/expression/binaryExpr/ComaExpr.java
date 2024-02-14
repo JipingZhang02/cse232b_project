@@ -17,6 +17,9 @@ public class ComaExpr extends BinaryExpr {
     public EvalResult evaluate(EvalResult input) throws Exception {
         EvalResult leftResult = left.evaluate(input);
         EvalResult rightResult = right.evaluate(input);
+        if (leftResult.slashStatus!=rightResult.slashStatus){
+            throw new RuntimeException();
+        }
         List<Node> resNodes = new ArrayList<>();
         resNodes.addAll(leftResult.nodes);
         resNodes.addAll(rightResult.nodes);

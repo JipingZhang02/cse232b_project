@@ -18,10 +18,10 @@ public class BinaryConstEqualsFltr extends BinaryFltr {
         this.constString = constString;
     }
 
-    @Override
+/*    @Override
     protected boolean compare(Node n1, Node n2) {
         return n1.getNodeValue() != null && n1.getNodeValue().equals(constString);
-    }
+    }*/
 
 /*    @Override
     public List<Node> evaluate(List<Node> inputNodes) throws Exception {
@@ -54,7 +54,7 @@ public class BinaryConstEqualsFltr extends BinaryFltr {
             List<Node> singleNodeList = Arrays.asList(node);
             EvalResult leftRes = leftRp.evaluate(new EvalResult(singleNodeList, input.slashStatus));
             for (Node leftNode:leftRes.nodes){
-                if (compare(leftNode,null)){
+                if (leftNode!=null&&leftNode.getNodeValue().equals(constString)){
                     matchFound = true;
                     break;
                 }

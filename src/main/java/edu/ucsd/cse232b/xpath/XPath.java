@@ -130,13 +130,17 @@ public class XPath {
         return res;
     }
 
-    public static List<Node> evaluateXPath(String xPath, Map<String,Node> xmlFiles) throws Exception {
+    public static Expression buildExpression(String xPath){
         XPathLexer lexer = new XPathLexer(CharStreams.fromString(xPath));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         XPathParser parser = new XPathParser(tokens);
         XPathParser.ApContext apContext = parser.ap();
-        ExpressionBuilder expressionBuilder = new ExpressionBuilder();
-        Expression expression = expressionBuilder.visit(apContext);
+        ExpressionBuilder expressionBuilder = ExpressionBuilder.INSTANCE;
+        return expressionBuilder.visit(apContext);
+    }
+
+    public static List<Node> evaluateXPath(String xPath, Map<String,Node> xmlFiles) throws Exception {
+        Expression expression = buildExpression(xPath);
         if (!(expression instanceof AbsPath)){
             throw new RuntimeException();
         }

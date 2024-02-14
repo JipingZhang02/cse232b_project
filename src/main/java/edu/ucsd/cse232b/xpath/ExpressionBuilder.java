@@ -18,6 +18,12 @@ import edu.ucsd.cse232b.expression.singleFltr.NegFltr;
 import edu.ucsd.cse232b.expression.singleFltr.SingleFltr;
 
 public class ExpressionBuilder extends XPathBaseVisitor<Expression> {
+    public static ExpressionBuilder INSTANCE = new ExpressionBuilder();
+
+    private ExpressionBuilder(){
+
+    }
+
 
     @Override
     public Expression visitAp(XPathParser.ApContext ctx) {

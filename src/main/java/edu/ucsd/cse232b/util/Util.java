@@ -13,6 +13,16 @@ import java.util.*;
 
 public class Util {
 
+    private static Document doc;
+
+    private Util(){
+
+    }
+
+    public static void setDoc(Document doc) {
+        Util.doc = doc;
+    }
+
     public static List<Node> findAllChildrenNodes(Node node) {
         List<Node> allNodes = new ArrayList<>();
         dfs(node, allNodes);
@@ -110,5 +120,57 @@ public class Util {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    public static Node assembleNode(String outerNodeName, Node innerNode){
+        return assembleNode(outerNodeName,innerNode,doc);
+    }
+
+    public static Node assembleNode(String outerNodeName, Node innerNode, Document doc) {
+        try {
+            // Create the outer element with the given name
+            Element outerElement = doc.createElement(outerNodeName);
+
+            // Determine the type of the innerNode and handle accordingly
+            switch (innerNode.getNodeType()) {
+                case Node.ELEMENT_NODE:
+                    // If innerNode is an element, import and append it to the outer element
+                    Node importedElement = doc.importNode(innerNode, true);
+                    outerElement.appendChild(importedElement);
+                    break;
+                case Node.TEXT_NODE:
+                    // If innerNode is pure text, append it directly to the outer element
+                    Text importedText = doc.createTextNode(innerNode.getNodeValue());
+                    outerElement.appendChild(importedText);
+                    break;
+                case Node.ATTRIBUTE_NODE:
+                    // If innerNode is an attribute, create a new element and set the attribute
+                    Attr importedAttr = (Attr) doc.importNode(innerNode, true);
+                    outerElement.setAttributeNode(importedAttr);
+                    break;
+                default:
+                    throw new IllegalArgumentException();
+            }
+
+            return outerElement;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static Text createTextNode( String textContent,Document doc) {
+        if (doc == null) {
+            throw new IllegalArgumentException("Document object cannot be null.");
+        }
+        if (textContent == null) {
+            throw new IllegalArgumentException("Text content cannot be null.");
+        }
+
+        // Create and return the text node
+        return doc.createTextNode(textContent);
+    }
+
+    public static Text createTextNode(String textContent){
+        return createTextNode(textContent,doc);
     }
 }

@@ -15,11 +15,6 @@ public class BinaryEqualsFltr extends BinaryFltr {
     }
 
     @Override
-    protected boolean compare(Node n1, Node n2) {
-        return n1.isEqualNode(n2);
-    }
-
-    @Override
     public EvalResult evaluate(EvalResult input) throws Exception {
         List<Node> resultList = new ArrayList<>();
         for (Node node:input.nodes){

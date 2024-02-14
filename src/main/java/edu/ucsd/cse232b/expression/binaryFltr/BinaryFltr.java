@@ -20,6 +20,5 @@ public abstract class BinaryFltr implements Expression {
         }
     }
 
-    protected abstract boolean compare(Node n1, Node n2);
 }
 
