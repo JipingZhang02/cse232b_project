@@ -1,4 +1,4 @@
-package edu.ucsd.cse232b.query.otherQuery;
+package edu.ucsd.cse232b.query.complexQuery;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.query.Query;
@@ -9,11 +9,11 @@ import org.w3c.dom.Node;
 import java.util.ArrayList;
 import java.util.Map;
 
-public class SingleWhereClause implements Query {
+public class WhereClause implements Query {
     private final Condition condition;
     private final Query thenDoWhat;
 
-    public SingleWhereClause(Condition condition, Query thenDoWhat) {
+    public WhereClause(Condition condition, Query thenDoWhat) {
         this.condition = condition;
         this.thenDoWhat = thenDoWhat;
     }

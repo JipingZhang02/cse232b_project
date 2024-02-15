@@ -1,4 +1,4 @@
-// Generated from ./XQuery.g4 by ANTLR 4.13.1
+// Generated from XQuery.g4 by ANTLR 4.13.1
 
 package edu.ucsd.cse232b.autogen;
 
@@ -12,6 +12,13 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  * operations with no return type.
  */
 public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
+	/**
+	 * Visit a parse tree produced by the {@code CommaXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCommaXq(XQueryParser.CommaXqContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code RpXq}
 	 * labeled alternative in {@link XQueryParser#xq}.
@@ -40,13 +47,6 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitApXq(XQueryParser.ApXqContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code BinaryXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitBinaryXq(XQueryParser.BinaryXqContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code VarXq}
 	 * labeled alternative in {@link XQueryParser#xq}.
@@ -107,12 +107,12 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEqCond2(XQueryParser.EqCond2Context ctx);
 	/**
-	 * Visit a parse tree produced by the {@code CompoundCond}
+	 * Visit a parse tree produced by the {@code ConjunctCond}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCompoundCond(XQueryParser.CompoundCondContext ctx);
+	T visitConjunctCond(XQueryParser.ConjunctCondContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code EqCond1}
 	 * labeled alternative in {@link XQueryParser#cond}.

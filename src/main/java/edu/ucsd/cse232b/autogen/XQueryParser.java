@@ -1,4 +1,4 @@
-// Generated from ./XQuery.g4 by ANTLR 4.13.1
+// Generated from XQuery.g4 by ANTLR 4.13.1
 
 package edu.ucsd.cse232b.autogen;
 
@@ -121,6 +121,29 @@ public class XQueryParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
+	public static class CommaXqContext extends XqContext {
+		public List<XqContext> xq() {
+			return getRuleContexts(XqContext.class);
+		}
+		public XqContext xq(int i) {
+			return getRuleContext(XqContext.class,i);
+		}
+		public CommaXqContext(XqContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterCommaXq(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitCommaXq(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitCommaXq(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
 	public static class RpXqContext extends XqContext {
 		public XqContext xq() {
 			return getRuleContext(XqContext.class,0);
@@ -201,29 +224,6 @@ public class XQueryParser extends Parser {
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
 			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitApXq(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class BinaryXqContext extends XqContext {
-		public List<XqContext> xq() {
-			return getRuleContexts(XqContext.class);
-		}
-		public XqContext xq(int i) {
-			return getRuleContext(XqContext.class,i);
-		}
-		public BinaryXqContext(XqContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterBinaryXq(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitBinaryXq(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitBinaryXq(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -460,7 +460,7 @@ public class XQueryParser extends Parser {
 					switch ( getInterpreter().adaptivePredict(_input,3,_ctx) ) {
 					case 1:
 						{
-						_localctx = new BinaryXqContext(new XqContext(_parentctx, _parentState));
+						_localctx = new CommaXqContext(new XqContext(_parentctx, _parentState));
 						pushNewRecursionContext(_localctx, _startState, RULE_xq);
 						setState(68);
 						if (!(precpred(_ctx, 5))) throw new FailedPredicateException(this, "precpred(_ctx, 5)");
@@ -791,7 +791,7 @@ public class XQueryParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
-	public static class CompoundCondContext extends CondContext {
+	public static class ConjunctCondContext extends CondContext {
 		public List<CondContext> cond() {
 			return getRuleContexts(CondContext.class);
 		}
@@ -801,18 +801,18 @@ public class XQueryParser extends Parser {
 		public FilterOpContext filterOp() {
 			return getRuleContext(FilterOpContext.class,0);
 		}
-		public CompoundCondContext(CondContext ctx) { copyFrom(ctx); }
+		public ConjunctCondContext(CondContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterCompoundCond(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterConjunctCond(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitCompoundCond(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitConjunctCond(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitCompoundCond(this);
+			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitConjunctCond(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1102,7 +1102,7 @@ public class XQueryParser extends Parser {
 					_prevctx = _localctx;
 					{
 					{
-					_localctx = new CompoundCondContext(new CondContext(_parentctx, _parentState));
+					_localctx = new ConjunctCondContext(new CondContext(_parentctx, _parentState));
 					pushNewRecursionContext(_localctx, _startState, RULE_cond);
 					setState(144);
 					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");

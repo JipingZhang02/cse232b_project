@@ -1,4 +1,4 @@
-// Generated from ./XQuery.g4 by ANTLR 4.13.1
+// Generated from XQuery.g4 by ANTLR 4.13.1
 
 package edu.ucsd.cse232b.autogen;
 
@@ -14,6 +14,18 @@ import org.antlr.v4.runtime.tree.TerminalNode;
  */
 @SuppressWarnings("CheckReturnValue")
 public class XQueryBaseListener implements XQueryListener {
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCommaXq(XQueryParser.CommaXqContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCommaXq(XQueryParser.CommaXqContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -62,18 +74,6 @@ public class XQueryBaseListener implements XQueryListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitApXq(XQueryParser.ApXqContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterBinaryXq(XQueryParser.BinaryXqContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitBinaryXq(XQueryParser.BinaryXqContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -187,13 +187,13 @@ public class XQueryBaseListener implements XQueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterCompoundCond(XQueryParser.CompoundCondContext ctx) { }
+	@Override public void enterConjunctCond(XQueryParser.ConjunctCondContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitCompoundCond(XQueryParser.CompoundCondContext ctx) { }
+	@Override public void exitConjunctCond(XQueryParser.ConjunctCondContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

@@ -1,4 +1,4 @@
-package edu.ucsd.cse232b.query.otherQuery;
+package edu.ucsd.cse232b.query.singleQuery;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.query.Query;
@@ -10,11 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class tagGeneratorQuery implements Query {
+public class TagGeneratorQuery implements Query {
     private final String tagName;
     private final Query innerQuery;
 
-    public tagGeneratorQuery(String tagName, Query innerQuery) {
+    public TagGeneratorQuery(String tagName, Query innerQuery) {
         this.tagName = tagName;
         this.innerQuery = innerQuery;
     }

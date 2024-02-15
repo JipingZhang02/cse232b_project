@@ -13,6 +13,9 @@ public class VarXq implements Query {
     private final String varName;
 
     public VarXq(String varName) {
+        if (varName.startsWith("$")){
+            varName = varName.substring(1);
+        }
         this.varName = varName;
     }
 

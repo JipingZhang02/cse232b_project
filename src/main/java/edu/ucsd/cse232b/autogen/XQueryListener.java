@@ -1,4 +1,4 @@
-// Generated from ./XQuery.g4 by ANTLR 4.13.1
+// Generated from XQuery.g4 by ANTLR 4.13.1
 
 package edu.ucsd.cse232b.autogen;
 
@@ -9,6 +9,18 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  * {@link XQueryParser}.
  */
 public interface XQueryListener extends ParseTreeListener {
+	/**
+	 * Enter a parse tree produced by the {@code CommaXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 */
+	void enterCommaXq(XQueryParser.CommaXqContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CommaXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 */
+	void exitCommaXq(XQueryParser.CommaXqContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code RpXq}
 	 * labeled alternative in {@link XQueryParser#xq}.
@@ -57,18 +69,6 @@ public interface XQueryListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitApXq(XQueryParser.ApXqContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code BinaryXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
-	 * @param ctx the parse tree
-	 */
-	void enterBinaryXq(XQueryParser.BinaryXqContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code BinaryXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
-	 * @param ctx the parse tree
-	 */
-	void exitBinaryXq(XQueryParser.BinaryXqContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code VarXq}
 	 * labeled alternative in {@link XQueryParser#xq}.
@@ -170,17 +170,17 @@ public interface XQueryListener extends ParseTreeListener {
 	 */
 	void exitEqCond2(XQueryParser.EqCond2Context ctx);
 	/**
-	 * Enter a parse tree produced by the {@code CompoundCond}
+	 * Enter a parse tree produced by the {@code ConjunctCond}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
 	 */
-	void enterCompoundCond(XQueryParser.CompoundCondContext ctx);
+	void enterConjunctCond(XQueryParser.ConjunctCondContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code CompoundCond}
+	 * Exit a parse tree produced by the {@code ConjunctCond}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
 	 */
-	void exitCompoundCond(XQueryParser.CompoundCondContext ctx);
+	void exitConjunctCond(XQueryParser.ConjunctCondContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code EqCond1}
 	 * labeled alternative in {@link XQueryParser#cond}.

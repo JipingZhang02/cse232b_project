@@ -1,4 +1,4 @@
-// Generated from ./XQuery.g4 by ANTLR 4.13.1
+// Generated from XQuery.g4 by ANTLR 4.13.1
 
 package edu.ucsd.cse232b.autogen;
 
@@ -14,6 +14,13 @@ import org.antlr.v4.runtime.tree.AbstractParseTreeVisitor;
  */
 @SuppressWarnings("CheckReturnValue")
 public class XQueryBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements XQueryVisitor<T> {
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitCommaXq(XQueryParser.CommaXqContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -42,13 +49,6 @@ public class XQueryBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitApXq(XQueryParser.ApXqContext ctx) { return visitChildren(ctx); }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation returns the result of calling
-	 * {@link #visitChildren} on {@code ctx}.</p>
-	 */
-	@Override public T visitBinaryXq(XQueryParser.BinaryXqContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -118,7 +118,7 @@ public class XQueryBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitCompoundCond(XQueryParser.CompoundCondContext ctx) { return visitChildren(ctx); }
+	@Override public T visitConjunctCond(XQueryParser.ConjunctCondContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

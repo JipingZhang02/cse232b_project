@@ -1,4 +1,4 @@
-package edu.ucsd.cse232b.query.otherQuery;
+package edu.ucsd.cse232b.query.complexQuery;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.query.Query;
