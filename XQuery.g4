@@ -4,10 +4,13 @@ import XPath;
  xq: VAR #VarXq
     | STRING #StringXq
     | ap #ApXq
-    | '(' xq ')' #ParaXq | xq ',' xq #CommaXq | xq pathOp rp #RpXq
+    | '(' xq ')' #ParaXq
+    | xq ',' xq #CommaXq
+    | xq pathOp rp #RpXq
     | startTag '{' xq '}' endTag #TagXq
     | forClause (letClause)? (whereClause)? returnClause #ForXq
-    | letClause xq #LetXq;
+    | letClause xq #LetXq
+    | WS xq WS #wsXq;
 
 
 forClause: 'for' VAR 'in' xq (',' VAR 'in' xq)*;

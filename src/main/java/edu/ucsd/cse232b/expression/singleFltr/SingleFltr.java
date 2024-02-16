@@ -2,11 +2,10 @@ package edu.ucsd.cse232b.expression.singleFltr;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.util.Consts;
+import edu.ucsd.cse232b.common.Consts;
 import org.w3c.dom.Node;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class SingleFltr implements Expression {
 

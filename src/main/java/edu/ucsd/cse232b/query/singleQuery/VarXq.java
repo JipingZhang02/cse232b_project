@@ -2,11 +2,10 @@ package edu.ucsd.cse232b.query.singleQuery;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.query.Query;
-import edu.ucsd.cse232b.util.Consts;
+import edu.ucsd.cse232b.common.Consts;
 import org.w3c.dom.Node;
 
 import java.util.Arrays;
-import java.util.List;
 import java.util.Map;
 
 public class VarXq implements Query {

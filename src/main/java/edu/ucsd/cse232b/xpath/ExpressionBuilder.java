@@ -2,10 +2,10 @@ package edu.ucsd.cse232b.xpath;
 
 import edu.ucsd.cse232b.autogen.XPathBaseVisitor;
 import edu.ucsd.cse232b.autogen.XPathParser;
+import edu.ucsd.cse232b.common.Consts;
 import edu.ucsd.cse232b.expression.Expression;
 import edu.ucsd.cse232b.expression.FilterExpr;
-import edu.ucsd.cse232b.expression.absPathExpr.AbsPathDSL;
-import edu.ucsd.cse232b.expression.absPathExpr.AbsPathSL;
+import edu.ucsd.cse232b.expression.absPathExpr.AbsPath;
 import edu.ucsd.cse232b.expression.binaryExpr.ComaExpr;
 import edu.ucsd.cse232b.expression.binaryExpr.DoubleSLExpr;
 import edu.ucsd.cse232b.expression.binaryExpr.SingleSLExpr;
@@ -32,9 +32,9 @@ public class ExpressionBuilder extends XPathBaseVisitor<Expression> {
         String pathOp = ctx.pathOp().getText();
         Expression relPathExpr = visit(ctx.rp());
         if (pathOp.equals("//")){
-            return new AbsPathDSL(filename,relPathExpr);
+            return new AbsPath(relPathExpr,filename, Consts.DOUBLE_SLASH);
         } else {
-            return new AbsPathSL(filename,relPathExpr);
+            return new AbsPath(relPathExpr,filename, Consts.SINGLE_SLASH);
         }
     }
 

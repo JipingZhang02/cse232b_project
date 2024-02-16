@@ -1,10 +1,10 @@
 package edu.ucsd.cse232b.expression.singleExpr;
 
+import edu.ucsd.cse232b.common.Util;
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.util.Consts;
+import edu.ucsd.cse232b.common.Consts;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,8 +28,10 @@ public class GetTextExpr implements Expression {
         }
         List<Node> res = new ArrayList<>();
         for (Node node:input.nodes){
-            if (node.getNodeType()==Node.TEXT_NODE){
-                res.add(node);
+            for (Node childNode: Util.toJavaBuiltinList(node.getChildNodes())) {
+                if (childNode.getNodeType() == Node.TEXT_NODE) {
+                    res.add(childNode);
+                }
             }
         }
         return new EvalResult(res,Consts.NONE);

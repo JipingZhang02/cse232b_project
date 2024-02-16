@@ -46,6 +46,18 @@ public interface XQueryListener extends ParseTreeListener {
 	 */
 	void exitStringXq(XQueryParser.StringXqContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code wsXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 */
+	void enterWsXq(XQueryParser.WsXqContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code wsXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 */
+	void exitWsXq(XQueryParser.WsXqContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ParaXq}
 	 * labeled alternative in {@link XQueryParser#xq}.
 	 * @param ctx the parse tree

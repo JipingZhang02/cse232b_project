@@ -1,4 +1,4 @@
-doc("test.xml")//BOOKSHELF/BOOK[./@year="2020"]
+doc("test.xml")//BOOKSHELF/BOOK[./AUTHOR/text()="aaa"]
 
 doc("j_caesar.xml")//ACT[./TITLE]/*/SPEECH/../TITLE
 

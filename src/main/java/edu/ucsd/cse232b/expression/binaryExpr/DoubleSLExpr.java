@@ -2,11 +2,7 @@ package edu.ucsd.cse232b.expression.binaryExpr;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.util.Consts;
-import edu.ucsd.cse232b.util.Util;
-import org.w3c.dom.Node;
-
-import java.util.List;
+import edu.ucsd.cse232b.common.Consts;
 
 public class DoubleSLExpr extends BinaryExpr{
     public DoubleSLExpr(Expression left, Expression right) {

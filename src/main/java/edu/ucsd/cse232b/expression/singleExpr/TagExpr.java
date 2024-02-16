@@ -2,10 +2,9 @@ package edu.ucsd.cse232b.expression.singleExpr;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.util.Consts;
-import edu.ucsd.cse232b.util.Util;
+import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.Util;
 import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
 
 import java.util.ArrayList;
 import java.util.List;

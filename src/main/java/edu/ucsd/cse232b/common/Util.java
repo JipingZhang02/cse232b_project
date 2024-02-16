@@ -1,4 +1,4 @@
-package edu.ucsd.cse232b.util;
+package edu.ucsd.cse232b.common;
 
 import org.w3c.dom.*;
 
@@ -21,6 +21,15 @@ public class Util {
 
     public static void setDoc(Document doc) {
         Util.doc = doc;
+    }
+
+    public static List<Node> toJavaBuiltinList(NodeList nodeList){
+        int l = nodeList.getLength();
+        List<Node> res = new ArrayList<>(l);
+        for (int i = 0; i < l; i++) {
+            res.add(nodeList.item(i));
+        }
+        return res;
     }
 
     public static List<Node> findAllChildrenNodes(Node node) {

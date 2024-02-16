@@ -55,6 +55,18 @@ public class XQueryBaseListener implements XQueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterWsXq(XQueryParser.WsXqContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitWsXq(XQueryParser.WsXqContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterParaXq(XQueryParser.ParaXqContext ctx) { }
 	/**
 	 * {@inheritDoc}

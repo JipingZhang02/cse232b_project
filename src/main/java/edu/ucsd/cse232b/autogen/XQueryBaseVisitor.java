@@ -41,6 +41,13 @@ public class XQueryBaseVisitor<T> extends AbstractParseTreeVisitor<T> implements
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitWsXq(XQueryParser.WsXqContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitParaXq(XQueryParser.ParaXqContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}

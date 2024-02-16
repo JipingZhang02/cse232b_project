@@ -2,8 +2,7 @@ package edu.ucsd.cse232b.expression.binaryFltr;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.util.Consts;
-import edu.ucsd.cse232b.util.Util;
+import edu.ucsd.cse232b.common.Consts;
 import org.w3c.dom.Node;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -54,7 +53,11 @@ public class BinaryConstEqualsFltr extends BinaryFltr {
             List<Node> singleNodeList = Arrays.asList(node);
             EvalResult leftRes = leftRp.evaluate(new EvalResult(singleNodeList, input.slashStatus));
             for (Node leftNode:leftRes.nodes){
-                if (leftNode!=null&&leftNode.getNodeValue().equals(constString)){
+                if (leftNode==null){
+                    continue;
+                }
+                String nodeStrVal = leftNode.getNodeValue();
+                if (nodeStrVal.equals(constString)){
                     matchFound = true;
                     break;
                 }

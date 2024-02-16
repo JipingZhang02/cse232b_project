@@ -2,14 +2,8 @@ package edu.ucsd.cse232b.expression.singleExpr;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.expression.binaryExpr.DoubleSLExpr;
-import edu.ucsd.cse232b.util.Consts;
-import edu.ucsd.cse232b.util.Util;
-import org.w3c.dom.Document;
-import org.w3c.dom.Node;
-
-import java.util.ArrayList;
-import java.util.List;
+import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.Util;
 
 public class SelfExpr implements Expression {
 /*    @Override

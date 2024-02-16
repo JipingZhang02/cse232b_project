@@ -34,6 +34,13 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitStringXq(XQueryParser.StringXqContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code wsXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWsXq(XQueryParser.WsXqContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ParaXq}
 	 * labeled alternative in {@link XQueryParser#xq}.
 	 * @param ctx the parse tree

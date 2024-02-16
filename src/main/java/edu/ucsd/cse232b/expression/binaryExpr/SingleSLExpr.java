@@ -2,11 +2,7 @@ package edu.ucsd.cse232b.expression.binaryExpr;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.util.Consts;
-import edu.ucsd.cse232b.util.Util;
-import org.w3c.dom.Node;
-
-import java.util.List;
+import edu.ucsd.cse232b.common.Consts;
 
 //  rp1/rp2
 public class SingleSLExpr extends BinaryExpr{
@@ -24,6 +20,7 @@ public class SingleSLExpr extends BinaryExpr{
     public EvalResult evaluate(EvalResult input) throws Exception {
         EvalResult leftRes = left.evaluate(input);
         leftRes.slashStatus = Consts.SINGLE_SLASH;
-        return right.evaluate(leftRes);
+        EvalResult res = right.evaluate(leftRes);
+        return res;
     }
 }

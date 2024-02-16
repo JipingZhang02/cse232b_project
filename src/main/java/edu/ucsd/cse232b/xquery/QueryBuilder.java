@@ -30,6 +30,11 @@ public class QueryBuilder extends XQueryBaseVisitor<Either<Query, Condition>> {
     }
 
     @Override
+    public Either<Query, Condition> visitWsXq(XQueryParser.WsXqContext ctx) {
+        return visit(ctx.xq());
+    }
+
+    @Override
     public Either<Query, Condition> visitRpXq(XQueryParser.RpXqContext ctx) {
         Query xq = visit(ctx.xq()).left;
         Expression rp = XPath.buildExpression(ctx.rp().getText());
@@ -179,4 +184,6 @@ public class QueryBuilder extends XQueryBaseVisitor<Either<Query, Condition>> {
     public Either<Query, Condition> visitIsCond2(XQueryParser.IsCond2Context ctx) {
         return new Either<>(null, new EqCondition(visit(ctx.xq(0)).left, visit(ctx.xq(1)).left));
     }
+
+
 }
