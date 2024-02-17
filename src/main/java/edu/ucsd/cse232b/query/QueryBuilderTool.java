@@ -14,7 +14,19 @@ public class QueryBuilderTool {
 
     }
 
+    public static List<String> removeDollarSigns(List<String> input){
+        List<String> res = new ArrayList<>();
+        for (String inputStr:input){
+            if (inputStr.startsWith("$")){
+                inputStr = inputStr.substring(1);
+            }
+            res.add(inputStr);
+        }
+        return res;
+    }
+
     public static Query buildLetClause(List<String> varNames, List<Query> xqs, Query thenDoWhat) {
+        varNames = removeDollarSigns(varNames);
         if (varNames.size() != xqs.size()) {
             throw new IllegalArgumentException();
         }
@@ -32,6 +44,8 @@ public class QueryBuilderTool {
     }
 
     public static Query buildForClause(List<String> forVarNames, List<Query> forXqs, List<String> letVarNames, List<Query> letXqs, Condition whereCondition, Query returnClauseXq) {
+        forVarNames = removeDollarSigns(forVarNames);
+        letVarNames = removeDollarSigns(letVarNames);
         if (forVarNames.size() != forXqs.size()) {
             throw new IllegalArgumentException();
         }
@@ -51,6 +65,7 @@ public class QueryBuilderTool {
     }
 
     public static Condition buildSomeSatisfyCondition(List<String> varNames, List<Query> xqs, Condition innerCondition){
+        varNames = removeDollarSigns(varNames);
         if (varNames.size() != xqs.size()) {
             throw new IllegalArgumentException();
         }

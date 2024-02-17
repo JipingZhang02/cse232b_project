@@ -2,19 +2,12 @@ package edu.ucsd.cse232b.xpath;
 
 import edu.ucsd.cse232b.autogen.XPathLexer;
 import edu.ucsd.cse232b.autogen.XPathParser;
-import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.expression.absPathExpr.AbsPath;
-import edu.ucsd.cse232b.common.Consts;
 import edu.ucsd.cse232b.common.Util;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.w3c.dom.Node;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 import java.io.*;
 import java.util.*;
 
@@ -81,7 +74,7 @@ public class XPath {
 
 
 
-    public static Expression buildExpression(String xPath){
+    public static Expression buildApExpression(String xPath){
         XPathLexer lexer = new XPathLexer(CharStreams.fromString(xPath));
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         XPathParser parser = new XPathParser(tokens);
@@ -89,8 +82,16 @@ public class XPath {
         return ExpressionBuilder.INSTANCE.visit(apContext);
     }
 
+    public static Expression buildRpExpression(String relPath){
+        XPathLexer lexer = new XPathLexer(CharStreams.fromString(relPath));
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        XPathParser parser = new XPathParser(tokens);
+        XPathParser.RpContext rpContext = parser.rp();
+        return ExpressionBuilder.INSTANCE.visit(rpContext);
+    }
+
     public static List<Node> evaluateXPath(String xPath, Map<String,Node> xmlFiles) throws Exception {
-        Expression expression = buildExpression(xPath);
+        Expression expression = buildApExpression(xPath);
         return expression.evaluate(null).nodes;
     }
 }

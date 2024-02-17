@@ -3,7 +3,6 @@ package edu.ucsd.cse232b.xquery;
 import edu.ucsd.cse232b.autogen.XQueryBaseVisitor;
 import edu.ucsd.cse232b.autogen.XQueryParser;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.expression.singleExpr.TagExpr;
 import edu.ucsd.cse232b.query.ExpressionWrapper;
 import edu.ucsd.cse232b.query.Query;
 import edu.ucsd.cse232b.query.QueryBuilderTool;
@@ -37,7 +36,7 @@ public class QueryBuilder extends XQueryBaseVisitor<Either<Query, Condition>> {
     @Override
     public Either<Query, Condition> visitRpXq(XQueryParser.RpXqContext ctx) {
         Query xq = visit(ctx.xq()).left;
-        Expression rp = XPath.buildExpression(ctx.rp().getText());
+        Expression rp = XPath.buildRpExpression(ctx.rp().getText());
         switch (ctx.pathOp().getText()) {
             case "//":
                 return new Either<>(new DSLQuery(xq, rp), null);
@@ -61,7 +60,7 @@ public class QueryBuilder extends XQueryBaseVisitor<Either<Query, Condition>> {
 
     @Override
     public Either<Query, Condition> visitApXq(XQueryParser.ApXqContext ctx) {
-        return new Either<>(new ExpressionWrapper(XPath.buildExpression(ctx.ap().getText())), null);
+        return new Either<>(new ExpressionWrapper(XPath.buildApExpression(ctx.ap().getText())), null);
     }
 
     @Override
@@ -120,7 +119,7 @@ public class QueryBuilder extends XQueryBaseVisitor<Either<Query, Condition>> {
 
     @Override
     public Either<Query, Condition> visitTagXq(XQueryParser.TagXqContext ctx) {
-        return new Either<>(new TagGeneratorQuery(ctx.startTag().getText(), visit(ctx.xq()).left), null);
+        return new Either<>(new TagGeneratorQuery(ctx.startTag().tagName().getText(), visit(ctx.xq()).left), null);
     }
 
 

@@ -7,6 +7,7 @@ import edu.ucsd.cse232b.common.Util;
 import org.w3c.dom.Node;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
@@ -22,10 +23,6 @@ public class TagGeneratorQuery implements Query {
     @Override
     public EvalResult evaluate(EvalResult input, Map<String, Node> variables) throws Exception {
         EvalResult innerResult = innerQuery.evaluate(input, variables);
-        List<Node> generated = new ArrayList<>();
-        for (Node node:innerResult.nodes){
-            generated.add(Util.assembleNode(tagName,node));
-        }
-        return new EvalResult(generated, Consts.NONE);
+        return new EvalResult(Arrays.asList(Util.assembleNode(tagName,innerResult.nodes)), Consts.NONE);
     }
 }

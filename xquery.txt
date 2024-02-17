@@ -1,3 +1,9 @@
+<result>{for $a in doc("test.xml")//BOOK
+return <hahaha>{$a/TITLE/text()}</what>}</hahaha>}<result>
+
+1.<result>{for $a in doc("j_caesar.xml")//ACT
+return <what>{$a}</what>}</result>
+
 <result>{
 for $a in doc("j_caesar.xml")//ACT,
 $sc in $a//SCENE,

@@ -2,15 +2,21 @@ package edu.ucsd.cse232b.xquery;
 
 import edu.ucsd.cse232b.autogen.XQueryLexer;
 import edu.ucsd.cse232b.autogen.XQueryParser;
+import edu.ucsd.cse232b.common.Util;
 import edu.ucsd.cse232b.query.Query;
+import edu.ucsd.cse232b.xpath.XPath;
 import org.antlr.v4.runtime.CharStream;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.w3c.dom.Node;
 
 import java.io.*;
+import java.util.HashMap;
+import java.util.List;
 
 public class XQuery {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws Exception {
+        XPath.evaluateXPath("doc(\"j_caesar.xml\")//ACT",null);
         String inputFilePath = "./xquery.txt";
         String outputFilePath = "./output.xml";
         if (args.length>=1){
@@ -21,7 +27,8 @@ public class XQuery {
         }
         String queryStr = readQuery(inputFilePath);
         Query query = biuldQuery(queryStr);
-        System.out.println(123);
+        List<Node> res = query.evaluate(null,new HashMap<>()).nodes;
+        Util.writeNodesToFile(res,outputFilePath);
     }
 
     public static String readQuery(String inputFilePath) throws IOException {

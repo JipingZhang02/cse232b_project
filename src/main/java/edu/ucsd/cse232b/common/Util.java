@@ -130,34 +130,36 @@ public class Util {
             e.printStackTrace();
         }
     }
-    public static Node assembleNode(String outerNodeName, Node innerNode){
-        return assembleNode(outerNodeName,innerNode,doc);
+    public static Node assembleNode(String outerNodeName, List<Node> innerNodes){
+        return assembleNode(outerNodeName,innerNodes,doc);
     }
 
-    public static Node assembleNode(String outerNodeName, Node innerNode, Document doc) {
+    public static Node assembleNode(String outerNodeName, List<Node> innerNodes, Document doc) {
         try {
             // Create the outer element with the given name
             Element outerElement = doc.createElement(outerNodeName);
 
-            // Determine the type of the innerNode and handle accordingly
-            switch (innerNode.getNodeType()) {
-                case Node.ELEMENT_NODE:
-                    // If innerNode is an element, import and append it to the outer element
-                    Node importedElement = doc.importNode(innerNode, true);
-                    outerElement.appendChild(importedElement);
-                    break;
-                case Node.TEXT_NODE:
-                    // If innerNode is pure text, append it directly to the outer element
-                    Text importedText = doc.createTextNode(innerNode.getNodeValue());
-                    outerElement.appendChild(importedText);
-                    break;
-                case Node.ATTRIBUTE_NODE:
-                    // If innerNode is an attribute, create a new element and set the attribute
-                    Attr importedAttr = (Attr) doc.importNode(innerNode, true);
-                    outerElement.setAttributeNode(importedAttr);
-                    break;
-                default:
-                    throw new IllegalArgumentException();
+            for (Node innerNode:innerNodes) {
+                // Determine the type of the innerNode and handle accordingly
+                switch (innerNode.getNodeType()) {
+                    case Node.ELEMENT_NODE:
+                        // If innerNode is an element, import and append it to the outer element
+                        Node importedElement = doc.importNode(innerNode, true);
+                        outerElement.appendChild(importedElement);
+                        break;
+                    case Node.TEXT_NODE:
+                        // If innerNode is pure text, append it directly to the outer element
+                        Text importedText = doc.createTextNode(innerNode.getNodeValue());
+                        outerElement.appendChild(importedText);
+                        break;
+                    case Node.ATTRIBUTE_NODE:
+                        // If innerNode is an attribute, create a new element and set the attribute
+                        Attr importedAttr = (Attr) doc.importNode(innerNode, true);
+                        outerElement.setAttributeNode(importedAttr);
+                        break;
+                    default:
+                        throw new IllegalArgumentException();
+                }
             }
 
             return outerElement;

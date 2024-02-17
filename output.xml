@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <result>
-  <BOOK genre="Computer Science" year="2021">
-            <TITLE>data structure</TITLE>
-            <AUTHOR>aaa</AUTHOR>
-            <AUTHOR>bbb</AUTHOR>
-        </BOOK>
-  <BOOK genre="Computer Science" year="2020">
-            <TITLE>computer network</TITLE>
-            <AUTHOR>aaa</AUTHOR>
-        </BOOK>
+  <result>
+    <hahaha>data structure</hahaha>
+    <hahaha>computer network</hahaha>
+    <hahaha>operating system</hahaha>
+    <hahaha>electrical engineering basics</hahaha>
+    <hahaha>world history</hahaha>
+    <hahaha>philosophy 101</hahaha>
+    <hahaha>the enchanted forest</hahaha>
+    <hahaha>galaxy explorers</hahaha>
+    <hahaha>the mystery of the ancient tomb</hahaha>
+    <hahaha>science today</hahaha>
+    <hahaha>living well</hahaha>
+  </result>
 </result>
