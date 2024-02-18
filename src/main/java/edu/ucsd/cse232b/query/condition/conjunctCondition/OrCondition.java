@@ -14,4 +14,9 @@ public class OrCondition extends ConjunctCondition {
     public boolean assess(Map<String, Node> variables) throws Exception {
         return leftCondition.assess(variables) || rightCondition.assess(variables);
     }
+
+    @Override
+    public String toString(){
+        return "("+leftCondition.toString()+" or "+rightCondition.toString()+")";
+    }
 }

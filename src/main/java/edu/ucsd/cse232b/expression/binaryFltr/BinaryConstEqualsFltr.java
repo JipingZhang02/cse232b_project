@@ -2,7 +2,7 @@ package edu.ucsd.cse232b.expression.binaryFltr;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.SlashStatus;
 import org.w3c.dom.Node;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,34 +16,6 @@ public class BinaryConstEqualsFltr extends BinaryFltr {
         super(leftRp, null);
         this.constString = constString;
     }
-
-/*    @Override
-    protected boolean compare(Node n1, Node n2) {
-        return n1.getNodeValue() != null && n1.getNodeValue().equals(constString);
-    }*/
-
-/*    @Override
-    public List<Node> evaluate(List<Node> inputNodes) throws Exception {
-        List<Node> resultList = new ArrayList<>();
-        for (Node n : inputNodes) {
-            List<Node> singleNodeList = Util.findDirectChildrenNodes(Arrays.asList(n));
-
-            List<Node> leftResults = this.leftRp.evaluate(singleNodeList);
-            boolean matchFound = false;
-
-            for (Node leftNode : leftResults) {
-                if (compare(leftNode, null)) {
-                    matchFound = true;
-                    break;
-                }
-            }
-
-            if (matchFound) {
-                resultList.add(n);
-            }
-        }
-        return resultList;
-    }*/
 
     @Override
     public EvalResult evaluate(EvalResult input) throws Exception {
@@ -66,6 +38,11 @@ public class BinaryConstEqualsFltr extends BinaryFltr {
                 resultList.add(node);
             }
         }
-        return new EvalResult(resultList, Consts.NONE);
+        return new EvalResult(resultList, SlashStatus.NONE);
+    }
+
+    @Override
+    public String toString(){
+        return leftRp.toString()+"==\""+constString+"\"";
     }
 }

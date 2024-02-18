@@ -2,7 +2,7 @@ package edu.ucsd.cse232b.expression.singleFltr;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.SlashStatus;
 import org.w3c.dom.Node;
 
 import java.util.*;
@@ -26,6 +26,11 @@ public class NegFltr implements Expression {
             }
             resList.add(node);
         }
-        return new EvalResult(resList, Consts.NONE);
+        return new EvalResult(resList, SlashStatus.NONE);
+    }
+
+    @Override
+    public String toString(){
+        return "(not"+ft.toString()+")";
     }
 }

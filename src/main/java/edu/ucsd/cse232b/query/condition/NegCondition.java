@@ -15,4 +15,9 @@ public class NegCondition implements Condition{
     public boolean assess(Map<String, Node> variables) throws Exception {
         return !conditionToNegate.assess(variables);
     }
+
+    @Override
+    public String toString(){
+        return "(not "+conditionToNegate.toString()+")";
+    }
 }

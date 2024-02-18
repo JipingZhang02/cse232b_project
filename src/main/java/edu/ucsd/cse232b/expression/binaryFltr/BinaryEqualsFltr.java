@@ -2,7 +2,7 @@ package edu.ucsd.cse232b.expression.binaryFltr;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.SlashStatus;
 import org.w3c.dom.Node;
 
 import java.util.*;
@@ -28,26 +28,12 @@ public class BinaryEqualsFltr extends BinaryFltr {
                 }
             }
         }
-        return new EvalResult(resultList, Consts.NONE);
+        return new EvalResult(resultList, SlashStatus.NONE);
     }
 
-    /*    @Override
-    public List<Node> evaluate(List<Node> inputNodes) throws Exception {
-        List<Node> resultList = new ArrayList<>();
-        for (Node n : inputNodes) {
-            List<Node> singleNodeList = Util.findDirectChildrenNodes(Arrays.asList(n));
-
-            List<Node> left = this.leftRp.evaluate(singleNodeList);
-            List<Node> right = this.rightRp.evaluate(singleNodeList);
-
-            boolean matchFound = left.stream().anyMatch(leftNode ->
-                    right.stream().anyMatch(rightNode -> compare(leftNode, rightNode)));
-
-            if (matchFound) {
-                resultList.add(n);
-            }
-        }
-        return resultList;
-    }*/
+    @Override
+    public String toString(){
+        return leftRp.toString()+"="+rightRp.toString();
+    }
 }
 

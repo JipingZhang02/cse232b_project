@@ -13,6 +13,30 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link XQueryParser#forClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForClause(XQueryParser.ForClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XQueryParser#letClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLetClause(XQueryParser.LetClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XQueryParser#whereClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitWhereClause(XQueryParser.WhereClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link XQueryParser#returnClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitReturnClause(XQueryParser.ReturnClauseContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code CommaXq}
 	 * labeled alternative in {@link XQueryParser#xq}.
 	 * @param ctx the parse tree
@@ -82,30 +106,6 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTagXq(XQueryParser.TagXqContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link XQueryParser#forClause}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitForClause(XQueryParser.ForClauseContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link XQueryParser#letClause}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLetClause(XQueryParser.LetClauseContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link XQueryParser#whereClause}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitWhereClause(XQueryParser.WhereClauseContext ctx);
-	/**
-	 * Visit a parse tree produced by {@link XQueryParser#returnClause}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitReturnClause(XQueryParser.ReturnClauseContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code EqCond2}
 	 * labeled alternative in {@link XQueryParser#cond}.

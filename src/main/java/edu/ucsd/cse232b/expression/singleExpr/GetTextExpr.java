@@ -3,7 +3,7 @@ package edu.ucsd.cse232b.expression.singleExpr;
 import edu.ucsd.cse232b.common.Util;
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.SlashStatus;
 import org.w3c.dom.Node;
 
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ public class GetTextExpr implements Expression {
 
     @Override
     public EvalResult evaluate(EvalResult input) throws Exception {
-        if (input.slashStatus== Consts.DOUBLE_SLASH){
+        if (input.slashStatus== SlashStatus.DOUBLE_SLASH){
             throw new IllegalArgumentException();
         }
         List<Node> res = new ArrayList<>();
@@ -34,6 +34,11 @@ public class GetTextExpr implements Expression {
                 }
             }
         }
-        return new EvalResult(res,Consts.NONE);
+        return new EvalResult(res, SlashStatus.NONE);
+    }
+
+    @Override
+    public String toString(){
+        return "text()";
     }
 }

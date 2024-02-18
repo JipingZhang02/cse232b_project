@@ -1,6 +1,6 @@
 package edu.ucsd.cse232b.expression.absPathExpr;
 
-import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.SlashStatus;
 import edu.ucsd.cse232b.common.Util;
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
@@ -17,7 +17,7 @@ public class AbsPath implements Expression{
     private final int slash;
 
     public AbsPath(Expression relPath, String fileName) {
-        this(relPath,fileName,Consts.NONE);
+        this(relPath,fileName, SlashStatus.NONE);
     }
 
     public AbsPath(Expression relPath, String fileName, int slash) {
@@ -41,5 +41,10 @@ public class AbsPath implements Expression{
         Util.setDoc(doc);
         EvalResult initial = new EvalResult(Arrays.asList(doc.getDocumentElement()), slash);
         return relPath.evaluate(initial);
+    }
+
+    @Override
+    public String toString(){
+        return String.format("doc(\"%s\")%s%s",fileName,SlashStatus.toString(slash),relPath.toString());
     }
 }

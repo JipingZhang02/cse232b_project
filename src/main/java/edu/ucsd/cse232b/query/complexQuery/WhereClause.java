@@ -3,7 +3,7 @@ package edu.ucsd.cse232b.query.complexQuery;
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.query.Query;
 import edu.ucsd.cse232b.query.condition.Condition;
-import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.SlashStatus;
 import org.w3c.dom.Node;
 
 import java.util.ArrayList;
@@ -23,7 +23,12 @@ public class WhereClause implements Query {
         if (condition.assess(variables)){
             return thenDoWhat.evaluate(input, variables);
         } else {
-            return new EvalResult(new ArrayList<>(), Consts.NONE);
+            return new EvalResult(new ArrayList<>(), SlashStatus.NONE);
         }
+    }
+
+    @Override
+    public String toString(){
+        return String.format("where(%s){\n%s\n}",condition.toString(),thenDoWhat.toString());
     }
 }

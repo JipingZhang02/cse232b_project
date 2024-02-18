@@ -2,7 +2,7 @@ package edu.ucsd.cse232b.query.singleQuery;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.query.Query;
-import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.SlashStatus;
 import org.w3c.dom.Node;
 
 import java.util.Arrays;
@@ -21,8 +21,13 @@ public class VarXq implements Query {
     @Override
     public EvalResult evaluate(EvalResult input, Map<String, Node> variables) {
         if (variables.containsKey(varName)){
-            return new EvalResult(Arrays.asList(variables.get(varName)), Consts.NONE);
+            return new EvalResult(Arrays.asList(variables.get(varName)), SlashStatus.NONE);
         }
         throw new RuntimeException("variable '"+varName+"' has not been defined!");
+    }
+
+    @Override
+    public String toString(){
+        return "$"+varName;
     }
 }

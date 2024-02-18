@@ -71,4 +71,9 @@ public class EqCondition implements Condition{
         }
         return false;
     }
+
+    @Override
+    public String toString(){
+        return xqLeft.toString()+"="+xqRight.toString();
+    }
 }

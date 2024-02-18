@@ -22,4 +22,9 @@ public class ExpressionWrapper implements Query{
     public EvalResult evaluate(EvalResult input, Map<String, Node> variables) throws Exception {
         return expression.evaluate(input);
     }
+
+    @Override
+    public String toString(){
+        return expression.toString();
+    }
 }

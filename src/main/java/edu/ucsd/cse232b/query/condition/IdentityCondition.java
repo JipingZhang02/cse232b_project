@@ -9,4 +9,9 @@ public class IdentityCondition implements Condition{
     public boolean assess(Map<String, Node> variables) throws Exception {
         return true;
     }
+
+    @Override
+    public String toString(){
+        return "true";
+    }
 }

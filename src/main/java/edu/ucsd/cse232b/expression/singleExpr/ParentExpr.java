@@ -2,7 +2,7 @@ package edu.ucsd.cse232b.expression.singleExpr;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.SlashStatus;
 import edu.ucsd.cse232b.common.Util;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -28,7 +28,7 @@ public class ParentExpr implements Expression {
 
     @Override
     public EvalResult evaluate(EvalResult input) throws Exception {
-        if (input.slashStatus== Consts.DOUBLE_SLASH){
+        if (input.slashStatus== SlashStatus.DOUBLE_SLASH){
             throw new IllegalArgumentException();
         }
         List<Node> res = new ArrayList<>();
@@ -38,6 +38,11 @@ public class ParentExpr implements Expression {
                 res.add(parent);
             }
         }
-        return new EvalResult(Util.removeRedaduntElements(res),Consts.NONE);
+        return new EvalResult(Util.removeRedaduntElements(res), SlashStatus.NONE);
+    }
+
+    @Override
+    public String toString(){
+        return "..";
     }
 }

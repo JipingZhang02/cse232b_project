@@ -27,4 +27,9 @@ public class SingleLetClause implements Query {
         variables.put(varName,assignedVal.get(0));
         return thenDoWhat.evaluate(input,variables);
     }
+
+    @Override
+    public String toString(){
+        return String.format("let $%s = %s\n%s",varName,assignedValXQ.toString(),thenDoWhat.toString());
+    }
 }

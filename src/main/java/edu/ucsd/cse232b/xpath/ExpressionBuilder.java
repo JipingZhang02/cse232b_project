@@ -2,13 +2,12 @@ package edu.ucsd.cse232b.xpath;
 
 import edu.ucsd.cse232b.autogen.XPathBaseVisitor;
 import edu.ucsd.cse232b.autogen.XPathParser;
-import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.SlashStatus;
 import edu.ucsd.cse232b.expression.Expression;
 import edu.ucsd.cse232b.expression.FilterExpr;
 import edu.ucsd.cse232b.expression.absPathExpr.AbsPath;
 import edu.ucsd.cse232b.expression.binaryExpr.ComaExpr;
-import edu.ucsd.cse232b.expression.binaryExpr.DoubleSLExpr;
-import edu.ucsd.cse232b.expression.binaryExpr.SingleSLExpr;
+import edu.ucsd.cse232b.expression.binaryExpr.SlashExpr;
 import edu.ucsd.cse232b.expression.binaryFltr.BinaryConstEqualsFltr;
 import edu.ucsd.cse232b.expression.binaryFltr.BinaryEqualsFltr;
 import edu.ucsd.cse232b.expression.conjuctFltr.AndFltr;
@@ -32,9 +31,9 @@ public class ExpressionBuilder extends XPathBaseVisitor<Expression> {
         String pathOp = ctx.pathOp().getText();
         Expression relPathExpr = visit(ctx.rp());
         if (pathOp.equals("//")){
-            return new AbsPath(relPathExpr,filename, Consts.DOUBLE_SLASH);
+            return new AbsPath(relPathExpr,filename, SlashStatus.DOUBLE_SLASH);
         } else {
-            return new AbsPath(relPathExpr,filename, Consts.SINGLE_SLASH);
+            return new AbsPath(relPathExpr,filename, SlashStatus.SINGLE_SLASH);
         }
     }
 
@@ -49,9 +48,9 @@ public class ExpressionBuilder extends XPathBaseVisitor<Expression> {
         Expression right = visit(ctx.rp(1));
         String pathOp = ctx.pathOp().getText();
         if (pathOp.equals("//")){
-            return new DoubleSLExpr(left,right);
+            return new SlashExpr(left,right, SlashStatus.DOUBLE_SLASH);
         } else {
-            return new SingleSLExpr(left,right);
+            return new SlashExpr(left,right, SlashStatus.SINGLE_SLASH);
         }
     }
 

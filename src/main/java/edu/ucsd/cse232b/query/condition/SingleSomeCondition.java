@@ -27,4 +27,9 @@ public class SingleSomeCondition implements Condition{
         }
         return false;
     }
+
+    @Override
+    public String toString(){
+        return String.format("some($%s in $s) satisfies { %s }",varName,generator.toString(),innerCondition.toString());
+    }
 }

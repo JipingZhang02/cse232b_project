@@ -2,13 +2,13 @@ package edu.ucsd.cse232b.xquery;
 
 import edu.ucsd.cse232b.autogen.XQueryBaseVisitor;
 import edu.ucsd.cse232b.autogen.XQueryParser;
+import edu.ucsd.cse232b.common.SlashStatus;
 import edu.ucsd.cse232b.expression.Expression;
 import edu.ucsd.cse232b.query.ExpressionWrapper;
 import edu.ucsd.cse232b.query.Query;
 import edu.ucsd.cse232b.query.QueryBuilderTool;
 import edu.ucsd.cse232b.query.binaryQuery.CommaQuery;
-import edu.ucsd.cse232b.query.binaryQuery.DSLQuery;
-import edu.ucsd.cse232b.query.binaryQuery.SSLQuery;
+import edu.ucsd.cse232b.query.binaryQuery.XQSlashRP;
 import edu.ucsd.cse232b.query.condition.*;
 import edu.ucsd.cse232b.query.condition.conjunctCondition.AndCondition;
 import edu.ucsd.cse232b.query.condition.conjunctCondition.OrCondition;
@@ -39,9 +39,9 @@ public class QueryBuilder extends XQueryBaseVisitor<Either<Query, Condition>> {
         Expression rp = XPath.buildRpExpression(ctx.rp().getText());
         switch (ctx.pathOp().getText()) {
             case "//":
-                return new Either<>(new DSLQuery(xq, rp), null);
+                return new Either<>(new XQSlashRP(xq, rp, SlashStatus.DOUBLE_SLASH), null);
             case "/":
-                return new Either<>(new SSLQuery(xq, rp), null);
+                return new Either<>(new XQSlashRP(xq, rp, SlashStatus.SINGLE_SLASH), null);
             default:
                 throw new IllegalArgumentException();
         }

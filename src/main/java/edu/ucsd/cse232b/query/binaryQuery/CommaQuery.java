@@ -28,4 +28,10 @@ public class CommaQuery implements Query {
         resNodes.addAll(rightResult.nodes);
         return new EvalResult(resNodes, leftResult.slashStatus);
     }
+
+
+    @Override
+    public String toString(){
+        return leftQuery.toString()+","+rightQuery.toString();
+    }
 }

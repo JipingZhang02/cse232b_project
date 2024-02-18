@@ -17,4 +17,9 @@ public class EmptyCondition implements Condition{
     public boolean assess(Map<String, Node> variables) throws Exception {
         return innerXq.evaluate(new EvalResult(),variables).nodes.isEmpty();
     }
+
+    @Override
+    public String toString(){
+        return "empty("+innerXq.toString()+")";
+    }
 }

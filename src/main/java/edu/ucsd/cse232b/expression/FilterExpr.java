@@ -18,4 +18,9 @@ public class FilterExpr implements Expression{
     public EvalResult evaluate(EvalResult input) throws Exception {
         return ft.evaluate(expr.evaluate(input));
     }
+
+    @Override
+    public String toString(){
+        return expr.toString()+"["+ft.toString()+"]";
+    }
 }

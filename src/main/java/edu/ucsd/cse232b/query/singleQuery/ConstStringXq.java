@@ -2,7 +2,7 @@ package edu.ucsd.cse232b.query.singleQuery;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.query.Query;
-import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.SlashStatus;
 import edu.ucsd.cse232b.common.Util;
 import org.w3c.dom.Node;
 
@@ -18,6 +18,11 @@ public class ConstStringXq implements Query {
 
     @Override
     public EvalResult evaluate(EvalResult input, Map<String, Node> variables) {
-        return new EvalResult(Arrays.asList(Util.createTextNode(stringValue)), Consts.NONE);
+        return new EvalResult(Arrays.asList(Util.createTextNode(stringValue)), SlashStatus.NONE);
+    }
+
+    @Override
+    public String toString(){
+        return "\""+stringValue+"\"";
     }
 }

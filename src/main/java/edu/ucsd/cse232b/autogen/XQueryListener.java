@@ -10,6 +10,46 @@ import org.antlr.v4.runtime.tree.ParseTreeListener;
  */
 public interface XQueryListener extends ParseTreeListener {
 	/**
+	 * Enter a parse tree produced by {@link XQueryParser#forClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterForClause(XQueryParser.ForClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XQueryParser#forClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitForClause(XQueryParser.ForClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XQueryParser#letClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterLetClause(XQueryParser.LetClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XQueryParser#letClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitLetClause(XQueryParser.LetClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XQueryParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterWhereClause(XQueryParser.WhereClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XQueryParser#whereClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitWhereClause(XQueryParser.WhereClauseContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link XQueryParser#returnClause}.
+	 * @param ctx the parse tree
+	 */
+	void enterReturnClause(XQueryParser.ReturnClauseContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link XQueryParser#returnClause}.
+	 * @param ctx the parse tree
+	 */
+	void exitReturnClause(XQueryParser.ReturnClauseContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code CommaXq}
 	 * labeled alternative in {@link XQueryParser#xq}.
 	 * @param ctx the parse tree
@@ -129,46 +169,6 @@ public interface XQueryListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTagXq(XQueryParser.TagXqContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link XQueryParser#forClause}.
-	 * @param ctx the parse tree
-	 */
-	void enterForClause(XQueryParser.ForClauseContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link XQueryParser#forClause}.
-	 * @param ctx the parse tree
-	 */
-	void exitForClause(XQueryParser.ForClauseContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link XQueryParser#letClause}.
-	 * @param ctx the parse tree
-	 */
-	void enterLetClause(XQueryParser.LetClauseContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link XQueryParser#letClause}.
-	 * @param ctx the parse tree
-	 */
-	void exitLetClause(XQueryParser.LetClauseContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link XQueryParser#whereClause}.
-	 * @param ctx the parse tree
-	 */
-	void enterWhereClause(XQueryParser.WhereClauseContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link XQueryParser#whereClause}.
-	 * @param ctx the parse tree
-	 */
-	void exitWhereClause(XQueryParser.WhereClauseContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link XQueryParser#returnClause}.
-	 * @param ctx the parse tree
-	 */
-	void enterReturnClause(XQueryParser.ReturnClauseContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link XQueryParser#returnClause}.
-	 * @param ctx the parse tree
-	 */
-	void exitReturnClause(XQueryParser.ReturnClauseContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code EqCond2}
 	 * labeled alternative in {@link XQueryParser#cond}.

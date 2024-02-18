@@ -32,4 +32,9 @@ public class ComaExpr extends BinaryExpr {
         this.right = this.right.removeLeftmostSelfExpr();
         return this;
     }
+
+    @Override
+    public String toString(){
+        return left.toString()+","+right.toString();
+    }
 }

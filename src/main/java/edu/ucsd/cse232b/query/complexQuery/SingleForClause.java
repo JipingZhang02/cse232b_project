@@ -2,7 +2,7 @@ package edu.ucsd.cse232b.query.complexQuery;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.query.Query;
-import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.SlashStatus;
 import org.w3c.dom.Node;
 
 import java.util.ArrayList;
@@ -28,6 +28,11 @@ public class SingleForClause implements Query {
             variables.put(varName,varValue);
             resNodes.addAll(returnClause.evaluate(input,variables).nodes);
         }
-        return new EvalResult(resNodes, Consts.NONE);
+        return new EvalResult(resNodes, SlashStatus.NONE);
+    }
+
+    @Override
+    public String toString(){
+        return String.format("for($%s in %s){\n%s\n}",varName,generator.toString(),returnClause.toString());
     }
 }

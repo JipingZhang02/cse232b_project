@@ -2,7 +2,7 @@ package edu.ucsd.cse232b.expression.singleFltr;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.expression.Expression;
-import edu.ucsd.cse232b.common.Consts;
+import edu.ucsd.cse232b.common.SlashStatus;
 import org.w3c.dom.Node;
 
 import java.util.*;
@@ -18,19 +18,6 @@ public class SingleFltr implements Expression {
         this.rp = rp.removeLeftmostSelfExpr();
     }
 
-/*    @Override
-    public List<Node> evaluate(List<Node> inputNodes) throws Exception {
-        List<Node> resultList = new ArrayList<>();
-        for (Node n : inputNodes) {
-
-            List<Node> rpResult = rp.evaluate(n.getChildNodes());
-
-            if (!rpResult.isEmpty()) {
-                resultList.add(n);
-            }
-        }
-        return resultList;
-    }*/
 
     @Override
     public EvalResult evaluate(EvalResult input) throws Exception {
@@ -41,6 +28,11 @@ public class SingleFltr implements Expression {
                 resultList.add(node);
             }
         }
-        return new EvalResult(resultList, Consts.NONE);
+        return new EvalResult(resultList, SlashStatus.NONE);
+    }
+
+    @Override
+    public String toString(){
+        return rp.toString();
     }
 }
