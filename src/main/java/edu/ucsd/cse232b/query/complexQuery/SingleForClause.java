@@ -1,5 +1,6 @@
 package edu.ucsd.cse232b.query.complexQuery;
 
+import edu.ucsd.cse232b.common.Util;
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.query.Query;
 import edu.ucsd.cse232b.common.SlashStatus;
@@ -33,6 +34,6 @@ public class SingleForClause implements Query {
 
     @Override
     public String toString(){
-        return String.format("for($%s in %s){\n%s\n}",varName,generator.toString(),returnClause.toString());
+        return String.format("for($%s in %s){\n%s\n}",varName,generator.toString(), Util.insertTabInLines(returnClause.toString()));
     }
 }

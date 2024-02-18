@@ -7,7 +7,6 @@ whereClause: 'where' cond;
 returnClause: 'return' xq;
 
  xq: VAR #VarXq
-    | STRING #StringXq
     | xq ',' xq #CommaXq
     | ap #ApXq
     | '(' xq ')' #ParaXq
@@ -15,6 +14,7 @@ returnClause: 'return' xq;
     | startTag '{' xq '}' endTag #TagXq
     | forClause (letClause)? (whereClause)? returnClause #ForXq
     | letClause xq #LetXq
+    | STRING #StringXq
     | WS xq WS #wsXq;
 
 

@@ -1,5 +1,6 @@
 package edu.ucsd.cse232b.query.complexQuery;
 
+import edu.ucsd.cse232b.common.Util;
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.query.Query;
 import edu.ucsd.cse232b.query.condition.Condition;
@@ -29,6 +30,6 @@ public class WhereClause implements Query {
 
     @Override
     public String toString(){
-        return String.format("where(%s){\n%s\n}",condition.toString(),thenDoWhat.toString());
+        return String.format("where(%s){\n%s\n}",condition.toString(), Util.insertTabInLines(thenDoWhat.toString()));
     }
 }

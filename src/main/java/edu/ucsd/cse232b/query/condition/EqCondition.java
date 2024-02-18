@@ -2,11 +2,11 @@ package edu.ucsd.cse232b.query.condition;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.query.Query;
+import org.w3c.dom.Element;
 import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
 
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
 public class EqCondition implements Condition{
     private final Query xqLeft,xqRight;
@@ -51,7 +51,19 @@ public class EqCondition implements Condition{
         if (leftType!=rightType){
             return false;
         }
-        if (leftType==Node.TEXT_NODE){
+        Set<MyNode> leftNodesAsSet = new HashSet<>();
+        for (Node w3cNode: leftRes.nodes){
+            leftNodesAsSet.add(toMyNode(w3cNode));
+        }
+        for (Node w3cNode: rightRes.nodes){
+            MyNode myNodeR = toMyNode(w3cNode);
+            if (leftNodesAsSet.contains(myNodeR)){
+                return true;
+            }
+        }
+        return false;
+
+/*        if (leftType==Node.TEXT_NODE){
             Set<String> leftSet = new HashSet<>();
             for (Node node: leftRes.nodes){
                 leftSet.add(node.getNodeValue());
@@ -69,11 +81,84 @@ public class EqCondition implements Condition{
                 return true;
             }
         }
-        return false;
+        return false;*/
+    }
+
+    private static MyNode toMyNode(Node w3cNode){
+        int type = w3cNode.getNodeType();
+        if (type==Node.TEXT_NODE){
+            return new MyStringNode(w3cNode.getNodeValue());
+        }
+        if (type!=Node.ELEMENT_NODE){
+            return null;
+        }
+        MyElementNode res = new MyElementNode();
+        NodeList childNodes = ((Element)w3cNode).getChildNodes();
+        for (int i = 0; i < childNodes.getLength(); i++) {
+            MyNode parsed = toMyNode(childNodes.item(i));
+            if (parsed!=null){
+                res.children.add(parsed);
+            }
+        }
+        return res;
     }
 
     @Override
     public String toString(){
         return xqLeft.toString()+"="+xqRight.toString();
+    }
+
+    static class MyNode{
+
+    }
+
+    static class MyStringNode extends MyNode{
+        String strValue="";
+
+        MyStringNode(){
+
+        }
+
+        MyStringNode(String strValue) {
+            this.strValue = strValue;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            MyStringNode that = (MyStringNode) o;
+            return Objects.equals(strValue, that.strValue);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(strValue);
+        }
+    }
+
+    static class MyElementNode extends MyNode{
+        String tagName = "";
+        List<MyNode> children = new ArrayList<>();
+
+        public MyElementNode() {
+        }
+
+        public MyElementNode(String tagName) {
+            this.tagName = tagName;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            MyElementNode that = (MyElementNode) o;
+            return Objects.equals(tagName, that.tagName) && Objects.equals(children, that.children);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(tagName, children);
+        }
     }
 }

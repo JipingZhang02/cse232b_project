@@ -184,4 +184,13 @@ public class Util {
     public static Text createTextNode(String textContent){
         return createTextNode(textContent,doc);
     }
+
+    public static String insertTabInLines(String string){
+        StringBuilder res = new StringBuilder();
+        String[] lines = string.split("\n");
+        for (String line:lines){
+            res.append("    ").append(line).append("\n");
+        }
+        return res.toString();
+    }
 }

@@ -26,6 +26,6 @@ public class TagGeneratorQuery implements Query {
 
     @Override
     public String toString(){
-        return String.format("<%s>{%s}</%s>",tagName,innerQuery.toString(),tagName);
+        return String.format("<%s>{\n%s\n}</%s>",tagName,Util.insertTabInLines(innerQuery.toString()),tagName);
     }
 }
