@@ -13,6 +13,7 @@ public class AttrExpr implements Expression {
 
     public AttrExpr(String attrName) {
         if (attrName.startsWith("@")){
+            System.out.printf("Warning: got an unremoved '@' when constructing AttrExpr(attrName=%s)\n",attrName);
             attrName = attrName.substring(1);
         }
         this.attrName = attrName;

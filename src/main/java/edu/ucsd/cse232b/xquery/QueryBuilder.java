@@ -25,7 +25,7 @@ public class QueryBuilder extends XQueryBaseVisitor<Either<Query, Condition>> {
     public static final QueryBuilder INSTANCE = new QueryBuilder();
 
     private QueryBuilder() {
-
+        // singleton design mode
     }
 
     @Override

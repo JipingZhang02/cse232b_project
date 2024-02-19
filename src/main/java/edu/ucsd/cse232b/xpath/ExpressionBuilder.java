@@ -20,7 +20,7 @@ public class ExpressionBuilder extends XPathBaseVisitor<Expression> {
     public static final ExpressionBuilder INSTANCE = new ExpressionBuilder();
 
     private ExpressionBuilder(){
-
+        // singleton design mode
     }
 
 
@@ -72,7 +72,7 @@ public class ExpressionBuilder extends XPathBaseVisitor<Expression> {
 
     @Override
     public Expression visitAttrRp(XPathParser.AttrRpContext ctx) {
-        return new AttrExpr(ctx.attName().getText());
+        return new AttrExpr(ctx.attName().getText().substring(1)); // ignore '@' at index 0
     }
 
     @Override
