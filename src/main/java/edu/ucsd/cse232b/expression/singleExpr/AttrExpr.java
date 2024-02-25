@@ -15,6 +15,7 @@ public class AttrExpr implements Expression {
         if (attrName.startsWith("@")){
             System.out.printf("Warning: got an unremoved '@' when constructing AttrExpr(attrName=%s)\n",attrName);
             attrName = attrName.substring(1);
+            System.out.println("    The @ is auto removed");
         }
         this.attrName = attrName;
     }

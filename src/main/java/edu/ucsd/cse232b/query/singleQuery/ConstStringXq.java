@@ -13,6 +13,9 @@ public class ConstStringXq implements Query {
     private final String stringValue;
 
     public ConstStringXq(String stringValue) {
+        if (stringValue.length()>=2&&stringValue.startsWith("\"")&&stringValue.endsWith("\"")){
+            stringValue = stringValue.substring(1,stringValue.length()-1);
+        }
         this.stringValue = stringValue;
     }
 

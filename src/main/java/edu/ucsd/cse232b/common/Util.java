@@ -13,10 +13,10 @@ import java.util.*;
 
 public class Util {
 
-    private static Document doc;
+    private static Document doc; // the fxxking w3c xml Node needs to have a Doc to be created
 
     private Util(){
-
+        // this class shouldn't be instanced
     }
 
     public static void setDoc(Document doc) {
@@ -91,7 +91,7 @@ public class Util {
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
             Document doc = dBuilder.newDocument();
 
-            // Create the <SearchResult> element
+            // Create the <result> element
             Element searchResult = doc.createElement("result");
             doc.appendChild(searchResult);
 
@@ -185,6 +185,10 @@ public class Util {
         return createTextNode(textContent,doc);
     }
 
+    /*
+        This function is used for debug:
+            It makes toString() method outputs a string with tabs, which look like java or cpp
+     */
     public static String insertTabInLines(String string){
         StringBuilder res = new StringBuilder();
         String[] lines = string.split("\n");

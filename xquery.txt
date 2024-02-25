@@ -1,11 +1,35 @@
 <result>{
-for $s in doc("j_caesar.xml")//SPEAKER
-return <speaks>{<who>{$s/text()}</who>,
-for $a in doc("j_caesar.xml")//ACT
-where some $s1 in $a//SPEAKER satisfies $s1 eq $s
-return <when>{$a/TITLE/text()}</when>}
-</speaks>
+    for $a in (
+        for $s in doc("j_caesar.xml")//ACT
+        where $s/TITLE/text()="ACT I"
+        return $s
+    ),
+    $sc in (
+        for $t in $a/SCENE
+        where $t/TITLE/text()="SCENE I.  Rome. A street."
+        return $t
+    ),
+    $sp in (
+        for $d in $sc/SPEECH
+        where $d/LINE/text()="Upon a labouring day without the sign"
+        return $d
+    )
+    where $sp/SPEAKER/text() = "FLAVIUS"
+    return
+    <who>{$sp/SPEAKER/text()}</who>,
+    <when>{
+    <act>{$a/TITLE/text()}</act>,
+    <scene>{$sc/TITLE/text()}</scene>
+    }</when>
 }</result>
+
+1.<acts>{
+ for $a in doc("j_caesar.xml")//ACT
+ where not empty(
+  for $sp in $a/SCENE/SPEECH
+  where ($sp/SPEAKER/text() = "FLAVIUS" and $sp/../TITLE/text()="SCENE I.  Rome. A street.")
+  return <speaker>{ $sp/text() }</speaker> )
+ return <act>{$a/TITLE/text()}</act> }</acts>
 
 1.<result>{
 for $a in doc("j_caesar.xml")//ACT,

@@ -7,6 +7,11 @@ import org.w3c.dom.Node;
 import java.util.List;
 import java.util.Map;
 
+/*
+    Using adapter mode here:
+        ExpressionWrapper contains an expression while implements Query.
+    This class will be used when a whole absolute path in XPath is interpreted as an XQuery
+ */
 public class ExpressionWrapper implements Query{
     private final Expression expression;
 

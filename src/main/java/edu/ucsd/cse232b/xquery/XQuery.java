@@ -17,7 +17,7 @@ import java.util.List;
 
 public class XQuery {
     public static void main(String[] args) throws Exception {
-        XPath.evaluateXPath("doc(\"j_caesar.xml\")//ACT",null); // don't delete this line! we need to init Util.doc by this line
+        XPath.evaluateXPath("doc(\"j_caesar.xml\")//ACT"); // don't delete this line! we need to init Util.doc by this line
         String inputFilePath = "./xquery.txt";
         String outputFilePath = "./output.xml";
         if (args.length>=1){

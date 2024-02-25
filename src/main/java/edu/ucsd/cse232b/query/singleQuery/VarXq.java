@@ -13,7 +13,9 @@ public class VarXq implements Query {
 
     public VarXq(String varName) {
         if (varName.startsWith("$")){
+            System.out.printf("Warning: got an unremoved '$' when constructing variable query: %s\n",varName);
             varName = varName.substring(1);
+            System.out.println("    the $is auto removed");
         }
         this.varName = varName;
     }
@@ -24,6 +26,7 @@ public class VarXq implements Query {
             return new EvalResult(Arrays.asList(variables.get(varName)), SlashStatus.NONE);
         }
         throw new RuntimeException("variable '"+varName+"' has not been defined!");
+        
     }
 
     @Override
