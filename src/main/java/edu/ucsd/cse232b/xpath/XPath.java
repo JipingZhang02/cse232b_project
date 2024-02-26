@@ -29,10 +29,6 @@ public class XPath {
         return res;
     }
 
-    private static void printHelpInfo() {
-        System.out.println("Usage: java -jar XPath [-i <path_to_xml.xml> <path_to_xml2.xml>] [-o <expected_output_path.xml>] <xpath>");
-    }
-
     public static void main(String[] args) throws Exception {
         System.out.println("program running with args: " + Arrays.toString(args));
 
@@ -49,7 +45,7 @@ public class XPath {
             return;
         }
         BufferedReader reader = new BufferedReader(new InputStreamReader(new FileInputStream(queryFile)));
-        String xpath = reader.readLine();
+        String xpath = reader.readLine(); // just evaluate first line, ignore other lines
         reader.close();
         if (args.length >= 2) {
             outputPath = args[1];

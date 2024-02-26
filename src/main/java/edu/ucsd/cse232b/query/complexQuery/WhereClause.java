@@ -32,4 +32,9 @@ public class WhereClause implements Query {
     public String toString(){
         return String.format("where(%s){\n%s\n}",condition.toString(), Util.insertTabInLines(thenDoWhat.toString()));
     }
+
+    @Override
+    public String serialize() {
+        throw new RuntimeException("Object of this class cannot be serialized");
+    }
 }

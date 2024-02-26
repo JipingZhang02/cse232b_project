@@ -30,8 +30,6 @@ public class AbsPath implements Expression{
         return fileName;
     }
 
-
-
     @Override
     public EvalResult evaluate(EvalResult input) throws Exception {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();

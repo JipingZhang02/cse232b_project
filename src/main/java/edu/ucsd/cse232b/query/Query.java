@@ -9,4 +9,8 @@ import java.util.Map;
 
 public interface Query{
     EvalResult evaluate(EvalResult input,Map<String,Node> variables) throws Exception;
+
+    default String serialize(){
+        return toString();
+    }
 }

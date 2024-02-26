@@ -197,4 +197,25 @@ public class Util {
         }
         return res.toString();
     }
+
+    public static String removeDollarAndAtSign(String string){
+        if (string==null){
+            return null;
+        }
+        if (string.isEmpty()){
+            return "";
+        }
+        if (string.startsWith("$")||string.startsWith("@")){
+            return string.substring(1);
+        }
+        return string;
+    }
+
+    public static List<String> removeDollarAndAtSign(List<String> strings){
+        List<String> res = new ArrayList<>();
+        for (String string:strings){
+            res.add(removeDollarAndAtSign(string));
+        }
+        return res;
+    }
 }

@@ -25,7 +25,7 @@ import java.util.List;
 public class QueryBuilder extends XQueryBaseVisitor<Pair<Query, Condition>> {
     public static final QueryBuilder INSTANCE = new QueryBuilder();
 
-    private QueryBuilder() {
+    protected QueryBuilder() {
         // singleton design mode
     }
 

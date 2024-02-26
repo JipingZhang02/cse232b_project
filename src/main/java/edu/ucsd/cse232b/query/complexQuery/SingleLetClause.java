@@ -32,4 +32,9 @@ public class SingleLetClause implements Query {
     public String toString(){
         return String.format("let $%s = %s\n%s",varName,assignedValXQ.toString(),thenDoWhat.toString());
     }
+
+    @Override
+    public String serialize() {
+        throw new RuntimeException("Object of this class cannot be serialized");
+    }
 }

@@ -6,4 +6,8 @@ import java.util.Map;
 
 public interface Condition {
     boolean assess(Map<String, Node> variables) throws Exception;
+
+    default String serialize(){
+        return toString();
+    }
 }

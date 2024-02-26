@@ -77,7 +77,7 @@ public class QueryBuilderTool {
         }
         Condition res = innerCondition;
         for (int i = varNames.size() - 1; i >= 0; i--) {
-            res = new SingleSomeCondition(varNames.get(i), xqs.get(i), innerCondition);
+            res = new SingleSomeCondition(varNames.get(i), xqs.get(i), res);
         }
         return res;
     }
