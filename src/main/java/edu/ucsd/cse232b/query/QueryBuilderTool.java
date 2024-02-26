@@ -1,5 +1,6 @@
 package edu.ucsd.cse232b.query;
 
+import edu.ucsd.cse232b.query.complexQuery.ForClause;
 import edu.ucsd.cse232b.query.condition.Condition;
 import edu.ucsd.cse232b.query.complexQuery.SingleForClause;
 import edu.ucsd.cse232b.query.complexQuery.SingleLetClause;
@@ -44,6 +45,13 @@ public class QueryBuilderTool {
     }
 
     public static Query buildForClause(List<String> forVarNames, List<Query> forXqs, List<String> letVarNames, List<Query> letXqs, Condition whereCondition, Query returnClauseXq) {
+        return buildForClause(forVarNames,forXqs,letVarNames,letXqs,whereCondition,returnClauseXq,false);
+    }
+
+    public static Query buildForClause(List<String> forVarNames, List<Query> forXqs, List<String> letVarNames, List<Query> letXqs, Condition whereCondition, Query returnClauseXq,boolean lazyInit) {
+        if (lazyInit){
+            return new ForClause(forVarNames,forXqs,letVarNames,letXqs,whereCondition,returnClauseXq);
+        }
         forVarNames = removeDollarSigns(forVarNames);
         letVarNames = removeDollarSigns(letVarNames);
         if (forVarNames.size() != forXqs.size()) {

@@ -26,7 +26,7 @@
               </artifactSet>
               <transformers>
                 <transformer>
-                  <mainClass>edu.ucsd.cse232b.xquery.XQuery</mainClass>
+                  <mainClass>edu.ucsd.cse232b.Main</mainClass>
                 </transformer>
               </transformers>
               <filters>

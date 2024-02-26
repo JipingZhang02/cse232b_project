@@ -62,26 +62,6 @@ public class EqCondition implements Condition{
             }
         }
         return false;
-
-/*        if (leftType==Node.TEXT_NODE){
-            Set<String> leftSet = new HashSet<>();
-            for (Node node: leftRes.nodes){
-                leftSet.add(node.getNodeValue());
-            }
-            for (Node node: rightRes.nodes){
-                if (leftSet.contains(node.getNodeValue())){
-                    return true;
-                }
-            }
-            return false;
-        }
-        Set<Node> leftNodesAsSet = new HashSet<>(leftRes.nodes);
-        for (Node node: rightRes.nodes){
-            if (leftNodesAsSet.contains(node)){
-                return true;
-            }
-        }
-        return false;*/
     }
 
     private static MyNode toMyNode(Node w3cNode){
