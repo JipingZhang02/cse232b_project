@@ -24,8 +24,8 @@ cond: xq EQ xq #EqCond1 | xq EQS xq #EqCond2
     | 'empty(' xq ')' #EmptyCond
     | satisfy cond #SatCond
     | '(' cond ')' #ParaCond
-    | cond filterOp cond #ConjunctCond
-    | 'not' cond #NegCond;
+    | 'not' cond #NegCond
+    | cond filterOp cond #ConjunctCond;
 satisfy: 'some' VAR 'in' xq (',' VAR 'in' xq)* 'satisfies';
 startTag: '<' tagName '>';
 endTag: '</' tagName '>';

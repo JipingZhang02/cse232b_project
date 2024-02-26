@@ -1125,7 +1125,7 @@ public class XQueryParser extends Parser {
 				setState(144);
 				match(T__12);
 				setState(145);
-				cond(1);
+				cond(2);
 				}
 				break;
 			}
@@ -1142,11 +1142,11 @@ public class XQueryParser extends Parser {
 					_localctx = new ConjunctCondContext(new CondContext(_parentctx, _parentState));
 					pushNewRecursionContext(_localctx, _startState, RULE_cond);
 					setState(148);
-					if (!(precpred(_ctx, 2))) throw new FailedPredicateException(this, "precpred(_ctx, 2)");
+					if (!(precpred(_ctx, 1))) throw new FailedPredicateException(this, "precpred(_ctx, 1)");
 					setState(149);
 					filterOp();
 					setState(150);
-					cond(3);
+					cond(2);
 					}
 					} 
 				}
@@ -2445,7 +2445,7 @@ public class XQueryParser extends Parser {
 	private boolean cond_sempred(CondContext _localctx, int predIndex) {
 		switch (predIndex) {
 		case 2:
-			return precpred(_ctx, 2);
+			return precpred(_ctx, 1);
 		}
 		return true;
 	}
@@ -2564,13 +2564,13 @@ public class XQueryParser extends Parser {
 		"\u0003\f\u0006\u0000\u008a\u008b\u0003\n\u0005\u0004\u008b\u0093\u0001"+
 		"\u0000\u0000\u0000\u008c\u008d\u0005\b\u0000\u0000\u008d\u008e\u0003\n"+
 		"\u0005\u0000\u008e\u008f\u0005\t\u0000\u0000\u008f\u0093\u0001\u0000\u0000"+
-		"\u0000\u0090\u0091\u0005\r\u0000\u0000\u0091\u0093\u0003\n\u0005\u0001"+
+		"\u0000\u0090\u0091\u0005\r\u0000\u0000\u0091\u0093\u0003\n\u0005\u0002"+
 		"\u0092t\u0001\u0000\u0000\u0000\u0092y\u0001\u0000\u0000\u0000\u0092}"+
 		"\u0001\u0000\u0000\u0000\u0092\u0081\u0001\u0000\u0000\u0000\u0092\u0085"+
 		"\u0001\u0000\u0000\u0000\u0092\u0089\u0001\u0000\u0000\u0000\u0092\u008c"+
 		"\u0001\u0000\u0000\u0000\u0092\u0090\u0001\u0000\u0000\u0000\u0093\u009a"+
-		"\u0001\u0000\u0000\u0000\u0094\u0095\n\u0002\u0000\u0000\u0095\u0096\u0003"+
-		"$\u0012\u0000\u0096\u0097\u0003\n\u0005\u0003\u0097\u0099\u0001\u0000"+
+		"\u0001\u0000\u0000\u0000\u0094\u0095\n\u0001\u0000\u0000\u0095\u0096\u0003"+
+		"$\u0012\u0000\u0096\u0097\u0003\n\u0005\u0002\u0097\u0099\u0001\u0000"+
 		"\u0000\u0000\u0098\u0094\u0001\u0000\u0000\u0000\u0099\u009c\u0001\u0000"+
 		"\u0000\u0000\u009a\u0098\u0001\u0000\u0000\u0000\u009a\u009b\u0001\u0000"+
 		"\u0000\u0000\u009b\u000b\u0001\u0000\u0000\u0000\u009c\u009a\u0001\u0000"+
