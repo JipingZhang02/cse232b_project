@@ -37,26 +37,30 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitReturnClause(XQueryParser.ReturnClauseContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code CommaXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
+	 * Visit a parse tree produced by {@link XQueryParser#variables}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitCommaXq(XQueryParser.CommaXqContext ctx);
+	T visitVariables(XQueryParser.VariablesContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code RpXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
+	 * Visit a parse tree produced by {@link XQueryParser#variableList}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitRpXq(XQueryParser.RpXqContext ctx);
+	T visitVariableList(XQueryParser.VariableListContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code StringXq}
+	 * Visit a parse tree produced by {@link XQueryParser#joinClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJoinClause(XQueryParser.JoinClauseContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TagXq2}
 	 * labeled alternative in {@link XQueryParser#xq}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitStringXq(XQueryParser.StringXqContext ctx);
+	T visitTagXq2(XQueryParser.TagXq2Context ctx);
 	/**
 	 * Visit a parse tree produced by the {@code wsXq}
 	 * labeled alternative in {@link XQueryParser#xq}.
@@ -64,20 +68,6 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitWsXq(XQueryParser.WsXqContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ParaXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitParaXq(XQueryParser.ParaXqContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ApXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitApXq(XQueryParser.ApXqContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code VarXq}
 	 * labeled alternative in {@link XQueryParser#xq}.
@@ -99,6 +89,55 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitForXq(XQueryParser.ForXqContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code joinXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJoinXq(XQueryParser.JoinXqContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CommaXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCommaXq(XQueryParser.CommaXqContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code RpXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRpXq(XQueryParser.RpXqContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code StringXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitStringXq(XQueryParser.StringXqContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code CommaXq2}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitCommaXq2(XQueryParser.CommaXq2Context ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ParaXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitParaXq(XQueryParser.ParaXqContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ApXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitApXq(XQueryParser.ApXqContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code TagXq}
 	 * labeled alternative in {@link XQueryParser#xq}.

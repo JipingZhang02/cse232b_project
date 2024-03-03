@@ -70,6 +70,11 @@ public class QueryBuilder extends XQueryBaseVisitor<Pair<Query, Condition>> {
     }
 
     @Override
+    public Pair<Query, Condition> visitCommaXq2(XQueryParser.CommaXq2Context ctx) {
+        return new Pair<>(new CommaQuery(visit(ctx.xq(0)).left, visit(ctx.xq(1)).left), null);
+    }
+
+    @Override
     public Pair<Query, Condition> visitVarXq(XQueryParser.VarXqContext ctx) {
         return new Pair<>(new VarXq(ctx.VAR().getText()), null);
     }
@@ -123,6 +128,10 @@ public class QueryBuilder extends XQueryBaseVisitor<Pair<Query, Condition>> {
         return new Pair<>(new TagGeneratorQuery(ctx.startTag().tagName().getText(), visit(ctx.xq()).left), null);
     }
 
+    @Override
+    public Pair<Query, Condition> visitTagXq2(XQueryParser.TagXq2Context ctx) {
+        return new Pair<>(new TagGeneratorQuery(ctx.startTag().tagName().getText(), visit(ctx.xq()).left), null);
+    }
 
     @Override
     public Pair<Query, Condition> visitEqCondDoubleMathOp(XQueryParser.EqCondDoubleMathOpContext ctx) {
@@ -187,6 +196,8 @@ public class QueryBuilder extends XQueryBaseVisitor<Pair<Query, Condition>> {
     }
 
 
-
-
+    @Override
+    public Pair<Query, Condition> visitJoinXq(XQueryParser.JoinXqContext ctx) {
+        throw new IllegalArgumentException("milestone2 parser cannot handle with join!");
+    }
 }

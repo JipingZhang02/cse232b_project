@@ -32,6 +32,28 @@ public class Ms3QueryBuilder extends QueryBuilder {
 
     }
 
+    private static List<String> getVarNames(XQueryParser.VariableListContext ctx){
+        XQueryParser.VariablesContext varsCtx = ctx.variables();
+        if (varsCtx==null|| varsCtx.isEmpty()){
+            return new ArrayList<>();
+        }
+        List<String> res = new ArrayList<>();
+        for (TerminalNode varName:varsCtx.ID()){
+            res.add(varName.getText());
+        }
+        return res;
+    }
+
+    @Override
+    public Pair<Query, Condition> visitJoinClause(XQueryParser.JoinClauseContext ctx) {
+        Query leftTable = visit(ctx.forClause(0)).left;
+        Query rightTable = visit(ctx.forClause(1)).left;
+        List<String> joinOnColsL = getVarNames(ctx.variableList(0));
+        List<String> joinOnColsR = getVarNames(ctx.variableList(1));
+        Query resXq = new JoinXq(leftTable,rightTable,joinOnColsL,joinOnColsR);
+        return new Pair<>(resXq,null);
+    }
+
     @Override
     public Pair<Query, Condition> visitForXq(XQueryParser.ForXqContext ctx) {
         List<String> forVarNames = new ArrayList<>();
@@ -442,4 +464,6 @@ public class Ms3QueryBuilder extends QueryBuilder {
         Query outerFor = QueryBuilderTool.buildForClause(Arrays.asList("tuple"),Arrays.asList(joinXq),new ArrayList<>(),new ArrayList<>(),outerCondition,returnClause,true);
         return outerFor;
     }
+
+
 }
