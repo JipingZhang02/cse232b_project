@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Database>
+    <BOOKS>
+        <BOOK>
+            <TITLE>Data Structures</TITLE>
+            <AUTHORID>1</AUTHORID>
+        </BOOK>
+        <BOOK>
+            <TITLE>Computer Network</TITLE>
+            <AUTHORID>3</AUTHORID>
+        </BOOK>
+        <BOOK>
+            <TITLE>Artificial Intelligence</TITLE>
+            <AUTHORID>1</AUTHORID>
+        </BOOK>
+        <BOOK>
+            <TITLE>Operating System</TITLE>
+            <AUTHORID>2</AUTHORID>
+        </BOOK>
+    </BOOKS>
+    <AUTHORS>
+        <AUTHOR>
+            <ID>1</ID>
+            <NAME><FIRST>Hahaha</FIRST><LAST>Heihei</LAST></NAME>
+            <NATIONID>cn</NATIONID>
+        </AUTHOR>
+        <AUTHOR>
+            <ID>2</ID>
+            <NAME><FIRST>222222</FIRST><LAST>Tom</LAST></NAME>
+            <NATIONID>us</NATIONID>
+        </AUTHOR>
+        <AUTHOR>
+            <ID>3</ID>
+            <NAME><FIRST>qwer</FIRST><LAST>zxcv</LAST></NAME>
+            <NATIONID>ab</NATIONID>
+        </AUTHOR>
+    </AUTHORS>
+    <NATIONS>
+        <NATION>
+            <ID>cn</ID>
+            <FULLNAME>China</FULLNAME>
+        </NATION>
+        <NATION>
+            <ID>us</ID>
+            <FULLNAME>United States</FULLNAME>
+        </NATION>
+        <NATION>
+            <ID>ab</ID>
+            <FULLNAME>Abcdefg</FULLNAME>
+        </NATION>
+    </NATIONS>
+</Database>

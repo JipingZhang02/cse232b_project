@@ -261,14 +261,14 @@ public class Ms3QueryBuilder extends QueryBuilder {
                 }
                 if ((leftVarTableIdx == -1) && (rightVarTableIdx == -1)) {
                     outerConditions.add(eqCondition);
-                } else if((leftVarTableIdx == -1) || (rightVarTableIdx == -1)){
+                } else if((leftVarTableIdx !=-1) && (rightVarTableIdx != -1)){
                     if (!(left instanceof VarXq)){
                         throw new CannotOptimizeException();
                     }
                     if (!(right instanceof VarXq)){
                         throw new CannotOptimizeException();
                     }
-                    System.out.println("warning: in condition %s, = is treated as eq and the whole condition is treated as join condition");
+                    System.out.printf("warning: in condition %s, = is treated as eq and the whole condition is treated as join condition\n",eqCondition.toString());
 
                 } else {
                     eqConditionsEachTable[leftVarTableIdx + rightVarTableIdx + 1].add(eqCondition);

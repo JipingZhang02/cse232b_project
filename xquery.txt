@@ -1,4 +1,10 @@
-for $b in doc("input")/book,
+for $b in doc("test2")/book,
+$btitle in $b/TITLE,
+$baid in $b/AUTHORID,
+
+
+
+1.for $b in doc("input")/book,
 $a in doc("input")/entry,
 $tb in $b/title,
 $ta in $a/title
