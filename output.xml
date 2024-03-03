@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <result>
-  <result>
-    <AUTHOR>aaa</AUTHOR>
-    <AUTHOR>bbb</AUTHOR>
-    <AUTHOR>aaa</AUTHOR>
-    <AUTHOR>bbb</AUTHOR>
-    <AUTHOR>ccc</AUTHOR>
-    <AUTHOR>ddd</AUTHOR>
-    <AUTHOR>eee</AUTHOR>
-    <AUTHOR>fff</AUTHOR>
-    <AUTHOR>ggg</AUTHOR>
-    <AUTHOR>hhh</AUTHOR>
-  </result>
+  <BOOK>
+    <TITLE>Data Structures</TITLE>
+    <AUTHOR>Hahaha</AUTHOR>
+    <NATION>China</NATION>
+  </BOOK>
+  <BOOK>
+    <TITLE>Artificial Intelligence</TITLE>
+    <AUTHOR>Hahaha</AUTHOR>
+    <NATION>China</NATION>
+  </BOOK>
+  <BOOK>
+    <TITLE>Computer Network</TITLE>
+    <AUTHOR>qwer</AUTHOR>
+    <NATION>Abcdefg</NATION>
+  </BOOK>
+  <BOOK>
+    <TITLE>Operating System</TITLE>
+    <AUTHOR>222222</AUTHOR>
+    <NATION>United States</NATION>
+  </BOOK>
 </result>

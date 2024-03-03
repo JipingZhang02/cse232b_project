@@ -1,0 +1,74 @@
+for $tuple in join(
+    join(
+        for $b in doc("test2.xml")//BOOK,
+            $btitle in $b/TITLE,
+            $baid in $b/AUTHORID
+        return <tuple>{
+            <btitle>{
+                $b/TITLE
+            
+            }</btitle>,<baid>{
+                $b/AUTHORID
+            
+            }</baid>
+        
+        }</tuple>
+    ,
+        for $a in doc("test2.xml")//AUTHOR,
+            $aid in $a/ID,
+            $an in $a/NAME,
+            $fname in $an/FIRST,
+            $lname in $an/LAST,
+            $anid in $a/NATIONID
+        return <tuple>{
+            <aid>{
+                $a/ID
+            
+            }</aid>,<an>{
+                $a/NAME
+            
+            }</an>,<fname>{
+                $an/FIRST
+            
+            }</fname>,<lname>{
+                $an/LAST
+            
+            }</lname>,<anid>{
+                $a/NATIONID
+            
+            }</anid>
+        
+        }</tuple>
+    ,
+        [baid],[aid]
+    )
+,
+    for $n in doc("test2.xml")//NATION,
+        $nid in $n/ID,
+        $nname in $n/FULLNAME
+    return <tuple>{
+        <nid>{
+            $n/ID
+        
+        }</nid>,<nname>{
+            $n/FULLNAME
+        
+        }</nname>
+    
+    }</tuple>
+,
+    [anid],[nid]
+)
+return <BOOK>{
+    <TITLE>{
+        $tuple/btitle/*/text()
+    
+    }</TITLE>,<AUTHOR>{
+        $tuple/fname/*/text()
+    
+    }</AUTHOR>,<NATION>{
+        $tuple/nname/*/text()
+    
+    }</NATION>
+
+}</BOOK>

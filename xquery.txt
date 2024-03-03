@@ -1,6 +1,17 @@
-for $b in doc("test2")/book,
+for $b in doc("test2.xml")//BOOK,
 $btitle in $b/TITLE,
 $baid in $b/AUTHORID,
+$a in doc("test2.xml")//AUTHOR,
+$aid in $a/ID,
+$an in $a/NAME,
+$fname in $an/FIRST,
+$lname in $an/LAST,
+$anid in $a/NATIONID,
+$n in doc("test2.xml")//NATION,
+$nid in $n/ID,
+$nname in $n/FULLNAME
+where $baid eq $aid and $anid eq $nid
+return <BOOK>{<TITLE>{$btitle/text()}<TITLE>,<AUTHOR>{$fname/text()}<AUTHOR>,<NATION>{$nname/text()}</NATION>}</BOOK>
 
 
 

@@ -3,6 +3,7 @@ package edu.ucsd.cse232b.milestone3;
 import edu.ucsd.cse232b.autogen.XQueryParser;
 import edu.ucsd.cse232b.common.Pair;
 import edu.ucsd.cse232b.common.SlashStatus;
+import edu.ucsd.cse232b.common.UnionFindSet;
 import edu.ucsd.cse232b.common.Util;
 import edu.ucsd.cse232b.expression.binaryExpr.SlashExpr;
 import edu.ucsd.cse232b.expression.singleExpr.StarExpr;
@@ -245,7 +246,7 @@ public class Ms3QueryBuilder extends QueryBuilder {
                 joinConditions[lTableIdx][rTableIdx].add(new Pair<>(leftVarName, rightVarName));
                 joinConditions[rTableIdx][lTableIdx].add(new Pair<>(rightVarName, leftVarName));
             } else {
-                // treat it as a where select from a table
+
                 String leftVarName = getLeftMostVarName(left);
                 String rightVarName = getLeftMostVarName(right);
                 if (leftVarName == null && rightVarName == null) {
@@ -269,8 +270,10 @@ public class Ms3QueryBuilder extends QueryBuilder {
                         throw new CannotOptimizeException();
                     }
                     System.out.printf("warning: in condition %s, = is treated as eq and the whole condition is treated as join condition\n",eqCondition.toString());
-
+                    joinConditions[leftVarTableIdx][rightVarTableIdx].add(new Pair<>(leftVarName, rightVarName));
+                    joinConditions[rightVarTableIdx][leftVarTableIdx].add(new Pair<>(rightVarName, leftVarName));
                 } else {
+                    // treat it as a where select from a table
                     eqConditionsEachTable[leftVarTableIdx + rightVarTableIdx + 1].add(eqCondition);
                 }
             }
@@ -280,7 +283,7 @@ public class Ms3QueryBuilder extends QueryBuilder {
 
 
         /*
-            Next, we should run dfs to decide the joining order of tables
+            Next, we should use UnionFindSet to decide the joining order of tables
 
             That is, view relations between tables as an undirected graph,
                 view table as a node on the graph
@@ -365,9 +368,35 @@ public class Ms3QueryBuilder extends QueryBuilder {
 
         System.out.print("");// for debug
 
-        // do join operations with optimizations, and keep those without in lateJoinTables
+        /*
+            do join operations with optimizations, and keep those without in lateJoinTables
+
+            Here, I used UnionFindSet, the reason is a bit complex:
+                suppose we have 4 tables,
+                    (and we are using array to keep track of current JoinXq representation for each table)
+                where table1 and 2 have join-on conditions
+                      table2 and 3 have join-on conditions
+                      table2 and 4 have join-on conditions
+                      other pair of tables don't have
+                first, we join table1 and 2, and we should update array[1] and array[2] to this result
+                next, when we join 2 and 3, we should update array[1], [2] and [3] to this result
+                    or else there will be a mistake when joining 2 and 4
+                as table numbers grow, this method takes O(n^2) time,
+                and the code is hard to debug
+            Using UnionFindSet can avoid this trouble:
+                That is, we join every table with its represent,
+                and then we save the join result to the array[represent]
+         */
+        UnionFindSet unionFindSet = new UnionFindSet(tableCnt);
+        for (int i = 0; i < tableCnt; i++) {
+            int pi = dfsParent[i];
+            if (pi!=-1){
+                unionFindSet.union(pi,i);
+            }
+        }
         for (int i = 1; i < tableCnt; i++) {
             int pi = dfsParent[i];
+            int repI = unionFindSet.findRepresent(i);
             if (pi==-1){
                 lateJoinTables.add(i);
                 continue;
@@ -377,9 +406,8 @@ public class Ms3QueryBuilder extends QueryBuilder {
                 joinOnColsL.add(joinOnCol.left);
                 joinOnColsR.add(joinOnCol.right);
             }
-            Query joinXq = new JoinXq(tables[pi],tables[i],joinOnColsL,joinOnColsR);
-            tables[i] = joinXq;
-            tables[pi] = joinXq;
+            Query joinXq = new JoinXq(tables[repI],tables[i],joinOnColsL,joinOnColsR);
+            tables[repI] = joinXq;
         }
 
         System.out.print("");// for debug

@@ -1,7 +1,10 @@
 package edu.ucsd.cse232b.query.condition;
 
+import edu.ucsd.cse232b.common.SlashStatus;
 import edu.ucsd.cse232b.expression.EvalResult;
+import edu.ucsd.cse232b.expression.singleExpr.GetTextExpr;
 import edu.ucsd.cse232b.query.Query;
+import edu.ucsd.cse232b.query.binaryQuery.XQSlashRP;
 import edu.ucsd.cse232b.query.singleQuery.ConstStringXq;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -39,6 +42,13 @@ public class EqCondition implements Condition{
 
     @Override
     public boolean assess(Map<String, Node> variables) throws Exception{
+        if (eqOpType==EQ_STR&&((!(xqLeft instanceof ConstStringXq)) && (xqRight instanceof ConstStringXq))){
+            /*
+                according to examples on project document,
+                ($var eq "string") should be treated as ($var/text()="string")
+             */
+            xqLeft = new XQSlashRP(xqLeft,new GetTextExpr(), SlashStatus.SINGLE_SLASH);
+        }
         EvalResult leftRes = xqLeft.evaluate(new EvalResult(),variables);
         EvalResult rightRes = xqRight.evaluate(new EvalResult(),variables);
         return areEqual(leftRes,rightRes);
@@ -113,14 +123,18 @@ public class EqCondition implements Condition{
 
     @Override
     public String toString(){
-        return xqLeft.toString()+"="+xqRight.toString();
+        return xqLeft.toString()+new String[]{"","=","=="," eq "," is "}[eqOpType]+xqRight.toString();
     }
 
-    static class MyNode{
-
+    private static class MyNode{
+        /*
+            Here, we should use our own Node class,
+            Because the equals(Object o) method of w3c.Node is really stupid
+            It returns false when the content of two nodes are the same, but from different place of xml file
+         */
     }
 
-    static class MyStringNode extends MyNode{
+    private static class MyStringNode extends MyNode{
         String strValue="";
 
         MyStringNode(){
@@ -145,7 +159,7 @@ public class EqCondition implements Condition{
         }
     }
 
-    static class MyElementNode extends MyNode{
+    private static class MyElementNode extends MyNode{
         String tagName = "";
         List<MyNode> children = new ArrayList<>();
 

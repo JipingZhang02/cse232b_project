@@ -19,6 +19,7 @@ public class Ms3Main {
     public static void main(String[] args) throws Exception {
         XPath.evaluateXPath("doc(\"j_caesar.xml\")//ACT"); // don't delete this line! we need to init Util.doc by this line
         String inputFilePath = "./xquery.txt";
+        String optimizedQueryOutputPath="./xquery_optimized.txt";
         String outputFilePath = "./output.xml";
         if (args.length>=1){
             inputFilePath = args[0];
@@ -26,10 +27,23 @@ public class Ms3Main {
         if (args.length>=2){
             outputFilePath = args[1];
         }
+        if (args.length>=3){
+            optimizedQueryOutputPath = args[2];
+        }
         String queryStr = XQuery.readQuery(inputFilePath);
         Query query = biuldQuery(queryStr);
+        saveQuery(query,optimizedQueryOutputPath);
         List<Node> res = query.evaluate(null,new HashMap<>()).nodes;
         Util.writeNodesToFile(res,outputFilePath);
+    }
+
+    public static void saveQuery(Query query,String filePath) throws IOException{
+        File file = new File(filePath);
+        Writer writer = new FileWriter(file);
+        writer.write(query.serialize());
+        writer.flush();
+        writer.close();
+        System.out.println("Query has been successfully written to "+filePath);
     }
 
 
