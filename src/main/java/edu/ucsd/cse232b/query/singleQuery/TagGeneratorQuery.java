@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class TagGeneratorQuery implements Query {
     private final String tagName;
-    private final Query innerQuery;
+    private Query innerQuery;
 
     public TagGeneratorQuery(String tagName, Query innerQuery) {
         this.tagName = tagName;
@@ -25,7 +25,13 @@ public class TagGeneratorQuery implements Query {
     }
 
     @Override
+    public Query substitute(Query originQuery, Query newQuery) {
+        innerQuery = innerQuery.substitute(originQuery, newQuery);
+        return this;
+    }
+
+    @Override
     public String toString(){
-        return String.format("<%s>{\n%s\n}</%s>",tagName,Util.insertTabInLines(innerQuery.toString()),tagName);
+        return String.format("<%s>{\n%s\n}</%s>",tagName,Util.insertTabBeforeLines(innerQuery.toString()),tagName);
     }
 }

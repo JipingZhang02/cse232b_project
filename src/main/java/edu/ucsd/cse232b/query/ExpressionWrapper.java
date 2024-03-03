@@ -29,6 +29,11 @@ public class ExpressionWrapper implements Query{
     }
 
     @Override
+    public Query substitute(Query originQuery, Query newQuery) {
+        return this;
+    }
+
+    @Override
     public String toString(){
         return expression.toString();
     }

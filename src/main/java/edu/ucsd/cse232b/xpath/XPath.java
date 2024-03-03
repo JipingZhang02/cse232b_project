@@ -30,8 +30,6 @@ public class XPath {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println("program running with args: " + Arrays.toString(args));
-
         String pathToXPathFile = "./xpath.txt";
         String outputPath = "./output.xml";
 

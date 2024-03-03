@@ -8,8 +8,8 @@ import java.util.Map;
 
 public class SingleSomeCondition implements Condition{
     private final String varName;
-    private final Query generator;
-    private final Condition innerCondition;
+    private Query generator;
+    private Condition innerCondition;
 
     public SingleSomeCondition(String varName, Query generator, Condition innerCondition) {
         this.varName = varName;
@@ -26,6 +26,13 @@ public class SingleSomeCondition implements Condition{
             }
         }
         return false;
+    }
+
+    @Override
+    public Condition substitute(Query originQuery, Query newQuery) {
+        generator = generator.substitute(originQuery, newQuery);
+        innerCondition = innerCondition.substitute(originQuery, newQuery);
+        return this;
     }
 
     @Override

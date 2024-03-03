@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 public class CommaQuery implements Query {
-    private final Query leftQuery,rightQuery;
+    private Query leftQuery,rightQuery;
 
     public CommaQuery(Query leftQuery, Query rightQuery) {
         this.leftQuery = leftQuery;
@@ -27,6 +27,13 @@ public class CommaQuery implements Query {
         resNodes.addAll(leftResult.nodes);
         resNodes.addAll(rightResult.nodes);
         return new EvalResult(resNodes, leftResult.slashStatus);
+    }
+
+    @Override
+    public Query substitute(Query originQuery, Query newQuery) {
+        leftQuery = leftQuery.substitute(originQuery, newQuery);
+        rightQuery = rightQuery.substitute(originQuery, newQuery);
+        return this;
     }
 
 

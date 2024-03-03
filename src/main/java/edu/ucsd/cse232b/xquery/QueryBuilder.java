@@ -44,7 +44,7 @@ public class QueryBuilder extends XQueryBaseVisitor<Pair<Query, Condition>> {
             case "/":
                 return new Pair<>(new XQSlashRP(xq, rp, SlashStatus.SINGLE_SLASH), null);
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(); // this line is not expected to be executed
         }
     }
 
@@ -125,8 +125,23 @@ public class QueryBuilder extends XQueryBaseVisitor<Pair<Query, Condition>> {
 
 
     @Override
-    public Pair<Query, Condition> visitEqCond2(XQueryParser.EqCond2Context ctx) {
-        return new Pair<>(null, new EqCondition(visit(ctx.xq(0)).left, visit(ctx.xq(1)).left));
+    public Pair<Query, Condition> visitEqCondDoubleMathOp(XQueryParser.EqCondDoubleMathOpContext ctx) {
+        return new Pair<>(null, new EqCondition(visit(ctx.xq(0)).left, visit(ctx.xq(1)).left,EqCondition.DOUBLE_EQ_SIGN));
+    }
+
+    @Override
+    public Pair<Query, Condition> visitEqCondEqStr(XQueryParser.EqCondEqStrContext ctx) {
+        return new Pair<>(null, new EqCondition(visit(ctx.xq(0)).left, visit(ctx.xq(1)).left,EqCondition.EQ_STR));
+    }
+
+    @Override
+    public Pair<Query, Condition> visitEqCondMathOp(XQueryParser.EqCondMathOpContext ctx) {
+        return new Pair<>(null, new EqCondition(visit(ctx.xq(0)).left, visit(ctx.xq(1)).left,EqCondition.EQ_SIGN));
+    }
+
+    @Override
+    public Pair<Query, Condition> visitEqCondIsStr(XQueryParser.EqCondIsStrContext ctx) {
+        return new Pair<>(null, new EqCondition(visit(ctx.xq(0)).left, visit(ctx.xq(1)).left,EqCondition.IS_STR));
     }
 
     @Override
@@ -141,10 +156,6 @@ public class QueryBuilder extends XQueryBaseVisitor<Pair<Query, Condition>> {
         }
     }
 
-    @Override
-    public Pair<Query, Condition> visitEqCond1(XQueryParser.EqCond1Context ctx) {
-        return new Pair<>(null, new EqCondition(visit(ctx.xq(0)).left, visit(ctx.xq(1)).left));
-    }
 
     @Override
     public Pair<Query, Condition> visitSatCond(XQueryParser.SatCondContext ctx) {
@@ -175,15 +186,7 @@ public class QueryBuilder extends XQueryBaseVisitor<Pair<Query, Condition>> {
         return visit(ctx.cond());
     }
 
-    @Override
-    public Pair<Query, Condition> visitIsCond1(XQueryParser.IsCond1Context ctx) {
-        return new Pair<>(null, new EqCondition(visit(ctx.xq(0)).left, visit(ctx.xq(1)).left));
-    }
 
-    @Override
-    public Pair<Query, Condition> visitIsCond2(XQueryParser.IsCond2Context ctx) {
-        return new Pair<>(null, new EqCondition(visit(ctx.xq(0)).left, visit(ctx.xq(1)).left));
-    }
 
 
 }

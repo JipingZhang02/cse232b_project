@@ -19,8 +19,8 @@ returnClause: 'return' xq;
 
 
 
-cond: xq EQ xq #EqCond1 | xq EQS xq #EqCond2
-    | xq IS xq #IsCond1 | xq ISS xq #IsCond2
+cond: xq EQ xq #EqCondEqStr | xq EQS xq #EqCondMathOp
+    | xq IS xq #EqCondIsStr | xq ISS xq #EqCondDoubleMathOp
     | 'empty(' xq ')' #EmptyCond
     | satisfy cond #SatCond
     | '(' cond ')' #ParaCond

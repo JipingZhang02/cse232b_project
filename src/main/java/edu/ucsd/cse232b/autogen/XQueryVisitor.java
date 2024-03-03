@@ -107,13 +107,6 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTagXq(XQueryParser.TagXqContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code EqCond2}
-	 * labeled alternative in {@link XQueryParser#cond}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitEqCond2(XQueryParser.EqCond2Context ctx);
-	/**
 	 * Visit a parse tree produced by the {@code ConjunctCond}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
@@ -121,12 +114,12 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitConjunctCond(XQueryParser.ConjunctCondContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code EqCond1}
+	 * Visit a parse tree produced by the {@code EqCondDoubleMathOp}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitEqCond1(XQueryParser.EqCond1Context ctx);
+	T visitEqCondDoubleMathOp(XQueryParser.EqCondDoubleMathOpContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code SatCond}
 	 * labeled alternative in {@link XQueryParser#cond}.
@@ -149,6 +142,13 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNegCond(XQueryParser.NegCondContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code EqCondEqStr}
+	 * labeled alternative in {@link XQueryParser#cond}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEqCondEqStr(XQueryParser.EqCondEqStrContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code ParaCond}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
@@ -156,19 +156,19 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitParaCond(XQueryParser.ParaCondContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code IsCond1}
+	 * Visit a parse tree produced by the {@code EqCondMathOp}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIsCond1(XQueryParser.IsCond1Context ctx);
+	T visitEqCondMathOp(XQueryParser.EqCondMathOpContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code IsCond2}
+	 * Visit a parse tree produced by the {@code EqCondIsStr}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitIsCond2(XQueryParser.IsCond2Context ctx);
+	T visitEqCondIsStr(XQueryParser.EqCondIsStrContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link XQueryParser#satisfy}.
 	 * @param ctx the parse tree

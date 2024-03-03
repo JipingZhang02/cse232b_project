@@ -5,9 +5,15 @@ import org.w3c.dom.Node;
 
 import java.util.*;
 
-// This class is made default, not public, because only JoinXq in the same folder is expected to use this class
+/*
+    This class is made default, not public,
+        because only JoinXq in the same folder is expected to use this class.
+
+    The word or variable "table" mentioned in any other place of the project
+        probably does not refer to this class
+ */
 class Table {
-    static class DataRow {
+    private static class DataRow {
         final List<String> values = new ArrayList<>();
         final Node w3cNode;
 
@@ -69,7 +75,7 @@ class Table {
         for (DataRow dataRow : data) {
             int hashCode = 1;
             for (String joinOnColumn : joinOnColumns) {
-                hashCode = hashCode * 1009 + dataRow.values.get(schema.get(joinOnColumn)).hashCode(); // 1009 is just the first prime come to my mind hhh
+                hashCode = hashCode * 1009 + dataRow.values.get(schema.get(joinOnColumn)).hashCode(); // 1009 is just the first prime number come to my mind hhh
             }
             int bucketI = hashCode % bucketsCnt;
             if (bucketI < 0) {

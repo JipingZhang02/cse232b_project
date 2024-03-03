@@ -2,6 +2,7 @@ package edu.ucsd.cse232b.query.condition;
 
 import edu.ucsd.cse232b.expression.EvalResult;
 import edu.ucsd.cse232b.query.Query;
+import edu.ucsd.cse232b.query.singleQuery.ConstStringXq;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -9,11 +10,31 @@ import org.w3c.dom.NodeList;
 import java.util.*;
 
 public class EqCondition implements Condition{
-    private final Query xqLeft,xqRight;
+    public static final int EQ_SIGN = 1,DOUBLE_EQ_SIGN = 2,EQ_STR = 3,IS_STR = 4;
+    private Query xqLeft,xqRight;
+    private final int eqOpType;
 
-    public EqCondition(Query xqLeft, Query xqRight) {
+    public EqCondition(Query xqLeft, Query xqRight,int eqOpType) {
+        if (xqLeft instanceof ConstStringXq){ // make sure constant string is on right side
+            Query temp = xqRight;
+            xqRight = xqLeft;
+            xqLeft = temp;
+        }
         this.xqLeft = xqLeft;
         this.xqRight = xqRight;
+        this.eqOpType = eqOpType;
+    }
+
+    public int getEqOpType() {
+        return eqOpType;
+    }
+
+    public Query getXqLeft() {
+        return xqLeft;
+    }
+
+    public Query getXqRight() {
+        return xqRight;
     }
 
     @Override
@@ -21,6 +42,13 @@ public class EqCondition implements Condition{
         EvalResult leftRes = xqLeft.evaluate(new EvalResult(),variables);
         EvalResult rightRes = xqRight.evaluate(new EvalResult(),variables);
         return areEqual(leftRes,rightRes);
+    }
+
+    @Override
+    public Condition substitute(Query originQuery, Query newQuery) {
+        xqLeft = xqLeft.substitute(originQuery,newQuery);
+        xqRight = xqRight.substitute(originQuery, newQuery);
+        return this;
     }
 
     private static int getNodesType(EvalResult evalResult){

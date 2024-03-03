@@ -804,30 +804,6 @@ public class XQueryParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
-	public static class EqCond2Context extends CondContext {
-		public List<XqContext> xq() {
-			return getRuleContexts(XqContext.class);
-		}
-		public XqContext xq(int i) {
-			return getRuleContext(XqContext.class,i);
-		}
-		public TerminalNode EQS() { return getToken(XQueryParser.EQS, 0); }
-		public EqCond2Context(CondContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterEqCond2(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitEqCond2(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitEqCond2(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
 	public static class ConjunctCondContext extends CondContext {
 		public List<CondContext> cond() {
 			return getRuleContexts(CondContext.class);
@@ -854,26 +830,26 @@ public class XQueryParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
-	public static class EqCond1Context extends CondContext {
+	public static class EqCondDoubleMathOpContext extends CondContext {
 		public List<XqContext> xq() {
 			return getRuleContexts(XqContext.class);
 		}
 		public XqContext xq(int i) {
 			return getRuleContext(XqContext.class,i);
 		}
-		public TerminalNode EQ() { return getToken(XQueryParser.EQ, 0); }
-		public EqCond1Context(CondContext ctx) { copyFrom(ctx); }
+		public TerminalNode ISS() { return getToken(XQueryParser.ISS, 0); }
+		public EqCondDoubleMathOpContext(CondContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterEqCond1(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterEqCondDoubleMathOp(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitEqCond1(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitEqCondDoubleMathOp(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitEqCond1(this);
+			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitEqCondDoubleMathOp(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -941,6 +917,30 @@ public class XQueryParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
+	public static class EqCondEqStrContext extends CondContext {
+		public List<XqContext> xq() {
+			return getRuleContexts(XqContext.class);
+		}
+		public XqContext xq(int i) {
+			return getRuleContext(XqContext.class,i);
+		}
+		public TerminalNode EQ() { return getToken(XQueryParser.EQ, 0); }
+		public EqCondEqStrContext(CondContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterEqCondEqStr(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitEqCondEqStr(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitEqCondEqStr(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
 	public static class ParaCondContext extends CondContext {
 		public CondContext cond() {
 			return getRuleContext(CondContext.class,0);
@@ -961,7 +961,31 @@ public class XQueryParser extends Parser {
 		}
 	}
 	@SuppressWarnings("CheckReturnValue")
-	public static class IsCond1Context extends CondContext {
+	public static class EqCondMathOpContext extends CondContext {
+		public List<XqContext> xq() {
+			return getRuleContexts(XqContext.class);
+		}
+		public XqContext xq(int i) {
+			return getRuleContext(XqContext.class,i);
+		}
+		public TerminalNode EQS() { return getToken(XQueryParser.EQS, 0); }
+		public EqCondMathOpContext(CondContext ctx) { copyFrom(ctx); }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterEqCondMathOp(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitEqCondMathOp(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitEqCondMathOp(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+	@SuppressWarnings("CheckReturnValue")
+	public static class EqCondIsStrContext extends CondContext {
 		public List<XqContext> xq() {
 			return getRuleContexts(XqContext.class);
 		}
@@ -969,42 +993,18 @@ public class XQueryParser extends Parser {
 			return getRuleContext(XqContext.class,i);
 		}
 		public TerminalNode IS() { return getToken(XQueryParser.IS, 0); }
-		public IsCond1Context(CondContext ctx) { copyFrom(ctx); }
+		public EqCondIsStrContext(CondContext ctx) { copyFrom(ctx); }
 		@Override
 		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterIsCond1(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterEqCondIsStr(this);
 		}
 		@Override
 		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitIsCond1(this);
+			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitEqCondIsStr(this);
 		}
 		@Override
 		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitIsCond1(this);
-			else return visitor.visitChildren(this);
-		}
-	}
-	@SuppressWarnings("CheckReturnValue")
-	public static class IsCond2Context extends CondContext {
-		public List<XqContext> xq() {
-			return getRuleContexts(XqContext.class);
-		}
-		public XqContext xq(int i) {
-			return getRuleContext(XqContext.class,i);
-		}
-		public TerminalNode ISS() { return getToken(XQueryParser.ISS, 0); }
-		public IsCond2Context(CondContext ctx) { copyFrom(ctx); }
-		@Override
-		public void enterRule(ParseTreeListener listener) {
-			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).enterIsCond2(this);
-		}
-		@Override
-		public void exitRule(ParseTreeListener listener) {
-			if ( listener instanceof XQueryListener ) ((XQueryListener)listener).exitIsCond2(this);
-		}
-		@Override
-		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
-			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitIsCond2(this);
+			if ( visitor instanceof XQueryVisitor ) return ((XQueryVisitor<? extends T>)visitor).visitEqCondIsStr(this);
 			else return visitor.visitChildren(this);
 		}
 	}
@@ -1029,7 +1029,7 @@ public class XQueryParser extends Parser {
 			switch ( getInterpreter().adaptivePredict(_input,7,_ctx) ) {
 			case 1:
 				{
-				_localctx = new EqCond1Context(_localctx);
+				_localctx = new EqCondEqStrContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 
@@ -1043,7 +1043,7 @@ public class XQueryParser extends Parser {
 				break;
 			case 2:
 				{
-				_localctx = new EqCond2Context(_localctx);
+				_localctx = new EqCondMathOpContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(121);
@@ -1056,7 +1056,7 @@ public class XQueryParser extends Parser {
 				break;
 			case 3:
 				{
-				_localctx = new IsCond1Context(_localctx);
+				_localctx = new EqCondIsStrContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(125);
@@ -1069,7 +1069,7 @@ public class XQueryParser extends Parser {
 				break;
 			case 4:
 				{
-				_localctx = new IsCond2Context(_localctx);
+				_localctx = new EqCondDoubleMathOpContext(_localctx);
 				_ctx = _localctx;
 				_prevctx = _localctx;
 				setState(129);

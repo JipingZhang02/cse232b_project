@@ -11,8 +11,8 @@ import java.util.ArrayList;
 import java.util.Map;
 
 public class WhereClause implements Query {
-    private final Condition condition;
-    private final Query thenDoWhat;
+    private Condition condition;
+    private Query thenDoWhat;
 
     public WhereClause(Condition condition, Query thenDoWhat) {
         this.condition = condition;
@@ -29,8 +29,15 @@ public class WhereClause implements Query {
     }
 
     @Override
+    public Query substitute(Query originQuery, Query newQuery) {
+        condition = condition.substitute(originQuery, newQuery);
+        thenDoWhat = thenDoWhat.substitute(originQuery, newQuery);
+        return this;
+    }
+
+    @Override
     public String toString(){
-        return String.format("where(%s){\n%s\n}",condition.toString(), Util.insertTabInLines(thenDoWhat.toString()));
+        return String.format("where(%s){\n%s\n}",condition.toString(), Util.insertTabBeforeLines(thenDoWhat.toString()));
     }
 
     @Override

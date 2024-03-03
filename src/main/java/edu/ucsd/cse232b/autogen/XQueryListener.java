@@ -170,18 +170,6 @@ public interface XQueryListener extends ParseTreeListener {
 	 */
 	void exitTagXq(XQueryParser.TagXqContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code EqCond2}
-	 * labeled alternative in {@link XQueryParser#cond}.
-	 * @param ctx the parse tree
-	 */
-	void enterEqCond2(XQueryParser.EqCond2Context ctx);
-	/**
-	 * Exit a parse tree produced by the {@code EqCond2}
-	 * labeled alternative in {@link XQueryParser#cond}.
-	 * @param ctx the parse tree
-	 */
-	void exitEqCond2(XQueryParser.EqCond2Context ctx);
-	/**
 	 * Enter a parse tree produced by the {@code ConjunctCond}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
@@ -194,17 +182,17 @@ public interface XQueryListener extends ParseTreeListener {
 	 */
 	void exitConjunctCond(XQueryParser.ConjunctCondContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code EqCond1}
+	 * Enter a parse tree produced by the {@code EqCondDoubleMathOp}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
 	 */
-	void enterEqCond1(XQueryParser.EqCond1Context ctx);
+	void enterEqCondDoubleMathOp(XQueryParser.EqCondDoubleMathOpContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code EqCond1}
+	 * Exit a parse tree produced by the {@code EqCondDoubleMathOp}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
 	 */
-	void exitEqCond1(XQueryParser.EqCond1Context ctx);
+	void exitEqCondDoubleMathOp(XQueryParser.EqCondDoubleMathOpContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code SatCond}
 	 * labeled alternative in {@link XQueryParser#cond}.
@@ -242,6 +230,18 @@ public interface XQueryListener extends ParseTreeListener {
 	 */
 	void exitNegCond(XQueryParser.NegCondContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code EqCondEqStr}
+	 * labeled alternative in {@link XQueryParser#cond}.
+	 * @param ctx the parse tree
+	 */
+	void enterEqCondEqStr(XQueryParser.EqCondEqStrContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code EqCondEqStr}
+	 * labeled alternative in {@link XQueryParser#cond}.
+	 * @param ctx the parse tree
+	 */
+	void exitEqCondEqStr(XQueryParser.EqCondEqStrContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code ParaCond}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
@@ -254,29 +254,29 @@ public interface XQueryListener extends ParseTreeListener {
 	 */
 	void exitParaCond(XQueryParser.ParaCondContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code IsCond1}
+	 * Enter a parse tree produced by the {@code EqCondMathOp}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
 	 */
-	void enterIsCond1(XQueryParser.IsCond1Context ctx);
+	void enterEqCondMathOp(XQueryParser.EqCondMathOpContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code IsCond1}
+	 * Exit a parse tree produced by the {@code EqCondMathOp}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
 	 */
-	void exitIsCond1(XQueryParser.IsCond1Context ctx);
+	void exitEqCondMathOp(XQueryParser.EqCondMathOpContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code IsCond2}
+	 * Enter a parse tree produced by the {@code EqCondIsStr}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
 	 */
-	void enterIsCond2(XQueryParser.IsCond2Context ctx);
+	void enterEqCondIsStr(XQueryParser.EqCondIsStrContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code IsCond2}
+	 * Exit a parse tree produced by the {@code EqCondIsStr}
 	 * labeled alternative in {@link XQueryParser#cond}.
 	 * @param ctx the parse tree
 	 */
-	void exitIsCond2(XQueryParser.IsCond2Context ctx);
+	void exitEqCondIsStr(XQueryParser.EqCondIsStrContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link XQueryParser#satisfy}.
 	 * @param ctx the parse tree

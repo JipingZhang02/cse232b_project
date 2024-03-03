@@ -12,8 +12,8 @@ import java.util.Map;
 
 public class SingleForClause implements Query {
     private final String varName;
-    private final Query generator;
-    private final Query returnClause;
+    private Query generator;
+    private Query returnClause;
 
     public SingleForClause(String varName, Query generator, Query returnClause) {
         this.varName = varName;
@@ -33,8 +33,15 @@ public class SingleForClause implements Query {
     }
 
     @Override
+    public Query substitute(Query originQuery, Query newQuery) {
+        generator = generator.substitute(originQuery, newQuery);
+        returnClause = returnClause.substitute(originQuery, newQuery);
+        return this;
+    }
+
+    @Override
     public String toString(){
-        return String.format("for($%s in %s){\n%s\n}",varName,generator.toString(), Util.insertTabInLines(returnClause.toString()));
+        return String.format("for($%s in %s){\n%s\n}",varName,generator.toString(), Util.insertTabBeforeLines(returnClause.toString()));
     }
 
     @Override

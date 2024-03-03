@@ -9,7 +9,7 @@ import org.w3c.dom.Node;
 import java.util.Map;
 
 public class XQSlashRP implements Query {
-    protected final Query query;
+    protected Query query;
     protected final Expression relPath;
     private final int slashStatus;
 
@@ -19,6 +19,10 @@ public class XQSlashRP implements Query {
         this.slashStatus = slashStatus;
     }
 
+    public Query getQuery() {
+        return query;
+    }
+
     @Override
     public EvalResult evaluate(EvalResult input, Map<String, Node> variables) throws Exception {
         EvalResult leftRes = query.evaluate(input, variables);
@@ -26,6 +30,12 @@ public class XQSlashRP implements Query {
 
         leftRes.slashStatus = slashStatus;
         return relPath.evaluate(leftRes);
+    }
+
+    @Override
+    public Query substitute(Query originQuery, Query newQuery) {
+        query = query.substitute(originQuery, newQuery);
+        return this;
     }
 
     @Override

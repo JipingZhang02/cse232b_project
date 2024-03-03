@@ -187,18 +187,6 @@ public class XQueryBaseListener implements XQueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEqCond2(XQueryParser.EqCond2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitEqCond2(XQueryParser.EqCond2Context ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterConjunctCond(XQueryParser.ConjunctCondContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -211,13 +199,13 @@ public class XQueryBaseListener implements XQueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEqCond1(XQueryParser.EqCond1Context ctx) { }
+	@Override public void enterEqCondDoubleMathOp(XQueryParser.EqCondDoubleMathOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEqCond1(XQueryParser.EqCond1Context ctx) { }
+	@Override public void exitEqCondDoubleMathOp(XQueryParser.EqCondDoubleMathOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -259,6 +247,18 @@ public class XQueryBaseListener implements XQueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterEqCondEqStr(XQueryParser.EqCondEqStrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEqCondEqStr(XQueryParser.EqCondEqStrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterParaCond(XQueryParser.ParaCondContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -271,25 +271,25 @@ public class XQueryBaseListener implements XQueryListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIsCond1(XQueryParser.IsCond1Context ctx) { }
+	@Override public void enterEqCondMathOp(XQueryParser.EqCondMathOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIsCond1(XQueryParser.IsCond1Context ctx) { }
+	@Override public void exitEqCondMathOp(XQueryParser.EqCondMathOpContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterIsCond2(XQueryParser.IsCond2Context ctx) { }
+	@Override public void enterEqCondIsStr(XQueryParser.EqCondIsStrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitIsCond2(XQueryParser.IsCond2Context ctx) { }
+	@Override public void exitEqCondIsStr(XQueryParser.EqCondIsStrContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
