@@ -6,12 +6,9 @@ for $tuple in join(
         return <tuple>{
             <btitle>{
                 $b/TITLE
-            
             }</btitle>,<baid>{
                 $b/AUTHORID
-            
             }</baid>
-        
         }</tuple>
     ,
         for $a in doc("test2.xml")//AUTHOR,
@@ -23,21 +20,15 @@ for $tuple in join(
         return <tuple>{
             <aid>{
                 $a/ID
-            
             }</aid>,<an>{
                 $a/NAME
-            
             }</an>,<fname>{
                 $an/FIRST
-            
             }</fname>,<lname>{
                 $an/LAST
-            
             }</lname>,<anid>{
                 $a/NATIONID
-            
             }</anid>
-        
         }</tuple>
     ,
         [baid],[aid]
@@ -49,12 +40,9 @@ for $tuple in join(
     return <tuple>{
         <nid>{
             $n/ID
-        
         }</nid>,<nname>{
             $n/FULLNAME
-        
         }</nname>
-    
     }</tuple>
 ,
     [anid],[nid]
@@ -62,13 +50,9 @@ for $tuple in join(
 return <BOOK>{
     <TITLE>{
         $tuple/btitle/*/text()
-    
     }</TITLE>,<AUTHOR>{
         $tuple/fname/*/text()
-    
     }</AUTHOR>,<NATION>{
         $tuple/nname/*/text()
-    
     }</NATION>
-
 }</BOOK>

@@ -13,6 +13,12 @@ import org.antlr.v4.runtime.tree.ParseTreeVisitor;
  */
 public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	/**
+	 * Visit a parse tree produced by {@link XQueryParser#joinClause}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJoinClause(XQueryParser.JoinClauseContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link XQueryParser#forClause}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -49,11 +55,12 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitVariableList(XQueryParser.VariableListContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link XQueryParser#joinClause}.
+	 * Visit a parse tree produced by the {@code CommaXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitJoinClause(XQueryParser.JoinClauseContext ctx);
+	T visitCommaXq(XQueryParser.CommaXqContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code TagXq2}
 	 * labeled alternative in {@link XQueryParser#xq}.
@@ -61,48 +68,6 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitTagXq2(XQueryParser.TagXq2Context ctx);
-	/**
-	 * Visit a parse tree produced by the {@code wsXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitWsXq(XQueryParser.WsXqContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code VarXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitVarXq(XQueryParser.VarXqContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code LetXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitLetXq(XQueryParser.LetXqContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code ForXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitForXq(XQueryParser.ForXqContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code joinXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitJoinXq(XQueryParser.JoinXqContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code CommaXq}
-	 * labeled alternative in {@link XQueryParser#xq}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitCommaXq(XQueryParser.CommaXqContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code RpXq}
 	 * labeled alternative in {@link XQueryParser#xq}.
@@ -138,6 +103,34 @@ public interface XQueryVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitApXq(XQueryParser.ApXqContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code JoinXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitJoinXq(XQueryParser.JoinXqContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code VarXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitVarXq(XQueryParser.VarXqContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code LetXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitLetXq(XQueryParser.LetXqContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code ForXq}
+	 * labeled alternative in {@link XQueryParser#xq}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitForXq(XQueryParser.ForXqContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code TagXq}
 	 * labeled alternative in {@link XQueryParser#xq}.

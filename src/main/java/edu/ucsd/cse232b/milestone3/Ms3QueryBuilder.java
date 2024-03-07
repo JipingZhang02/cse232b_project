@@ -5,22 +5,21 @@ import edu.ucsd.cse232b.common.Pair;
 import edu.ucsd.cse232b.common.SlashStatus;
 import edu.ucsd.cse232b.common.UnionFindSet;
 import edu.ucsd.cse232b.common.Util;
-import edu.ucsd.cse232b.expression.binaryExpr.SlashExpr;
-import edu.ucsd.cse232b.expression.singleExpr.StarExpr;
-import edu.ucsd.cse232b.expression.singleExpr.TagExpr;
+import edu.ucsd.cse232b.milestone1.expression.binaryExpr.SlashExpr;
+import edu.ucsd.cse232b.milestone1.expression.singleExpr.StarExpr;
+import edu.ucsd.cse232b.milestone1.expression.singleExpr.TagExpr;
 import edu.ucsd.cse232b.milestone3.join.JoinXq;
-import edu.ucsd.cse232b.query.ExpressionWrapper;
-import edu.ucsd.cse232b.query.Query;
-import edu.ucsd.cse232b.query.QueryBuilderTool;
-import edu.ucsd.cse232b.query.binaryQuery.CommaQuery;
-import edu.ucsd.cse232b.query.binaryQuery.XQSlashRP;
-import edu.ucsd.cse232b.query.condition.Condition;
-import edu.ucsd.cse232b.query.condition.EqCondition;
-import edu.ucsd.cse232b.query.condition.IdentityCondition;
-import edu.ucsd.cse232b.query.condition.conjunctCondition.AndCondition;
-import edu.ucsd.cse232b.query.singleQuery.TagGeneratorQuery;
-import edu.ucsd.cse232b.query.singleQuery.VarXq;
-import edu.ucsd.cse232b.xquery.QueryBuilder;
+import edu.ucsd.cse232b.milestone2.query.Query;
+import edu.ucsd.cse232b.milestone2.query.QueryBuilderTool;
+import edu.ucsd.cse232b.milestone2.query.binaryQuery.CommaQuery;
+import edu.ucsd.cse232b.milestone2.query.binaryQuery.XQSlashRP;
+import edu.ucsd.cse232b.milestone2.query.condition.Condition;
+import edu.ucsd.cse232b.milestone2.query.condition.EqCondition;
+import edu.ucsd.cse232b.milestone2.query.condition.IdentityCondition;
+import edu.ucsd.cse232b.milestone2.query.condition.conjunctCondition.AndCondition;
+import edu.ucsd.cse232b.milestone2.query.singleQuery.TagGeneratorQuery;
+import edu.ucsd.cse232b.milestone2.query.singleQuery.VarXq;
+import edu.ucsd.cse232b.milestone2.xquery.QueryBuilder;
 import org.antlr.v4.runtime.tree.TerminalNode;
 
 import java.util.*;
@@ -45,11 +44,12 @@ public class Ms3QueryBuilder extends QueryBuilder {
     }
 
     @Override
-    public Pair<Query, Condition> visitJoinClause(XQueryParser.JoinClauseContext ctx) {
-        Query leftTable = visit(ctx.forClause(0)).left;
-        Query rightTable = visit(ctx.forClause(1)).left;
-        List<String> joinOnColsL = getVarNames(ctx.variableList(0));
-        List<String> joinOnColsR = getVarNames(ctx.variableList(1));
+    public Pair<Query, Condition> visitJoinXq(XQueryParser.JoinXqContext ctx) {
+        String s = ctx.getText();
+        Query leftTable = visit(ctx.joinClause().xq(0)).left;
+        Query rightTable = visit(ctx.joinClause().xq(1)).left;
+        List<String> joinOnColsL = getVarNames(ctx.joinClause().variableList(0));
+        List<String> joinOnColsR = getVarNames(ctx.joinClause().variableList(1));
         Query resXq = new JoinXq(leftTable,rightTable,joinOnColsL,joinOnColsR);
         return new Pair<>(resXq,null);
     }
@@ -82,15 +82,20 @@ public class Ms3QueryBuilder extends QueryBuilder {
         forVarNames = Util.removeDollarAndAtSign(forVarNames);
         letVarNames = Util.removeDollarAndAtSign(letVarNames);
         if (!letVarNames.isEmpty()) { // needn't optimize if let clauses exist
-            Query res = QueryBuilderTool.buildForClause(forVarNames, forAssignValXqs, letVarNames, letAssignValXqs, whereCondition, returnClause);
+            Query res = QueryBuilderTool.buildForClause(forVarNames, forAssignValXqs, letVarNames, letAssignValXqs, whereCondition, returnClause,true);
             return new Pair<>(res, null);
         }
         try {
             Query res = tryOptimizeImplicitJoin(forVarNames, forAssignValXqs, whereCondition, returnClause);
             return new Pair<>(res, null);
         } catch (CannotOptimizeException exception) {
-            exception.printStackTrace();
-            Query res = QueryBuilderTool.buildForClause(forVarNames, forAssignValXqs, letVarNames, letAssignValXqs, whereCondition, returnClause);
+            String msg = exception.getMessage();
+            System.out.println();
+            System.out.println("can not optimize for query to join:");
+            System.out.println(ctx.getText());
+            System.out.println("because:"+msg);
+            System.out.println();
+            Query res = QueryBuilderTool.buildForClause(forVarNames, forAssignValXqs, letVarNames, letAssignValXqs, whereCondition, returnClause,true);
             return new Pair<>(res, null);
         }
     }
@@ -164,7 +169,7 @@ public class Ms3QueryBuilder extends QueryBuilder {
         List<String> tableNames = new ArrayList<>();
         List<Query> tableGenerators = new ArrayList<>();
         List<List<String>> columnsInEachTable = new ArrayList<>();
-        List<List<Query>> columnGenerators = new ArrayList<>();
+        List<List<Query>> columnGeneratorsEachTable = new ArrayList<>();
         Map<String, Integer> colNameToTableIdx = new HashMap<>();
         List<Condition> outerConditions = new ArrayList<>();
 
@@ -200,19 +205,19 @@ public class Ms3QueryBuilder extends QueryBuilder {
                 tableNames.add(forVarName);
                 tableGenerators.add(forAssignValGenerator);
                 columnsInEachTable.add(new ArrayList<>());
-                columnGenerators.add(new ArrayList<>());
+                columnGeneratorsEachTable.add(new ArrayList<>());
             } else if (tableNames.contains(leftMostVarNameInGenerator)) {
                 int tableIdx = tableNames.indexOf(leftMostVarNameInGenerator);
                 // treat this ($var in xq) clause as a column of the tableIdx-th table
                 columnsInEachTable.get(tableIdx).add(forVarName);
-                columnGenerators.get(tableIdx).add(forAssignValGenerator);
+                columnGeneratorsEachTable.get(tableIdx).add(forAssignValGenerator);
                 colNameToTableIdx.put(forVarName, tableIdx);
             } else {
                 // case 3, colNameToTableIdx.containsKey(leftMostVarNameInGenerator)
                 int tableIdx = colNameToTableIdx.get(leftMostVarNameInGenerator);
                 // treat this ($var in xq) clause as a column of the tableIdx-th table
                 columnsInEachTable.get(tableIdx).add(forVarName);
-                columnGenerators.get(tableIdx).add(forAssignValGenerator);
+                columnGeneratorsEachTable.get(tableIdx).add(forAssignValGenerator);
                 colNameToTableIdx.put(forVarName, tableIdx);
             }
         }
@@ -221,7 +226,7 @@ public class Ms3QueryBuilder extends QueryBuilder {
 
         int tableCnt = tableNames.size();
         if (tableCnt < 2) {
-            throw new CannotOptimizeException("only 1 table can be extracted, thus no need to optimize to join");
+            throw new CannotOptimizeException("only 1 table can be extracted, so no need to optimize to join");
         }
 
         // EqCondition for each single table
@@ -232,6 +237,9 @@ public class Ms3QueryBuilder extends QueryBuilder {
             eqConditionsEachTable[i] = new ArrayList<>();
         }
 
+        // join on conditions between each table pair
+        // note: left,right of Pair<String,String> should be in same order of joinConditions[left][right]
+        // that is, elements in joinConditions[l][r] should be exactly the contrary to joinConditions[r][l]
         List<Pair<String, String>>[][] joinConditions = new List[tableCnt][tableCnt];
         for (int i = 0; i < tableCnt; i++) {
             for (int j = 0; j < tableCnt; j++) {
@@ -305,7 +313,7 @@ public class Ms3QueryBuilder extends QueryBuilder {
 
 
         /*
-            Next, we should use UnionFindSet to decide the joining order of tables
+            Next, we should use dfs to decide the joining order of tables
 
             That is, view relations between tables as an undirected graph,
                 view table as a node on the graph
@@ -347,11 +355,13 @@ public class Ms3QueryBuilder extends QueryBuilder {
         /*
             Finally, build the for $tuple in join-clause with dfs search result.
             We should first initialize tableCnt numbers of ForClauses
-            Then, join each of them to its dfsParent.
+            Then, join each of them to its representor.
+            The representor of an element is the represent of it in the UnionFindSet constructed by dfsParent
             We should note that dfsParent of 0-th node is always -1
                 while other nodes' parent may also be -1
                 in that case, that node is in an unconnected part to part containing node 0
-                we should join then with that containing node 0 at last (no optimizations)
+                    which means they can't be joined on any column
+                we should join it with the part containing node 0 at last
          */
         List<Integer> lateJoinTables = new ArrayList<>();
 
@@ -361,7 +371,7 @@ public class Ms3QueryBuilder extends QueryBuilder {
             String tableName = tableNames.get(i);
             Query tableGenerator = tableGenerators.get(i);
             List<String> columnNames = columnsInEachTable.get(i);
-            List<Query> columnGeneratorList = columnGenerators.get(i);
+            List<Query> columnGeneratorList = columnGeneratorsEachTable.get(i);
 
             if (columnNames.isEmpty()){
                 throw new IllegalArgumentException();
@@ -430,6 +440,12 @@ public class Ms3QueryBuilder extends QueryBuilder {
             }
             Query joinXq = new JoinXq(tables[repI],tables[i],joinOnColsL,joinOnColsR);
             tables[repI] = joinXq;
+            for (int j = 0; j < tableCnt; j++) {
+                if (j!=repI&&j!=i){
+                    joinConditions[j][repI].addAll(joinConditions[j][i]);
+                    joinConditions[repI][j].addAll(joinConditions[i][j]);
+                }
+            }
         }
 
         System.out.print("");// for debug
@@ -454,6 +470,7 @@ public class Ms3QueryBuilder extends QueryBuilder {
         }
         for (String inTableVarName:allInTableVarNames){
             Query original = new VarXq(inTableVarName);
+            // Query newQ = XQuery.biuldQuery(String.format("$tuple/%s/*",inTableVarName));
             Query newQ = new XQSlashRP(new VarXq("tuple"),new SlashExpr(new TagExpr(inTableVarName),new StarExpr(),SlashStatus.SINGLE_SLASH), SlashStatus.SINGLE_SLASH);
             outerCondition = outerCondition.substitute(original,newQ);
             returnClause = returnClause.substitute(original,newQ);

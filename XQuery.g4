@@ -1,29 +1,26 @@
 grammar XQuery;
 import XPath;
 
+joinClause: 'join' '(' xq ',' xq ',' variableList ',' variableList ')';
 forClause: 'for' VAR 'in' xq (',' VAR 'in' xq)*;
 letClause: 'let' VAR ':=' xq (',' VAR ':=' xq)*;
 whereClause: 'where' cond;
 returnClause: 'return' xq;
-variables : WS? ID (WS? ',' WS? ID WS?)* ;
-variableList : WS? '[' variables? ']' WS?;
-joinClause: 'join' WS? '(' forClause ',' forClause ',' variableList ',' variableList ')';
+variables : ID ( ','  ID )* ;
+variableList : '[' variables? ']';
 
  xq: VAR #VarXq
     | xq ',' xq #CommaXq
+    | xq xq #CommaXq2
     | ap #ApXq
     | '(' xq ')' #ParaXq
     | xq pathOp rp #RpXq
     | startTag '{' xq '}' endTag #TagXq
+    | startTag  xq  endTag #TagXq2
+    | joinClause #JoinXq
     | forClause (letClause)? (whereClause)? returnClause #ForXq
     | letClause xq #LetXq
-    | joinClause #joinXq
-    | STRING #StringXq
-    | WS xq WS #wsXq
-    | xq xq #CommaXq2
-    | startTag xq endTag #TagXq2;
-
-
+    | STRING #StringXq;
 
 
 cond: xq EQ xq #EqCondEqStr | xq EQS xq #EqCondMathOp

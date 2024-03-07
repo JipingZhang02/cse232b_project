@@ -3,10 +3,9 @@ package edu.ucsd.cse232b.milestone3;
 import edu.ucsd.cse232b.autogen.XQueryLexer;
 import edu.ucsd.cse232b.autogen.XQueryParser;
 import edu.ucsd.cse232b.common.Util;
-import edu.ucsd.cse232b.query.Query;
-import edu.ucsd.cse232b.xpath.XPath;
-import edu.ucsd.cse232b.xquery.QueryBuilder;
-import edu.ucsd.cse232b.xquery.XQuery;
+import edu.ucsd.cse232b.milestone2.query.Query;
+import edu.ucsd.cse232b.milestone1.xpath.XPath;
+import edu.ucsd.cse232b.milestone2.xquery.XQuery;
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.w3c.dom.Node;
@@ -40,10 +39,12 @@ public class Ms3Main {
     public static void saveQuery(Query query,String filePath) throws IOException{
         File file = new File(filePath);
         Writer writer = new FileWriter(file);
-        writer.write(query.serialize());
+        String queryStr = query.serialize();
+        queryStr = Util.ignoreBlankLines(queryStr);
+        writer.write(queryStr);
         writer.flush();
         writer.close();
-        System.out.println("Query has been successfully written to "+filePath);
+        System.out.println("Optimized query has been successfully written to "+filePath);
     }
 
 
@@ -52,6 +53,7 @@ public class Ms3Main {
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         XQueryParser parser = new XQueryParser(tokens);
         XQueryParser.XqContext xqContext = parser.xq();
+        //String s = xqContext.getText();
         return Ms3QueryBuilder.INSTANCE.visit(xqContext).left;
     }
 }

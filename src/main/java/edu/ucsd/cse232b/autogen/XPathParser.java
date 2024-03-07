@@ -20,8 +20,8 @@ public class XPathParser extends Parser {
 		new PredictionContextCache();
 	public static final int
 		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, T__5=6, T__6=7, T__7=8, T__8=9, 
-		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, EQS=16, EQ=17, 
-		ISS=18, IS=19, AT=20, DOC=21, ID=22, WS=23, STRING=24, ESCAPE=25;
+		T__9=10, T__10=11, T__11=12, T__12=13, T__13=14, T__14=15, T__15=16, EQS=17, 
+		EQ=18, ISS=19, IS=20, ID=21, WS=22, STRING=23, ESCAPE=24;
 	public static final int
 		RULE_ap = 0, RULE_rp = 1, RULE_filter = 2, RULE_pathOp = 3, RULE_docName = 4, 
 		RULE_fileName = 5, RULE_tagName = 6, RULE_attName = 7, RULE_boolOp = 8, 
@@ -37,16 +37,16 @@ public class XPathParser extends Parser {
 	private static String[] makeLiteralNames() {
 		return new String[] {
 			null, "'text()'", "'*'", "'..'", "'.'", "','", "'('", "')'", "'['", "']'", 
-			"'not'", "'//'", "'/'", "'doc('", "'and'", "'or'", "'='", "'eq'", "'=='", 
-			"'is'", "'@'"
+			"'not'", "'//'", "'/'", "'doc('", "'@'", "'and'", "'or'", "'='", "'eq'", 
+			"'=='", "'is'"
 		};
 	}
 	private static final String[] _LITERAL_NAMES = makeLiteralNames();
 	private static String[] makeSymbolicNames() {
 		return new String[] {
 			null, null, null, null, null, null, null, null, null, null, null, null, 
-			null, null, null, null, "EQS", "EQ", "ISS", "IS", "AT", "DOC", "ID", 
-			"WS", "STRING", "ESCAPE"
+			null, null, null, null, null, "EQS", "EQ", "ISS", "IS", "ID", "WS", "STRING", 
+			"ESCAPE"
 		};
 	}
 	private static final String[] _SYMBOLIC_NAMES = makeSymbolicNames();
@@ -396,7 +396,7 @@ public class XPathParser extends Parser {
 				tagName();
 				}
 				break;
-			case AT:
+			case T__13:
 				{
 				_localctx = new AttrRpContext(_localctx);
 				_ctx = _localctx;
@@ -981,7 +981,6 @@ public class XPathParser extends Parser {
 
 	@SuppressWarnings("CheckReturnValue")
 	public static class AttNameContext extends ParserRuleContext {
-		public TerminalNode AT() { return getToken(XPathParser.AT, 0); }
 		public TerminalNode ID() { return getToken(XPathParser.ID, 0); }
 		public AttNameContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -1009,7 +1008,7 @@ public class XPathParser extends Parser {
 			enterOuterAlt(_localctx, 1);
 			{
 			setState(93);
-			match(AT);
+			match(T__13);
 			setState(94);
 			match(ID);
 			}
@@ -1059,7 +1058,7 @@ public class XPathParser extends Parser {
 			{
 			setState(96);
 			_la = _input.LA(1);
-			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 983040L) != 0)) ) {
+			if ( !((((_la) & ~0x3f) == 0 && ((1L << _la) & 1966080L) != 0)) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1110,7 +1109,7 @@ public class XPathParser extends Parser {
 			{
 			setState(98);
 			_la = _input.LA(1);
-			if ( !(_la==T__13 || _la==T__14) ) {
+			if ( !(_la==T__14 || _la==T__15) ) {
 			_errHandler.recoverInline(this);
 			}
 			else {
@@ -1203,7 +1202,7 @@ public class XPathParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\u0004\u0001\u0019g\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
+		"\u0004\u0001\u0018g\u0002\u0000\u0007\u0000\u0002\u0001\u0007\u0001\u0002"+
 		"\u0002\u0007\u0002\u0002\u0003\u0007\u0003\u0002\u0004\u0007\u0004\u0002"+
 		"\u0005\u0007\u0005\u0002\u0006\u0007\u0006\u0002\u0007\u0007\u0007\u0002"+
 		"\b\u0007\b\u0002\t\u0007\t\u0002\n\u0007\n\u0001\u0000\u0001\u0000\u0001"+
@@ -1221,7 +1220,7 @@ public class XPathParser extends Parser {
 		"\u0006\u0001\u0007\u0001\u0007\u0001\u0007\u0001\b\u0001\b\u0001\t\u0001"+
 		"\t\u0001\n\u0001\n\u0001\n\u0000\u0002\u0002\u0004\u000b\u0000\u0002\u0004"+
 		"\u0006\b\n\f\u000e\u0010\u0012\u0014\u0000\u0003\u0001\u0000\u000b\f\u0001"+
-		"\u0000\u0010\u0013\u0001\u0000\u000e\u000fi\u0000\u0016\u0001\u0000\u0000"+
+		"\u0000\u0011\u0014\u0001\u0000\u000f\u0010i\u0000\u0016\u0001\u0000\u0000"+
 		"\u0000\u0002%\u0001\u0000\u0000\u0000\u0004H\u0001\u0000\u0000\u0000\u0006"+
 		"S\u0001\u0000\u0000\u0000\bU\u0001\u0000\u0000\u0000\nY\u0001\u0000\u0000"+
 		"\u0000\f[\u0001\u0000\u0000\u0000\u000e]\u0001\u0000\u0000\u0000\u0010"+
@@ -1246,7 +1245,7 @@ public class XPathParser extends Parser {
 		"\u000089\u0006\u0002\uffff\uffff\u00009:\u0005\n\u0000\u0000:I\u0003\u0004"+
 		"\u0002\u0006;<\u0003\u0002\u0001\u0000<=\u0003\u0010\b\u0000=>\u0003\u0002"+
 		"\u0001\u0000>I\u0001\u0000\u0000\u0000?I\u0003\u0002\u0001\u0000@A\u0003"+
-		"\u0002\u0001\u0000AB\u0005\u0010\u0000\u0000BC\u0003\u0014\n\u0000CI\u0001"+
+		"\u0002\u0001\u0000AB\u0005\u0011\u0000\u0000BC\u0003\u0014\n\u0000CI\u0001"+
 		"\u0000\u0000\u0000DE\u0005\u0006\u0000\u0000EF\u0003\u0004\u0002\u0000"+
 		"FG\u0005\u0007\u0000\u0000GI\u0001\u0000\u0000\u0000H8\u0001\u0000\u0000"+
 		"\u0000H;\u0001\u0000\u0000\u0000H?\u0001\u0000\u0000\u0000H@\u0001\u0000"+
@@ -1256,12 +1255,12 @@ public class XPathParser extends Parser {
 		"\u0000\u0000\u0000PQ\u0001\u0000\u0000\u0000Q\u0005\u0001\u0000\u0000"+
 		"\u0000RP\u0001\u0000\u0000\u0000ST\u0007\u0000\u0000\u0000T\u0007\u0001"+
 		"\u0000\u0000\u0000UV\u0005\r\u0000\u0000VW\u0003\n\u0005\u0000WX\u0005"+
-		"\u0007\u0000\u0000X\t\u0001\u0000\u0000\u0000YZ\u0005\u0018\u0000\u0000"+
-		"Z\u000b\u0001\u0000\u0000\u0000[\\\u0005\u0016\u0000\u0000\\\r\u0001\u0000"+
-		"\u0000\u0000]^\u0005\u0014\u0000\u0000^_\u0005\u0016\u0000\u0000_\u000f"+
+		"\u0007\u0000\u0000X\t\u0001\u0000\u0000\u0000YZ\u0005\u0017\u0000\u0000"+
+		"Z\u000b\u0001\u0000\u0000\u0000[\\\u0005\u0015\u0000\u0000\\\r\u0001\u0000"+
+		"\u0000\u0000]^\u0005\u000e\u0000\u0000^_\u0005\u0015\u0000\u0000_\u000f"+
 		"\u0001\u0000\u0000\u0000`a\u0007\u0001\u0000\u0000a\u0011\u0001\u0000"+
 		"\u0000\u0000bc\u0007\u0002\u0000\u0000c\u0013\u0001\u0000\u0000\u0000"+
-		"de\u0005\u0018\u0000\u0000e\u0015\u0001\u0000\u0000\u0000\u0005%35HP";
+		"de\u0005\u0017\u0000\u0000e\u0015\u0001\u0000\u0000\u0000\u0005%35HP";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

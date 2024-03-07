@@ -2,8 +2,8 @@ package edu.ucsd.cse232b.milestone3.join;
 
 import edu.ucsd.cse232b.common.SlashStatus;
 import edu.ucsd.cse232b.common.Util;
-import edu.ucsd.cse232b.expression.EvalResult;
-import edu.ucsd.cse232b.query.Query;
+import edu.ucsd.cse232b.milestone1.expression.EvalResult;
+import edu.ucsd.cse232b.milestone2.query.Query;
 import org.w3c.dom.Node;
 
 import java.util.ArrayList;
@@ -40,6 +40,6 @@ public class JoinXq implements Query {
 
     @Override
     public String toString(){
-        return String.format("join(\n%s,\n%s,\n    %s\n)", Util.insertTabBeforeLines(leftTableGenerator.toString()),Util.insertTabBeforeLines(rightTableGenerator.toString()),joinOnColumnL.toString()+","+joinOnColumnR.toString());
+        return String.format("join(\n%s,\n%s,\n    %s\n)", Util.insertTabBeforeEachLine(leftTableGenerator.toString()),Util.insertTabBeforeEachLine(rightTableGenerator.toString()),joinOnColumnL.toString()+","+joinOnColumnR.toString());
     }
 }

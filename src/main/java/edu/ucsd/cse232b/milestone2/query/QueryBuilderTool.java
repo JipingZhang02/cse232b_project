@@ -1,0 +1,88 @@
+package edu.ucsd.cse232b.milestone2.query;
+
+import edu.ucsd.cse232b.milestone2.query.decoratorQuery.ForClause;
+import edu.ucsd.cse232b.milestone2.query.condition.Condition;
+import edu.ucsd.cse232b.milestone2.query.decoratorQuery.SingleForClause;
+import edu.ucsd.cse232b.milestone2.query.decoratorQuery.SingleLetClause;
+import edu.ucsd.cse232b.milestone2.query.decoratorQuery.WhereClause;
+import edu.ucsd.cse232b.milestone2.query.condition.SingleSomeCondition;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class QueryBuilderTool {
+    private QueryBuilderTool() {
+
+    }
+
+    public static List<String> removeDollarSigns(List<String> input){
+        List<String> res = new ArrayList<>();
+        for (String inputStr:input){
+            if (inputStr.startsWith("$")){
+                inputStr = inputStr.substring(1);
+            }
+            res.add(inputStr);
+        }
+        return res;
+    }
+
+    public static Query buildLetClause(List<String> varNames, List<Query> xqs, Query thenDoWhat) {
+        varNames = removeDollarSigns(varNames);
+        if (varNames.size() != xqs.size()) {
+            throw new IllegalArgumentException();
+        }
+        if (!(varNames instanceof ArrayList)) {
+            varNames = new ArrayList<>(varNames);
+        }
+        if (!(xqs instanceof ArrayList)) {
+            xqs = new ArrayList<>(xqs);
+        }
+        Query res = thenDoWhat;
+        for (int i = varNames.size() - 1; i >= 0; i--) {
+            res = new SingleLetClause(varNames.get(i), xqs.get(i), thenDoWhat);
+        }
+        return res;
+    }
+
+    public static Query buildForClause(List<String> forVarNames, List<Query> forXqs, List<String> letVarNames, List<Query> letXqs, Condition whereCondition, Query returnClauseXq,boolean lazyInit) {
+        if (lazyInit){
+            return new ForClause(forVarNames,forXqs,letVarNames,letXqs,whereCondition,returnClauseXq);
+        }
+        forVarNames = removeDollarSigns(forVarNames);
+        letVarNames = removeDollarSigns(letVarNames);
+        if (forVarNames.size() != forXqs.size()) {
+            throw new IllegalArgumentException();
+        }
+        Query res = returnClauseXq;
+        res = new WhereClause(whereCondition, res);
+        res = buildLetClause(letVarNames, letXqs, res);
+        if (!(forVarNames instanceof ArrayList)) {
+            forVarNames = new ArrayList<>(forVarNames);
+        }
+        if (!(forXqs instanceof ArrayList)) {
+            forXqs = new ArrayList<>(forXqs);
+        }
+        for (int i = forVarNames.size() - 1; i >= 0; i--) {
+            res = new SingleForClause(forVarNames.get(i), forXqs.get(i), res);
+        }
+        return res;
+    }
+
+    public static Condition buildSomeSatisfyCondition(List<String> varNames, List<Query> xqs, Condition innerCondition){
+        varNames = removeDollarSigns(varNames);
+        if (varNames.size() != xqs.size()) {
+            throw new IllegalArgumentException();
+        }
+        if (!(varNames instanceof ArrayList)) {
+            varNames = new ArrayList<>(varNames);
+        }
+        if (!(xqs instanceof ArrayList)) {
+            xqs = new ArrayList<>(xqs);
+        }
+        Condition res = innerCondition;
+        for (int i = varNames.size() - 1; i >= 0; i--) {
+            res = new SingleSomeCondition(varNames.get(i), xqs.get(i), res);
+        }
+        return res;
+    }
+}

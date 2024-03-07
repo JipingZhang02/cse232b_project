@@ -189,11 +189,23 @@ public class Util {
         This function is used for debug:
             It makes toString() method outputs a string with tabs, which look like java or cpp
      */
-    public static String insertTabBeforeLines(String string){
+    public static String insertTabBeforeEachLine(String string){
         StringBuilder res = new StringBuilder();
         String[] lines = string.split("\n");
         for (String line:lines){
             res.append("    ").append(line).append("\n");
+        }
+        return res.toString();
+    }
+
+    public static String ignoreBlankLines(String string){
+        StringBuilder res = new StringBuilder();
+        String[] lines = string.split("\n");
+        for (String line:lines){
+            if (line.trim().isEmpty()){
+                continue;
+            }
+            res.append(line).append("\n");
         }
         return res.toString();
     }
