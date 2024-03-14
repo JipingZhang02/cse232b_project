@@ -5,7 +5,7 @@ import org.w3c.dom.Node;
 
 import java.util.Map;
 
-public class IdentityCondition implements Condition{
+public class True implements Condition{
     @Override
     public boolean assess(Map<String, Node> variables) throws Exception {
         return true;

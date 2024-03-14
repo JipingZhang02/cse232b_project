@@ -1,6 +1,8 @@
 Environment:
 
-The whole project is written by using Amazon Corretto jdk11
+The whole project is based on open source Amazon Corretto jdk11 and ANTLR4.13.1
+If you want to compile and run our code on your own computer,
+** jdk8 is not OK because ANTLR4.13.1 relies on jdk11 !! **
 
 
 
@@ -11,7 +13,8 @@ How to use:
     <mode> can be "xpath", "xquery" or "ms3"
         if "-mode <mode>" does not exist in args, the mode will be milestone3 by default
     if input_query_file_path is not specified
-        it is "./input.txt" by default
+        it is "./xpath.txt" by default in "xpath" mode,
+              "./xquery.txt" by default in "xquery" and "ms3" mode
     if output_xml_file_path is not specified
         it is "./output.xml" by default
 

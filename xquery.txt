@@ -1,4 +1,73 @@
-for $tuple in join(
+for $d1 in doc("large-data.xml")//d,
+    $d2 in doc("large-data.xml")//d,
+    $id1 in $d1/id/text(),
+    $id2 in $d2/id/text(),
+    $a1 in $d1/a2/text(),
+    $a2 in $d2/a6/text()
+where $a1 eq $a2
+return <d>{<id1>{$id1}</id1>,<id2>{$id2}</id2>}</d>
+
+1.for $tuple in join(
+    join(
+        for $b in doc("test2.xml")//BOOK,
+            $btitle in $b/TITLE,
+            $baid in $b/AUTHORID
+        return <tuple>{
+            <btitle>{
+                $b/TITLE/text()
+            }</btitle>,<baid>{
+                $b/AUTHORID/text()
+            }</baid>
+        }</tuple>
+    ,
+        for $a in doc("test2.xml")//AUTHOR,
+            $aid in $a/ID,
+            $an in $a/NAME,
+            $fname in $an/FIRST,
+            $lname in $an/LAST,
+            $anid in $a/NATIONID
+        return <tuple>{
+            <aid>{
+                $a/ID/text()
+            }</aid>,<an>{
+                $a/NAME/text()
+            }</an>,<fname>{
+                $an/FIRST/text()
+            }</fname>,<lname>{
+                $an/LAST/text()
+            }</lname>,<anid>{
+                $a/NATIONID/text()
+            }</anid>
+        }</tuple>
+    ,
+        [baid],[aid]
+    )
+,
+    for $n in doc("test2.xml")//NATION,
+        $nid in $n/ID,
+        $nname in $n/FULLNAME
+    return <tuple>{
+        <nid>{
+            $n/ID/text()
+        }</nid>,<nname>{
+            $n/FULLNAME/text()
+        }</nname>
+    }</tuple>
+,
+    [anid],[nid]
+)
+return <BOOK>{
+    <TITLE>{
+        $tuple/btitle/*
+    }</TITLE>,<AUTHOR>{
+        $tuple/fname/*
+    }</AUTHOR>,<NATION>{
+        $tuple/nname/*
+    }</NATION>
+}</BOOK>
+
+
+1.for $tuple in join(
     join(
         for $b in doc("test2.xml")//BOOK,
             $btitle in $b/TITLE,

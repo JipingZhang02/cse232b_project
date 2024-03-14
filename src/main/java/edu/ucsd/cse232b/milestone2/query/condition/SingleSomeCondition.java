@@ -39,9 +39,4 @@ public class SingleSomeCondition implements Condition{
     public String toString(){
         return String.format("some($%s in %s) satisfies (%s)",varName,generator.toString(),innerCondition.toString());
     }
-
-    @Override
-    public String serialize() {
-        throw new RuntimeException("Object of this class cannot be serialized");
-    }
 }

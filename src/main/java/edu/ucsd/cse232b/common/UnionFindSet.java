@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 /*
    A slightly modified pat h compression UnionFindSet,
-   Where the represent of a dis-joint part is always the smallest index node in that part
+   Where the represent of a disjoint part is always the smallest index node in that part
  */
 public class UnionFindSet {
     private final int[] parent;

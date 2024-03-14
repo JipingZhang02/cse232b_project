@@ -5,7 +5,7 @@ import edu.ucsd.cse232b.milestone1.expression.EvalResult;
 import edu.ucsd.cse232b.milestone2.query.Query;
 import edu.ucsd.cse232b.milestone2.query.QueryBuilderTool;
 import edu.ucsd.cse232b.milestone2.query.condition.Condition;
-import edu.ucsd.cse232b.milestone2.query.condition.IdentityCondition;
+import edu.ucsd.cse232b.milestone2.query.condition.True;
 import org.w3c.dom.Node;
 
 import java.util.List;
@@ -75,7 +75,7 @@ public class ForClause implements Query {
                 res.append("\n");
             }
         }
-        if (!(whereCondition instanceof IdentityCondition)){
+        if (!(whereCondition instanceof True)){
             res.append("where ").append(whereCondition.toString()).append("\n");
         }
         res.append("return ").append(returnClauseXq.toString());

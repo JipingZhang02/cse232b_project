@@ -15,7 +15,7 @@ import edu.ucsd.cse232b.milestone2.query.binaryQuery.CommaQuery;
 import edu.ucsd.cse232b.milestone2.query.binaryQuery.XQSlashRP;
 import edu.ucsd.cse232b.milestone2.query.condition.Condition;
 import edu.ucsd.cse232b.milestone2.query.condition.EqCondition;
-import edu.ucsd.cse232b.milestone2.query.condition.IdentityCondition;
+import edu.ucsd.cse232b.milestone2.query.condition.True;
 import edu.ucsd.cse232b.milestone2.query.condition.conjunctCondition.AndCondition;
 import edu.ucsd.cse232b.milestone2.query.singleQuery.TagGeneratorQuery;
 import edu.ucsd.cse232b.milestone2.query.singleQuery.VarXq;
@@ -74,7 +74,7 @@ public class Ms3QueryBuilder extends QueryBuilder {
                 letAssignValXqs.add(visit(xqCtx).left);
             }
         }
-        Condition whereCondition = new IdentityCondition();
+        Condition whereCondition = new True();
         if (ctx.whereClause() != null) {
             whereCondition = visit(ctx.whereClause().cond()).right;
         }
@@ -94,6 +94,7 @@ public class Ms3QueryBuilder extends QueryBuilder {
             System.out.println("can not optimize for query to join:");
             System.out.println(ctx.getText());
             System.out.println("because:"+msg);
+            exception.printStackTrace();
             System.out.println();
             Query res = QueryBuilderTool.buildForClause(forVarNames, forAssignValXqs, letVarNames, letAssignValXqs, whereCondition, returnClause,true);
             return new Pair<>(res, null);
@@ -122,7 +123,7 @@ public class Ms3QueryBuilder extends QueryBuilder {
     }
 
     private static void getAllSubConditions(Condition condition, List<EqCondition> res) throws CannotOptimizeException {
-        if (condition instanceof IdentityCondition) {
+        if (condition instanceof True) {
             return;
         }
         if (condition instanceof EqCondition) {
@@ -204,8 +205,13 @@ public class Ms3QueryBuilder extends QueryBuilder {
                 // treat this ($var in xq) clause as a new table
                 tableNames.add(forVarName);
                 tableGenerators.add(forAssignValGenerator);
-                columnsInEachTable.add(new ArrayList<>());
-                columnGeneratorsEachTable.add(new ArrayList<>());
+                List<String> colNamesThisTable = new ArrayList<>();
+                List<Query> colGensThisTable = new ArrayList<>();
+                colNameToTableIdx.put(forVarName,colNameToTableIdx.size());
+/*                colNamesThisTable.add(forVarName);
+                colGensThisTable.add(new VarXq(forVarName));*/
+                columnsInEachTable.add(colNamesThisTable);
+                columnGeneratorsEachTable.add(colGensThisTable);
             } else if (tableNames.contains(leftMostVarNameInGenerator)) {
                 int tableIdx = tableNames.indexOf(leftMostVarNameInGenerator);
                 // treat this ($var in xq) clause as a column of the tableIdx-th table
@@ -276,7 +282,6 @@ public class Ms3QueryBuilder extends QueryBuilder {
                 joinConditions[lTableIdx][rTableIdx].add(new Pair<>(leftVarName, rightVarName));
                 joinConditions[rTableIdx][lTableIdx].add(new Pair<>(rightVarName, leftVarName));
             } else {
-
                 String leftVarName = getLeftMostVarName(left);
                 String rightVarName = getLeftMostVarName(right);
                 if (leftVarName == null && rightVarName == null) {
@@ -285,10 +290,20 @@ public class Ms3QueryBuilder extends QueryBuilder {
                 int leftVarTableIdx = -1;
                 if (leftVarName != null) {
                     leftVarTableIdx = tableNames.indexOf(leftVarName);
+                    if (leftVarTableIdx==-1){
+                        if (colNameToTableIdx.containsKey(leftVarName)){
+                            leftVarTableIdx = colNameToTableIdx.get(leftVarName);
+                        }
+                    }
                 }
                 int rightVarTableIdx = -1;
                 if (rightVarName != null) {
                     rightVarTableIdx = tableNames.indexOf(rightVarName);
+                    if (rightVarTableIdx==-1){
+                        if (colNameToTableIdx.containsKey(rightVarName)){
+                            rightVarTableIdx = colNameToTableIdx.get(rightVarName);
+                        }
+                    }
                 }
                 if ((leftVarTableIdx == -1) && (rightVarTableIdx == -1)) {
                     outerConditions.add(eqCondition);
@@ -378,9 +393,9 @@ public class Ms3QueryBuilder extends QueryBuilder {
             }
 
             // assemble columns with ComaXq wrapped in <tuple> tag
-            Query tableReturnClause = new TagGeneratorQuery(columnNames.get(0),columnGeneratorList.get(0));
-            for (int j = 1; j < columnNames.size(); j++) {
-                tableReturnClause = new CommaQuery(tableReturnClause,new TagGeneratorQuery(columnNames.get(j),columnGeneratorList.get(j)));
+            Query tableReturnClause = new TagGeneratorQuery(tableName,new VarXq(tableName));
+            for (String columnName : columnNames) {
+                tableReturnClause = new CommaQuery(tableReturnClause, new TagGeneratorQuery(columnName, new VarXq(columnName)));
             }
             tableReturnClause = new TagGeneratorQuery("tuple",tableReturnClause);
 
@@ -390,7 +405,7 @@ public class Ms3QueryBuilder extends QueryBuilder {
             List<Query> forGeneratorsThisTable = new ArrayList<>();
             forGeneratorsThisTable.add(tableGenerator);
             forGeneratorsThisTable.addAll(columnGeneratorList);
-            Condition whereConditionThisTable = new IdentityCondition();
+            Condition whereConditionThisTable = new True();
             List<EqCondition> conditionList = eqConditionsEachTable[i];
             for (Condition condition:conditionList){
                 whereConditionThisTable = new AndCondition(whereConditionThisTable,condition);
@@ -456,7 +471,7 @@ public class Ms3QueryBuilder extends QueryBuilder {
             joinXq = new JoinXq(joinXq,tables[iLateJoin]);
         }
 
-        Condition outerCondition = new IdentityCondition();
+        Condition outerCondition = new True();
         for (Condition c:outerConditions){
             outerCondition = new AndCondition(outerCondition,c);
         }

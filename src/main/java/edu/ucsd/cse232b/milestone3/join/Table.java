@@ -1,6 +1,8 @@
 package edu.ucsd.cse232b.milestone3.join;
 
 import edu.ucsd.cse232b.common.Util;
+import edu.ucsd.cse232b.common.myNode.MyElementNode;
+import edu.ucsd.cse232b.common.myNode.MyNode;
 import org.w3c.dom.Node;
 
 import java.util.*;
@@ -14,27 +16,31 @@ import java.util.*;
  */
 class Table {
     private static class DataRow {
-        final List<String> values = new ArrayList<>();
-        final Node w3cNode;
+        final List<MyNode> values = new ArrayList<>();
 
-        DataRow(Node w3cNode) {
-            this.w3cNode = w3cNode;
+
+        @Override
+        public String toString(){
+            return values.toString();
         }
     }
 
-    Map<String, Integer> schema = new HashMap<>();
+    Map<String, Integer> schema = new LinkedHashMap<>();
     List<DataRow> data = new ArrayList<>();
+
 
     private Table() {
 
     }
 
     Table(List<Node> w3cNodeList) {
+        System.out.print("");
         if (w3cNodeList.isEmpty()) {
             return;
         }
 
         Node firstNode = w3cNodeList.get(0); // use first node to build schema
+//        MyNode fordebug = MyNode.toMyNode(firstNode);
         int i = 0;
         for (Node child : Util.toJavaBuiltinList(firstNode.getChildNodes())) {
             String columnName = child.getNodeName();
@@ -43,24 +49,36 @@ class Table {
         }
 
         for (Node node : w3cNodeList) {
-            DataRow row = new DataRow(node);
-            List<String> rowValues = row.values;
+            DataRow row = new DataRow();
+            List<MyNode> rowValues = row.values;
             for (int j = 0; j < i; j++) {
-                rowValues.add("");
+                rowValues.add(MyNode.toMyNode(Util.createTextNode("")));
             }
             for (Node child : Util.toJavaBuiltinList(node.getChildNodes())) {
                 String columnName = child.getNodeName();
-                String columnValue = child.getTextContent();
+                MyNode wholeChildValue = MyNode.toMyNode(child);
+                List<MyNode> singleValue = ((MyElementNode)wholeChildValue).getChildren();
+                if (singleValue.size()>1){
+                    throw new IllegalArgumentException(String.format(
+                            "The %s which is interpreted as a column should contain exactly 1 child or no child, but actually has %d",
+                            wholeChildValue.toString(),
+                            singleValue.size()
+                            ));
+                }
                 if (!schema.containsKey(columnName)) {
                     throw new RuntimeException(String.format("column name: %s  not in schema", columnName));
                 }
-                rowValues.set(schema.get(columnName), columnValue); // maybe columns appear in different order
+                if (!singleValue.isEmpty()) {
+                    rowValues.set(schema.get(columnName), singleValue.get(0)); // maybe columns appear in different order
+                }
             }
             data.add(row);
         }
     }
 
     private ArrayList<DataRow>[] putIntoBuckets(List<String> joinOnColumns, int bucketsCnt) {
+        System.out.print("");
+
         for (String joinOnColumn : joinOnColumns) {
             if (!schema.containsKey(joinOnColumn)) {
                 throw new IllegalArgumentException(String.format("column name: %s  not in schema", joinOnColumn));
@@ -90,7 +108,11 @@ class Table {
     List<Node> toNodes(){
         List<Node> res = new ArrayList<>();
         for (DataRow row:data){
-            res.add(row.w3cNode);
+            List<Node> rowInnerNodes = new ArrayList<>();
+            for (Map.Entry<String,Integer> entry:schema.entrySet()){
+                rowInnerNodes.add(Util.assembleNode(entry.getKey(), Arrays.asList(row.values.get(entry.getValue()).toW3cNode())));
+            }
+            res.add(Util.assembleNode("tuple",rowInnerNodes));
         }
         return res;
     }
@@ -127,10 +149,7 @@ class Table {
                         continue;
                     }
 
-                    List<Node> allColumnNodes = Util.toJavaBuiltinList(rowL.w3cNode.getChildNodes());
-                    allColumnNodes.addAll(Util.toJavaBuiltinList(rowR.w3cNode.getChildNodes()));
-                    Node joinedRowNode = Util.assembleNode("tuple",allColumnNodes);
-                    DataRow joinedRow = new DataRow(joinedRowNode);
+                    DataRow joinedRow = new DataRow();
                     joinedRow.values.addAll(rowL.values);
                     joinedRow.values.addAll(rowR.values);
                     res.data.add(joinedRow);
@@ -144,5 +163,10 @@ class Table {
     static Table join2Tables(Table tableL, Table tableR, List<String> joinOnColumnL, List<String> joinOnColumnR){
         int bucketsCnt = Math.min(tableL.data.size(),tableR.data.size());
         return join2Tables(tableL,tableR,joinOnColumnL,joinOnColumnR,bucketsCnt);
+    }
+
+    @Override
+    public String toString(){
+        return  "Table{ schema:"+schema.toString()+" , linesCount: "+data.size()+" }";
     }
 }

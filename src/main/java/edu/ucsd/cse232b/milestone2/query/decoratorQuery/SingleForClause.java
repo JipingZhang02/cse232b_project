@@ -43,9 +43,4 @@ public class SingleForClause implements Query {
     public String toString(){
         return String.format("for $%s in %s\n%s\n",varName,generator.toString(), Util.insertTabBeforeEachLine(returnClause.toString()));
     }
-
-/*    @Override
-    public String serialize() {
-        throw new RuntimeException("Object of this class cannot be serialized");
-    }*/
 }

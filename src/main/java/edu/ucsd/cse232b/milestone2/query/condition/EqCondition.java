@@ -3,6 +3,7 @@ package edu.ucsd.cse232b.milestone2.query.condition;
 import edu.ucsd.cse232b.milestone1.expression.EvalResult;
 import edu.ucsd.cse232b.milestone2.query.Query;
 import edu.ucsd.cse232b.milestone2.query.singleQuery.ConstStringXq;
+import edu.ucsd.cse232b.common.myNode.MyNode;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -81,10 +82,10 @@ public class EqCondition implements Condition{
         }
         Set<MyNode> leftNodesAsSet = new HashSet<>();
         for (Node w3cNode: leftRes.nodes){
-            leftNodesAsSet.add(toMyNode(w3cNode));
+            leftNodesAsSet.add(MyNode.toMyNode(w3cNode));
         }
         for (Node w3cNode: rightRes.nodes){
-            MyNode myNodeR = toMyNode(w3cNode);
+            MyNode myNodeR = MyNode.toMyNode(w3cNode);
             if (leftNodesAsSet.contains(myNodeR)){
                 return true;
             }
@@ -92,85 +93,9 @@ public class EqCondition implements Condition{
         return false;
     }
 
-    private static MyNode toMyNode(Node w3cNode){
-        int type = w3cNode.getNodeType();
-        if (type==Node.TEXT_NODE){
-            return new MyStringNode(w3cNode.getNodeValue());
-        }
-        if (type!=Node.ELEMENT_NODE){
-            return null;
-        }
-        MyElementNode res = new MyElementNode();
-        NodeList childNodes = ((Element)w3cNode).getChildNodes();
-        for (int i = 0; i < childNodes.getLength(); i++) {
-            MyNode parsed = toMyNode(childNodes.item(i));
-            if (parsed!=null){
-                res.children.add(parsed);
-            }
-        }
-        return res;
-    }
 
     @Override
     public String toString(){
         return xqLeft.toString()+new String[]{"","=","=="," eq "," is "}[eqOpType]+xqRight.toString();
-    }
-
-    private static class MyNode{
-        /*
-            Here, we should use our own Node class,
-            Because the equals(Object o) method of w3c.Node is really stupid
-            It returns false when the content of two nodes are the same, but from different place of xml file
-         */
-    }
-
-    private static class MyStringNode extends MyNode{
-        String strValue="";
-
-        MyStringNode(){
-
-        }
-
-        MyStringNode(String strValue) {
-            this.strValue = strValue;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            MyStringNode that = (MyStringNode) o;
-            return Objects.equals(strValue, that.strValue);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(strValue);
-        }
-    }
-
-    private static class MyElementNode extends MyNode{
-        String tagName = "";
-        List<MyNode> children = new ArrayList<>();
-
-        public MyElementNode() {
-        }
-
-        public MyElementNode(String tagName) {
-            this.tagName = tagName;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
-            MyElementNode that = (MyElementNode) o;
-            return Objects.equals(tagName, that.tagName) && Objects.equals(children, that.children);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(tagName, children);
-        }
     }
 }

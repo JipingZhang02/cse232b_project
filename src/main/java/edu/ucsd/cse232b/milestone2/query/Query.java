@@ -11,7 +11,7 @@ public interface Query{
     /*
         this method is only used in milestone3, optimizing implicit join
         because when optimizing implicit join,
-            we should replace $var/rp in return clause with $tuple/var/star/rp (star is *)
+            we should replace $var/rp in return-clause with $tuple/var/star/rp (star is *)
      */
     Query substitute(Query originQuery,Query newQuery);
 

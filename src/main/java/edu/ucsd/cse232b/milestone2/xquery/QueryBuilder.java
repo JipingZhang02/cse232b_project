@@ -86,7 +86,7 @@ public class QueryBuilder extends XQueryBaseVisitor<Pair<Query, Condition>> {
 
     @Override
     public Pair<Query, Condition> visitVarXq(XQueryParser.VarXqContext ctx) {
-        return new Pair<>(new VarXq(ctx.VAR().getText()), null);
+        return new Pair<>(new VarXq(ctx.VAR().getText().substring(1)), null);
     }
 
     @Override
@@ -124,7 +124,7 @@ public class QueryBuilder extends XQueryBaseVisitor<Pair<Query, Condition>> {
                 letAssignValXqs.add(visit(xqCtx).left);
             }
         }
-        Condition whereCondition = new IdentityCondition();
+        Condition whereCondition = new True();
         if (ctx.whereClause() != null) {
             whereCondition = visit(ctx.whereClause().cond()).right;
         }

@@ -34,11 +34,11 @@ public class Util {
 
     public static List<Node> findAllChildrenNodes(Node node) {
         List<Node> allNodes = new ArrayList<>();
-        dfs(node, allNodes);
+        dfsFindChildren(node, allNodes);
         return allNodes;
     }
 
-    private static void dfs(Node node, List<Node> allNodes) {
+    private static void dfsFindChildren(Node node, List<Node> allNodes) {
         if (node == null) {
             return;
         }
@@ -49,7 +49,7 @@ public class Util {
             // Check if the node is a text node and if it is not just whitespace
             if (!(child.getNodeType() == Node.TEXT_NODE && child.getNodeValue().trim().isEmpty())) {
                 allNodes.add(child); // Add the child node to the list
-                dfs(child, allNodes); // Recurse on the child node to explore its children
+                dfsFindChildren(child, allNodes); // Recurse on the child node to explore its children
             }
         }
     }
@@ -63,6 +63,10 @@ public class Util {
     public static List<Node> findDirectChildrenNodes(List<Node> nodes) {
         List<Node> res = new ArrayList<>();
         for (Node node:nodes){
+            if (node.getNodeType()==Node.TEXT_NODE){
+                res.add(node);
+                continue;
+            }
             NodeList nodeList = node.getChildNodes();
             for (int i = 0; i < nodeList.getLength(); i++) {
                 res.add(nodeList.item(i));

@@ -1,58 +1,36 @@
 for $tuple in join(
-    join(
-        for $b in doc("test2.xml")//BOOK,
-            $btitle in $b/TITLE,
-            $baid in $b/AUTHORID
-        return <tuple>{
-            <btitle>{
-                $b/TITLE
-            }</btitle>,<baid>{
-                $b/AUTHORID
-            }</baid>
-        }</tuple>
-    ,
-        for $a in doc("test2.xml")//AUTHOR,
-            $aid in $a/ID,
-            $an in $a/NAME,
-            $fname in $an/FIRST,
-            $lname in $an/LAST,
-            $anid in $a/NATIONID
-        return <tuple>{
-            <aid>{
-                $a/ID
-            }</aid>,<an>{
-                $a/NAME
-            }</an>,<fname>{
-                $an/FIRST
-            }</fname>,<lname>{
-                $an/LAST
-            }</lname>,<anid>{
-                $a/NATIONID
-            }</anid>
-        }</tuple>
-    ,
-        [baid],[aid]
-    )
-,
-    for $n in doc("test2.xml")//NATION,
-        $nid in $n/ID,
-        $nname in $n/FULLNAME
+    for $d1 in doc("large-data.xml")//d,
+        $id1 in $d1/id/text(),
+        $a1 in $d1/a2/text()
     return <tuple>{
-        <nid>{
-            $n/ID
-        }</nid>,<nname>{
-            $n/FULLNAME
-        }</nname>
+        <d1>{
+            $d1
+        }</d1>,<id1>{
+            $id1
+        }</id1>,<a1>{
+            $a1
+        }</a1>
     }</tuple>
 ,
-    [anid],[nid]
+    for $d2 in doc("large-data.xml")//d,
+        $id2 in $d2/id/text(),
+        $a2 in $d2/a6/text()
+    return <tuple>{
+        <d2>{
+            $d2
+        }</d2>,<id2>{
+            $id2
+        }</id2>,<a2>{
+            $a2
+        }</a2>
+    }</tuple>
+,
+    [a1],[a2]
 )
-return <BOOK>{
-    <TITLE>{
-        $tuple/btitle/*/text()
-    }</TITLE>,<AUTHOR>{
-        $tuple/fname/*/text()
-    }</AUTHOR>,<NATION>{
-        $tuple/nname/*/text()
-    }</NATION>
-}</BOOK>
+return <d>{
+    <id1>{
+        $tuple/id1/*
+    }</id1>,<id2>{
+        $tuple/id2/*
+    }</id2>
+}</d>

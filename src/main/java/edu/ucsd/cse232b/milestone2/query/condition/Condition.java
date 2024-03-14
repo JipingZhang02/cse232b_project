@@ -9,8 +9,4 @@ public interface Condition {
     boolean assess(Map<String, Node> variables) throws Exception;
 
     Condition substitute(Query originQuery, Query newQuery);
-
-    default String serialize(){
-        return toString();
-    }
 }
