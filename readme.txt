@@ -1,8 +1,6 @@
 Environment:
 
 The whole project is based on open source Amazon Corretto jdk11 and ANTLR4.13.1
-If you want to compile and run our code on your own computer,
-** jdk8 is not OK because ANTLR4.13.1 relies on jdk11 !! **
 
 
 
@@ -25,11 +23,3 @@ the behavior of reading input is like this:
     in xquery and ms3 mode,
         ** lines before first blank line **   of input file will be read as a xquery
         other lines will be ignored
-
-
-
-Results:
-Milestone1 testcase pass: 9/10
-Milestone2 testcase pass: 9/10 (failed on a ridiculous let-clause test case, where let-clause is used as a for-clause)
-Milestone3 testcase pass:
-
