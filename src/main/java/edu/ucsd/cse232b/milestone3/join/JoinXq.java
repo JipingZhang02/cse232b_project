@@ -2,23 +2,23 @@ package edu.ucsd.cse232b.milestone3.join;
 
 import edu.ucsd.cse232b.common.SlashStatus;
 import edu.ucsd.cse232b.common.Util;
-import edu.ucsd.cse232b.milestone1.expression.EvalResult;
-import edu.ucsd.cse232b.milestone2.query.Query;
+import edu.ucsd.cse232b.common.EvalResult;
+import edu.ucsd.cse232b.milestone2.xquery.XQuery;
 import org.w3c.dom.Node;
 
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.List;
 
-public class JoinXq implements Query {
-    private final Query leftTableGenerator, rightTableGenerator;
+public class JoinXq implements XQuery {
+    private final XQuery leftTableGenerator, rightTableGenerator;
     private final List<String> joinOnColumnL,joinOnColumnR;
 
-    public JoinXq(Query leftTableGenerator, Query rightTableGenerator){
+    public JoinXq(XQuery leftTableGenerator, XQuery rightTableGenerator){
         this(leftTableGenerator,rightTableGenerator,new ArrayList<>(),new ArrayList<>());
     }
 
-    public JoinXq(Query leftTableGenerator, Query rightTableGenerator, List<String> joinOnColumnL, List<String> joinOnColumnR) {
+    public JoinXq(XQuery leftTableGenerator, XQuery rightTableGenerator, List<String> joinOnColumnL, List<String> joinOnColumnR) {
         this.leftTableGenerator = leftTableGenerator;
         this.rightTableGenerator = rightTableGenerator;
         this.joinOnColumnL = joinOnColumnL;
@@ -34,7 +34,7 @@ public class JoinXq implements Query {
     }
 
     @Override
-    public Query substitute(Query originQuery, Query newQuery) {
+    public XQuery substitute(XQuery originXQuery, XQuery newXQuery) {
         return this;
     }
 

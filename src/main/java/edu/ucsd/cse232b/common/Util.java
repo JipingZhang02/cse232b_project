@@ -202,7 +202,7 @@ public class Util {
         return res.toString();
     }
 
-    public static String ignoreBlankLines(String string){
+    public static String removeBlankLines(String string){
         StringBuilder res = new StringBuilder();
         String[] lines = string.split("\n");
         for (String line:lines){

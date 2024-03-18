@@ -1,7 +1,7 @@
 package edu.ucsd.cse232b;
 
-import edu.ucsd.cse232b.milestone1.xpath.XPath;
-import edu.ucsd.cse232b.milestone2.xquery.XQuery;
+import edu.ucsd.cse232b.milestone1.Ms1Main;
+import edu.ucsd.cse232b.milestone2.Ms2Main;
 import edu.ucsd.cse232b.milestone3.Ms3Main;
 
 import java.util.Arrays;
@@ -14,10 +14,10 @@ public class Main {
                 String[] argsTruncated = Arrays.copyOfRange(args, 2, args.length);
                 switch (args[1]) {
                     case "xpath":
-                        XPath.main(argsTruncated);
+                        Ms1Main.main(argsTruncated);
                         return;
                     case "xquery":
-                        XQuery.main(argsTruncated);
+                        Ms2Main.main(argsTruncated);
                         return;
                     case "ms3":
                         Ms3Main.main(argsTruncated);

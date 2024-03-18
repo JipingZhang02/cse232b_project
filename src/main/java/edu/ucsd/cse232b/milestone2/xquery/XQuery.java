@@ -1,57 +1,21 @@
 package edu.ucsd.cse232b.milestone2.xquery;
 
-import edu.ucsd.cse232b.autogen.XQueryLexer;
-import edu.ucsd.cse232b.autogen.XQueryParser;
-import edu.ucsd.cse232b.common.Util;
-import edu.ucsd.cse232b.milestone2.query.Query;
-import edu.ucsd.cse232b.milestone1.xpath.XPath;
-import org.antlr.v4.runtime.CharStreams;
-import org.antlr.v4.runtime.CommonTokenStream;
+import edu.ucsd.cse232b.common.EvalResult;
 import org.w3c.dom.Node;
 
-import java.io.*;
-import java.util.HashMap;
-import java.util.List;
+import java.util.Map;
 
-public class XQuery {
-    public static void main(String[] args) throws Exception {
-        XPath.evaluateXPath("doc(\"j_caesar.xml\")//ACT"); // don't delete this line! we need to init Util.doc by this line
-        String inputFilePath = "./xquery.txt";
-        String outputFilePath = "./output.xml";
-        if (args.length>=1){
-            inputFilePath = args[0];
-        }
-        if (args.length>=2){
-            outputFilePath = args[1];
-        }
-        String queryStr = readQuery(inputFilePath);
-        Query query = biuldQuery(queryStr);
-        List<Node> res = query.evaluate(null,new HashMap<>()).nodes;
-        Util.writeNodesToFile(res,outputFilePath);
-    }
+public interface XQuery {
+    EvalResult evaluate(EvalResult input,Map<String,Node> variables) throws Exception;
 
-    public static String readQuery(String inputFilePath) throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(new FileInputStream(new File(inputFilePath))));
-        StringBuilder res = new StringBuilder();
-        while (true){
-            String line = bufferedReader.readLine();
-            if (line==null){
-                return res.toString();
-            }
-            line = line.trim();
-            line = line.replace("\n","").replace("\r","");
-            if (line.length()==0){
-                return res.toString();
-            }
-            res.append(line).append(" ");
-        }
-    }
+    /*
+        this method is only used in milestone3, optimizing implicit join
+        because when optimizing implicit join,
+            we should replace $var/rp in return-clause with $tuple/var/star/rp (star is *)
+     */
+    XQuery substitute(XQuery originXQuery, XQuery newXQuery);
 
-    public static Query biuldQuery(String xQueryString){
-        XQueryLexer lexer = new XQueryLexer(CharStreams.fromString(xQueryString));
-        CommonTokenStream tokens = new CommonTokenStream(lexer);
-        XQueryParser parser = new XQueryParser(tokens);
-        XQueryParser.XqContext xqContext = parser.xq();
-        return QueryBuilder.INSTANCE.visit(xqContext).left;
+    default String serialize(){
+        return toString();
     }
 }
